@@ -18,9 +18,9 @@ public class Exam02 {
 		 */
 		
 		Student[] student = new Student[] {
-				new Student(24, "Kim", 60, 70, 60),
-				new Student(22, "Lee", 80, 90, 70),
-				new Student(21, "Park", 50, 60, 40)
+				new Student("24", "Kim", 60, 70, 60),
+				new Student("22", "Lee", 80, 90, 70),
+				new Student("21", "Park", 50, 60, 40)
 		};
 		
 		System.out.println("학번\t이름\t국어\t영어\t수학\t합계\t평균");

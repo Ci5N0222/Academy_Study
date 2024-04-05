@@ -29,7 +29,7 @@ public class Quiz01 {
 			System.out.println(name + "학생 수학 : ");
 			int math = scan.nextInt();
 			
-			student[i] = new Student(i, name, kor, eng, math);
+			student[i] = new Student(String.valueOf(i), name, kor, eng, math);
 			
 		}
 		

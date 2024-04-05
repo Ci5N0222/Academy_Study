@@ -2,7 +2,7 @@ package classes;
 
 public class Student {
 
-	private int id;
+	private String id;
 	private String name;
 	private int korean;
 	private int english;
@@ -18,10 +18,10 @@ public class Student {
 		return (float)getSum()/3;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -49,7 +49,7 @@ public class Student {
 		this.math = math;
 	}
 	
-	public Student(int id, String name, int korean, int english, int math) {
+	public Student(String id, String name, int korean, int english, int math) {
 		super();
 		this.id = id;
 		this.name = name;
