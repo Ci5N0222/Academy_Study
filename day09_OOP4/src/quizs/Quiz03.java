@@ -2,8 +2,6 @@ package quizs;
 
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
 import classes.Contact;
 import models.TelManager;
 
@@ -116,6 +114,9 @@ public class Quiz03 {
 				// 프로그램 종료
 				System.out.println("!!! 프로그램 종료 !!!");
 				break;
+			} else {
+				System.out.println("!!! 잘못된 입력 값 !!!");
+				continue;
 			}
 		}
 	}

@@ -17,7 +17,7 @@ public class TelManager {
 	}
 	
 	/**
-	 * 배열의 값을 추가하는 메서드
+	 * 배열에 값을 추가하는 메서드
 	 * @param contact
 	 */
 	public void AddContact(Contact contact) {
@@ -58,6 +58,7 @@ public class TelManager {
 		 *  5. length: 복사할 요소의 수
 		 */
 		System.arraycopy(arr, 0, result, 0, count);
+		
 		return result;
 	}
 	
