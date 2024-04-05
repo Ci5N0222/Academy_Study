@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import classes.Contact;
+import models.TelManager;
 
 public class Quiz03 {
 
@@ -26,14 +27,15 @@ public class Quiz03 {
 		 */
 		
 		Scanner sc = new Scanner(System.in);
-		Contact[] contact = new Contact[10];
-		int index = 0;
+		TelManager tel = new TelManager();
 		
 		while(true) {
 			System.out.println("<< 연락처 관리 프로그램 >>");
 			System.out.println("1. 신규 연락처 등록");
 			System.out.println("2. 연락처 목록 출력");
 			System.out.println("3. 연락처 검색");
+			System.out.println("4. 연락처 업데이트");
+			System.out.println("5. 연락처 삭제");
 			System.out.println("0. 프로그램 종료");
 			System.out.println(">> ");
 			
@@ -45,42 +47,52 @@ public class Quiz03 {
 				String name = sc.next();
 				
 				System.out.println("연락처를 입력해주세요 >> ");
-				int phone = sc.nextInt();
+				String phone = sc.next();
 				
-				String id = String.valueOf(1001+index);
-				System.out.println("id ==== " + id);
-				contact[index] = new Contact(id, name, phone);
-				index++;
+				String id = String.valueOf(1000 + tel.getIndex());
+
+				Contact contact = new Contact(id, name, phone);
+				tel.AddContact(contact);
+				
 			} else if(input == 2) {
 				// 연락처 목록 출력
-				if(index == 0) {
+				if(tel.getIndex() == 0) {
 					System.out.println("등록된 연락처가 없습니다.");
 					continue;
 				}
+				Contact[] contact = tel.getContacts();
 				System.out.println("ID\t 이름\t 연락처\t");
-				for(int i=0; i<index; i++) {
+				for(int i=0; i<tel.getIndex(); i++) {
 					System.out.println(contact[i].getId() +"\t"+
 									   contact[i].getName() +"\t"+
 									   contact[i].getPhone() +"\t");
 				}
 				
 			} else if(input == 3) {
-				int count = 0;
+				// 연락처 검색
 				System.out.println("검색할 번호를 입력해주세요.");
 				String search = sc.next();
-				// 연락처 검색
+				
+				Contact[] contact = tel.searchString(search);
+				if(contact.length == 0) {
+					System.out.println("연락처가 없습니다");
+					continue;
+				}
+				
 				System.out.println("ID\t 이름\t 연락처\t");
-				for(int i=0; i<index; i++) {
-					if(String.valueOf(contact[index].getPhone()).contains(search)) {
+				for(int i=0; i<contact.length; i++) {
+					if(contact[i].getPhone().contains(search)) {
 						System.out.println(contact[i].getId() +"\t"+
 										   contact[i].getName() +"\t"+
 										   contact[i].getPhone() +"\t");
-						count++;
 					}
 				}
-				if(count == 0) {
-					System.out.println("검색한 연락처가 없습니다.");
-				}
+				
+			} else if(input == 4) {
+				// 연락처 업데이트
+				
+			} else if(input == 5) {
+				// 연락처 삭제
 				
 			} else if(input == 0) {
 				// 프로그램 종료
@@ -88,10 +100,6 @@ public class Quiz03 {
 				break;
 			}
 		}
-		
-		
-
 	}
-
 }
 
