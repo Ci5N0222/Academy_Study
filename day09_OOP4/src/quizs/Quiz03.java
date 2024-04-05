@@ -90,9 +90,27 @@ public class Quiz03 {
 				
 			} else if(input == 4) {
 				// 연락처 업데이트
+				System.out.println("변경을 원하는 ID를 입력하세요: ");
+				String id = sc.next();
+				System.out.println("변경하실 연락처의 입력하세요: ");
+				String num = sc.next();
+				int update = tel.updateContact(id, num);
+				if(update == 1) {
+					System.out.println("정상적으로 변경이 완료되었습니다.");
+				} else {
+					System.out.println("ID를 확인하고 다시 시도해주세요.");
+				}
 				
 			} else if(input == 5) {
 				// 연락처 삭제
+				System.out.println("삭제를 원하는 ID를 입력하세요: ");
+				String id = sc.next();
+				int delete = tel.deleteContact(id);
+				if(delete == 1) {
+					System.out.println("정상적으로 삭제가 완료되었습니다.");
+				} else {
+					System.out.println("ID를 확인하고 다시 시도해주세요.");
+				}
 				
 			} else if(input == 0) {
 				// 프로그램 종료
