@@ -12,9 +12,21 @@ public class MainView {
 		
 		/**
 		 *  회원 관리 시스템
-		 *  	1. 신규회원 등록
-		 *  	2. 회원 목록 출력
+		 *	- Main (View): 화면구성
+		 *	<< 회원 관리 시스템 >>
+		 *	1. 신규 회원 등록
+		 *  2. 회원 목록 출력
+		 *  0. 시스템 종료
 		 *  
+		 * - silver (data): 데이터 저장
+		 *   멤버 필드: id, name, point
+		 *   멤버 메서드: setter, getter, constructor, default constructor, getBonus(멤버의 point 값 *0.02)
+		 * 
+		 * - MemberManager (data): 데이터 관리
+		 *   silver 인스턴스를 최대 10개까지 저장할 수 있는 배열 members, index
+		 *   멤버 메서드: addMember(), getMembers()
+		 *   
+		 *   
 		 *  추가 사항
 		 *  	1. 골드 등급 추가 요청 --> Gold 클래스 추가 작업 진행
 		 *  
@@ -57,7 +69,7 @@ public class MainView {
 			} else if(input == 2) {
 				// Members list
 				Silver[] silver = manager.getMembers();
-				if(silver == null) System.out.println("등록된 실버 회원이 없습니다");
+				if(silver == null) System.out.println("등록된 회원이 없습니다");
 				else {
 					System.out.println("ID\t이름\t포인트\t보너스");
 					for(int i=0; i<manager.getIndex(); i++) {
@@ -69,7 +81,7 @@ public class MainView {
 				}
 				
 				Gold[] gold = manager.getGoldMembers();
-				if(gold == null) System.out.println("등록된 실버 회원이 없습니다");
+				if(gold == null && silver == null) System.out.println("등록된 회원이 없습니다");
 				else {
 					if(silver == null)System.out.println("ID\t이름\t포인트\t보너스");
 					for(int i=0; i<manager.getGoldIndex(); i++) {
