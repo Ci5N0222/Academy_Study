@@ -22,17 +22,17 @@ public class Main {
 			System.out.println("│ 3. 음악 검색		│");
 			System.out.println("│ 4. 항목 삭제		│");
 			System.out.println("│ 5. 항목 수정		│");
-			System.out.println("│ 6. 시스템 종료		│");
+			System.out.println("│ 0. 시스템 종료		│");
 			System.out.println("└─────────── ───────────┘");
 			System.out.println(" >>> ");
 			int input = Integer.parseInt(sc.nextLine());
 			
 			
 			if(input == 1) {
-				/** 신규 음악 등록 **/
+				/** 신규 음악 등록 **/ 
 				// Mock-data
-				 musicDAO.addMusic(new MusicDTO(musicDAO.getId(), "좋은날", "아이유"));
-				 musicDAO.addMusic(new MusicDTO(musicDAO.getId(), "너랑나", "아이유"));
+				// musicDAO.addMusic(new MusicDTO(musicDAO.getId(), "좋은날", "아이유"));
+				//  musicDAO.addMusic(new MusicDTO(musicDAO.getId(), "너랑나", "아이유"));
 				
 				System.out.println("제목을 입력해주세세요 : ");
 				String title = sc.nextLine();
@@ -109,10 +109,10 @@ public class Main {
 					else System.err.println("수정 중 오류가 발생했습니다");
 				}
 				
-			} else if(input == 6) {
+			} else if(input == 0) {
 				/** 시스템 종료 **/
 				System.out.println("!!! 시스템 종료 !!!");
-				break;
+				System.exit(0);
 				
 			} else {
 				/** 잘못된 입력 **/
