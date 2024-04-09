@@ -2,6 +2,10 @@ package classes;
 
 public class Silver extends Member{
 
+	public Silver() {
+		
+	}
+	
 	public Silver(String id, String name, int point) {
 		
 		// 1. setter 사용
@@ -18,9 +22,9 @@ public class Silver extends Member{
 		super(id, name, point);
 	}
 	
-	/** Get bonus **/
+	@Override
 	public double getBonus() {
-		return this.getBonus() * 0.02;
+		return this.getPoint() * 0.02;
 	}
 	
 }

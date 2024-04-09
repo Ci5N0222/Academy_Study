@@ -1,10 +1,12 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import classes.Gold;
+import classes.Member;
 import classes.Silver;
-import dao.MemberManager;
+import dao.MemberDAO;
 
 public class MainView {
 
@@ -40,7 +42,7 @@ public class MainView {
 		 */
 		
 		Scanner sc = new Scanner(System.in);
-		MemberManager manager = new MemberManager();
+		MemberDAO manager = new MemberDAO();
 		
 		while(true) {
 			System.out.println("<< 회원 관리 시스템 >>");
@@ -57,40 +59,45 @@ public class MainView {
 //				String id = sc.nextLine();
 //				System.out.println("이름을 입력해주세요.");
 //				String name = sc.nextLine();
-//				int success = manager.addMember(id, name, point);
+//				// int success = manager.addMember(id, name, point);
+//				Silver sv = new Silver(id, name, point);
 //				
 //				// Create success or fail
 //				if(success == 1) System.out.println("!!! 회원 등록 성공 !!!");
 //				else System.out.println("더 이상 회원을 추가할 수 없습니다.");
-				manager.addMember("sv1", "kim", 1000);
-				manager.addMember("sv2", "lee", 2000);
-				manager.addGoldMember("gd1", "park", 5000);
+				
+//				System.out.println("<< 등급을 선택해 주세요 >>");
+//				System.out.println("1. Silver");
+//				System.out.println("2. Gold");
+//				System.out.println(">> ");
+//				int rating = Integer.parseInt(sc.nextLine());
+//				
+//				if(rating == 1) {
+//					
+//					
+//				} else if (rating == 2) {
+//					
+//					
+//				}
+				
+				manager.addMember(new Silver("sv1", "kim", 1000));
+				manager.addMember(new Silver("sv2", "lee", 2000));
+				manager.addMember(new Gold("gd1", "park", 5000));
 				
 			} else if(input == 2) {
 				// Members list
-				Silver[] silver = manager.getMembers();
-				if(silver == null) System.out.println("등록된 회원이 없습니다");
+				ArrayList<Member> members = manager.getMembers();
+				if(members.size() == 0) System.out.println("등록된 회원이 없습니다");
 				else {
 					System.out.println("ID\t이름\t포인트\t보너스");
-					for(int i=0; i<manager.getIndex(); i++) {
-						System.out.println(silver[i].getId() + "\t" +
-										   silver[i].getName() + "\t" +
-										   silver[i].getPoint() + "\t" +
-										   silver[i].getBonus() + "\t");
+					for(Member member: members) {
+						System.out.println(member.getId() + "\t" +
+										   member.getName() + "\t" +
+										   member.getPoint() + "\t" +
+										   member.getBonus());
 					}
 				}
 				
-				Gold[] gold = manager.getGoldMembers();
-				if(gold == null && silver == null) System.out.println("등록된 회원이 없습니다");
-				else {
-					if(silver == null)System.out.println("ID\t이름\t포인트\t보너스");
-					for(int i=0; i<manager.getGoldIndex(); i++) {
-						System.out.println(gold[i].getId() + "\t" +
-										   gold[i].getName() + "\t" +
-									  	   gold[i].getPoint() + "\t" +
-										   gold[i].getBonus() + "\t");
-					}
-				}
 				
 			} else if(input == 0) {
 				// Power off
@@ -106,5 +113,6 @@ public class MainView {
 	}
 
 }
+
 
 

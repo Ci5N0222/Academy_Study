@@ -2,6 +2,10 @@ package classes;
 
 public class Gold extends Member {
 	
+	public Gold() {
+		
+	}
+	
 	public Gold(String id, String name, int point) {
 		
 		// 1. setter 사용
@@ -21,7 +25,7 @@ public class Gold extends Member {
 
 	@Override
 	public double getBonus() {
-		return this.getBonus() * 0.03;
+		return this.getPoint() * 0.03;
 	}
 	
 		
