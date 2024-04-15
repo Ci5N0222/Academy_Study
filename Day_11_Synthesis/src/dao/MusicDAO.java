@@ -130,6 +130,7 @@ public class MusicDAO {
 					detail.setSinger(ms.getSinger());
 					detail.setUpdate_date(LocalDate.now());
 					result = 1;
+					break;
 				}
 			}
 			
