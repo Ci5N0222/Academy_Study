@@ -16,7 +16,7 @@ public class Quiz01 {
 		 *  [ Client ]
 		 *  1. 로또 번호 추천
 		 *  2. 현재 시간 요청 
-		 *  3. 입력창 ( >> )
+		 *  3. 오늘의 명언
 		 *  
 		 */
 		
@@ -34,7 +34,7 @@ public class Quiz01 {
 		while(true) {
 			
 			// 서버측으로 보낼 input 값 (Param String)
-			String input = JOptionPane.showInputDialog("<<< 데이터 요청 >>>\n" + "1. 로또 번호 추천\n" + "2. 현재 시간 요청\n");
+			String input = JOptionPane.showInputDialog("<<< 데이터 요청 >>>\n" + "1. 로또 번호 추천\n" + "2. 현재 시간 요청\n" + "3. 오늘의 명언\n");
 			dos.writeUTF(input);
 			
 			// 서버측으로 받은 Data (Return String)
@@ -45,6 +45,9 @@ public class Quiz01 {
 			
 			// 현재시간 출력
 			else if(input.equals("2")) JOptionPane.showMessageDialog(null, "현재시간 : " + msg);
+			
+			// 명언 출력
+			else if(input.equals("3")) JOptionPane.showMessageDialog(null, "오늘의 명언\n" + msg);
 			
 			// 오류 출력
 			else System.out.println("입력값 오류 : " + input); 
