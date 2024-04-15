@@ -1,6 +1,8 @@
 package exam01;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -25,12 +27,19 @@ public class Server {
         // 업그레이드 스트림: Output Stream을 사용하기 편한 상태로 업그레이드
         DataOutputStream dos = new DataOutputStream(os);
         
+        // 양방향 통신을 위해 인풋 스트림 추가
+        InputStream is = socket.getInputStream();
+        DataInputStream dis = new DataInputStream(is);
+        
         while(true){
             // writeUTF
             dos.writeUTF(JOptionPane.showInputDialog("보낼 메세지를 입력하세요"));
 
             // 메시지가 작성되어도 데이터를 보내지 않기 떄문에 강제로 보내준다.
             dos.flush();
+
+            String msg = dis.readUTF();
+            System.out.println("Client : " + msg);
         }
         
 	}
