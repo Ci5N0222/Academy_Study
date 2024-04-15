@@ -14,24 +14,23 @@ import java.util.Set;
 public class Quiz02 {
 
 	public static void main(String[] args) throws Exception {
-		
+
 		/**
-		 *	서버
+		 *	[ Server ]
 		 *  1. 클라이언트가 1번을 입력한 경우 로또번호를 생성하여 String 타입으로 반환
-		 *  2. 클라이언트가 2번을 입력한 경우 현재 시간을 yyyy-MM-dd hh:mm:ss 형식으로 반환
-		 *    
+		 *  2. 클라이언트가 2번을 입력한 경우 현재 시간을 String(yyyy-MM-dd hh:mm:ss) 형식으로 반환
 		 */
 		
-		// Server
+		/** Server **/
 		ServerSocket server = new ServerSocket(26000);
 		Socket socket = server.accept();
 		System.out.println(socket.getInetAddress() + "로 부터 접속");
 		
-		// create output stream 
+		// Create output stream 
 		OutputStream os = socket.getOutputStream();
 		DataOutputStream dos = new DataOutputStream(os);
 		
-		// create input stream
+		// Create input stream
 		InputStream is = socket.getInputStream();
 		DataInputStream dis = new DataInputStream(is);
 		
@@ -40,10 +39,12 @@ public class Quiz02 {
 			// 클라이언트로 부터 요청 받은 번호
 			String msg = dis.readUTF();
 			System.out.println("request : " + msg);
+			
+			// 반환 값을 저장할 변수
 			String response = "";
 			
 			if(msg.equals("1")) {
-				// 로또 번호 로직 return (String)
+				// 로또 번호 로직 ( Return String )
 				Set<Integer> lottoNumberSet = new HashSet<>();
 		        Random random = new Random();
 
@@ -51,15 +52,13 @@ public class Quiz02 {
 		            int randomNumber = random.nextInt(45) + 1;
 		            lottoNumberSet.add(randomNumber); 
 		        }
-
-		        // 정렬된 문자열로 변환하여 반환
 		        response = lottoNumberSet.stream()
 	                             		 .map(Object::toString)
 	                             		 .sorted()
 	                             		 .reduce("", (acc, num) -> acc.isEmpty() ? num : acc + ", " + num);
 				
 			} else if(msg.equals("2")) {
-				// 현재시간 반환 로직 return (yyyy-MM-dd hh:mm:ss, String)
+				// 현재시간 반환 로직 ( Return String -> yyyy-MM-dd hh:mm:ss )
 				long ctime = System.currentTimeMillis();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 				response = sdf.format(ctime);
