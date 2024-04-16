@@ -45,6 +45,7 @@ public class Main {
 		}
 
 		while (true) {
+			
 			try {
 				String msg = dis.readUTF();
 				System.out.println("MSG === " + msg);
@@ -63,8 +64,10 @@ public class Main {
 					ArrayList<MovieDTO> movieList = dao.movieList();
 					for (MovieDTO movie : movieList) {
 						// 내용 단위 (,)를 기준으로 분기
-						resultStr += movie.getId() + "," + movie.getTitle() + "," + movie.getGenre() + ","
-								+ movie.getWrite_date();
+						resultStr += movie.getId() + "," + 
+								  movie.getTitle() + "," + 
+								  movie.getGenre() + "," + 
+								  movie.getWrite_date();
 						
 						// 리스트 단위 (/)를 기준으로 분기
 						if (movieList.size() - 1 > split) {

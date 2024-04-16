@@ -34,7 +34,8 @@ public class MovieDAO {
 			index ++;
 			
 		} catch (Exception e) {
-			result = "Error : " + e;
+			System.out.println("Error : " + e);
+			result = "영화 등록에 실패하였습니다";
 		}
 		
 		return result;
@@ -47,7 +48,9 @@ public class MovieDAO {
 	 * @return
 	 */
 	public ArrayList<MovieDTO> movieList() {
+		
 		return movies;
+		
 	}
 	
 
@@ -63,7 +66,9 @@ public class MovieDAO {
 				searchMovies.add(movie);
 			}
 		}
+		
 		return searchMovies;
+		
 	}
 	
 

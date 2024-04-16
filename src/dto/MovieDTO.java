@@ -1,15 +1,16 @@
 package dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class MovieDTO {
+	
 	
 	/** MovieDTO **/
 	private int id;
 	private String title;
 	private String genre;
 	private LocalDate write_date;
+	
 	
 	/** getter & setter **/
 	public int getId() {
@@ -37,9 +38,9 @@ public class MovieDTO {
 		this.write_date = write_date;
 	}
 
+	
 	/** Constructor **/
 	public MovieDTO(int id, String title, String genre) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.genre = genre;
