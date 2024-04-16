@@ -18,7 +18,7 @@ public class Quiz01 {
 		 *  2. 현재 시간 요청 
 		 *  3. 오늘의 명언
 		 *  
-		 */
+		 */ 
 		
 		/** Client **/ 
 		Socket client = new Socket("192.168.0.202", 26000);
