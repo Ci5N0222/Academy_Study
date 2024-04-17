@@ -55,21 +55,29 @@ public class Client {
 			 *  7. 인스턴스 종료
 			 */
 			
+			// 1. 파일의 사이즈를 전송 받는다.
 			long fileSize = dis.readLong();
+			
+			// 2. RAM에 전송받은 파일 사이즈에 맞는 byte[] 배열을 만든다
 			byte[] targetFileName = new byte[(int) fileSize];
-			System.out.println("=======================");
+			
+			// 3. FileOutputStream 으로 저장 경로를 지정한다.
+			System.out.println("================================================");
 			System.out.println("저장 경로 : C:/workspace/download/"+ fileName);
+			System.out.println("================================================");
 			FileOutputStream fos = new FileOutputStream("C:/workspace/download/test/"+ fileName);
+			
+			// 4. 파일 전송에 용이하게 스트림을 업그레이드 한다.
 			DataOutputStream fileDos = new DataOutputStream(fos);
 			
-			// RAM --> My RAM (내 RAM에 미리 만들어 놓은 byte[]에 저장)
+			// 5. RAM으로 ReadFully 한 파일을 미리 만들어 놓은 byte[] 배열에 담는다
 			dis.readFully(targetFileName);
 			
-			// RAM --> HDD
+			// 6. RAM --> HDD로 이동
 			fileDos.write(targetFileName);
 			fileDos.flush();
 			
-			// 전송 인스턴스 종료
+			// 7. 인스턴스 종료
 			fileDos.close();
 			dis.close();
 			dos.close();

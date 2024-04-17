@@ -13,7 +13,6 @@ public class Input extends Thread {
 				System.out.println("상대방 : " + response);
 			}
 			
-			
 		} catch (Exception e) {
 			System.err.println("Error : " + e); 
 			System.exit(0);

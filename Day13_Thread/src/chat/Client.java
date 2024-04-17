@@ -9,7 +9,7 @@ public class Client {
 		
 		try {
 			// Client setting
-			Socket cilent = new Socket("192.168.0.201", 29000);
+			Socket cilent = new Socket("192.168.0.161", 30000);
 		
 			// Thread dataStream setting
 			Input input = new Input();

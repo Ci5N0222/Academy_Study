@@ -19,7 +19,6 @@ public class Output extends Thread {
 				System.out.println("나 : " + msg);
 			}
 			
-			
 		} catch (Exception e) {
 			System.err.println("Error : " + e); 
 			System.exit(0);
