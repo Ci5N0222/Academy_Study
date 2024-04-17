@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Output extends Thread{
+public class Output extends Thread {
 	
 	Scanner sc = new Scanner(System.in);
 	public DataOutputStream dos;
