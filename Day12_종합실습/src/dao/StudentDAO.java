@@ -9,6 +9,7 @@ public class StudentDAO {
 	
 	/** Student Data Save **/
 	ArrayList<StudentDTO> students = new ArrayList<StudentDTO>();
+	
 	// 학번 자동 업데이트
 	int aiIndex = 240001;
 	
