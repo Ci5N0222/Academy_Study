@@ -14,7 +14,7 @@ public class Client {
          */
 
         /** Client **/
-        Socket client = new Socket("192.168.0.202", 26000);
+        Socket client = new Socket("127.0.0.1", 9000);
 
         // Create streams for two-way communication
         DataInputStream dis = new DataInputStream(client.getInputStream());

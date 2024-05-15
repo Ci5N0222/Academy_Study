@@ -24,7 +24,7 @@ public class Server {
         };
 
         /** Server **/
-        ServerSocket server = new ServerSocket(26000);
+        ServerSocket server = new ServerSocket(9000);
         Socket socket = server.accept();
         System.out.println(socket.getInetAddress() + "로 부터 접속");
 
