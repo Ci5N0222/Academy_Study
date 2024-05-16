@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="box" id="box1">
+        <img src="images/emo1.png" id="econ" alt="" width="100%">
+    </div>
+
+    <button id="copy">copy</button>
+
+    <div class="box" id="box2">
+
+    </div>
+    <div class="input" contenteditable="true"></div>
+    <script>
+
+        $('#copy').on('click', function() {
+            let copy = $('#econ').clone();
+            $('#box2').append(copy);
+        });
+
+    </script>
+
+</body>
+</html>
