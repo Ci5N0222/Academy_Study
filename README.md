@@ -34,3 +34,6 @@
   - 목적: 계층별 데이터 전송에 사용되는 객체
 - DAO ( Data Access Object )
   - 목적: CRUD를 위한 접근 ( Access )
+
+### 3weeks (JAVA, DBMS)
+-
