@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let str = "안녕하세요. 저는 Jack입니다. 급한 일은 01043211234로 연락주세요";
+        let regex = /Jack/;
+        
+        // .test(string): 검색에 성공했는지 실패했는지 boolean 값 반환
+        let result = regex.test(str);
+
+        if(result) console.log("검색 성공");
+        else console.log("검색 실패");
+        
+    </script>
+
+</body>
+</html>

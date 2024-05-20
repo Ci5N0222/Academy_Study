@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 이 문자열 내 핸드폰 번호가 존재하는지 검사하는 로직
+        let str = "안녕하세요. 저는 Jack입니다. 급한 일은 01043211234로 연락주세요";
+        
+        let regex = /010-?[0-9]{4}-?[0-9]{4}/;
+        let result = regex.test(str);
+
+        if(result) console.log("핸드폰 번호 존재함");
+        else console.log("핸드폰 번호 없음");
+
+    </script>
+
+</body>
+</html>

@@ -11,124 +11,122 @@
 </head>
 <body>
 
-<!--
-    Submit / Reset
+    <!--
+        Submit / Reset 
 
-    1. 데이터 전송과 함께 페이지를 이동하는 기능
-    <form>: 서버에 다른 페이지 또는 서버에 데이터를 전송하기 위한 태그
+        1. 데이터 전송과 함께 페이지를 이동하는 기능
+        <form>: 서버에 다른 페이지 또는 서버에 데이터를 전송하기 위한 태그 
+        
+        2. 데이터 전송 없이 페이지만 이동하는 기능
+        <a>: 페이지 전송 태그
+            location.href=""
 
-    2. 데이터 전송 없이 페이지만 이동하는 기능
-    <a>: 페이지 전송 태그
-        location.href=""
+        [input, button]
+        type="submit": <form> 태그 내에서만 전송 기능이 활성화 된다.
 
-    [input, button]
-    type="submit": <form> 태그 내에서만 전송 기능이 활성화 된다.
+        * 정규 표현식 ( 문자열 패턴 매칭 기술 )
+            - 범용성 기술 ( 언어에 제한 받지 않음 )
+            - 문자열에 대한 복잡한 조건의 검색을 수행할 때 사용한다.
+                . 데이터 유효성 검사
+                . 로그 분석
+                . 웹 크롤링
+                . 웹 자동화 Assist
+                . 욕설 필터
+                . Forensic
+            - 참고: https://regexr.com/
+        
+        * 자바스크립트에서의 정규표현식
+            - / /flag
+            - / /: 자바스크립트에서 정규표현식 객체 리터럴을 의미.
+            - flag: 정규표현식에 적용될 옵션 값
+        
+        * 정규표현식에서 사용되는 특수문자
+            Option1. 아래 특수문자의 기능으로부터 Escape가 필요할 경우 \(역슬래쉬)를 적용
+            Option2. 수량자의 기본 매칭은 Greedy Match로 동작한다.
+                - 수량자 뒤에 ?를 사용할 경우 lazy Match로 동작
+            1. . : 아무 글자나 한 글자와 매칭되는 기호
+                - t.e: t와 e 사이에 아무글자나 한글자가 포함된 경우를 검색
+                - t..: t 뒤에 아무 글자나 두 글자가 오는 패턴 검색
 
-    * 정규 표현식 ( 문자열 패턴 매칭 기술 )
-        - 범용성 기술 ( 언어에 제한 받지 않음 )
-        - 문자열에 대한 복잡한 조건의 검색을 수행할 때 사용한다.
-            . 데이터 유효성 검사
-            . 로그 분석
-            . 웹 크롤링
-            . 웹 자동화 Assist
-            . 욕설 필터
-            . Forensic
-        - 참고: https://regexr.com/
+            2. [] : []내에 작성한 글자 목록중 한 글자와 매칭되는 경우를 검색
+                - t[abc]e: t와 e 사이에 a, b, c 중 한 글자가 포함된 경우를 검색
+                    - : (a-z) a부터 z까지
+                    - t[a-zA-Z0-9ㄱ-ㅎ가-힣]e 가능
+                    - [0-9] === [\d]
 
-    * 자바스크립트에서의 정규표현식
-        - / /flag
-        - / /: 자바스크립트에서 정규표현식 객체 리터럴을 의미.
-        - flag: 정규표현식에 적용될 옵션 값
+            3. ^ : 자바의 startWith와 비슷한 기능으로 문장의 시작에서만 검색
+                - ^RegExr: 첫 시작이 RegExr로 시작되는 것만 검색
+                - [^]로 사용될 경우 not으로 사용됨
+                    . t[^h]e: t로 시작해서 h가 아닌 아무거나, e로 끝나는 문자 검색
 
-    * 정규표현식에서 사용되는 특수문자
-        Option1. 아래 특수문자의 기능으로부터 Escape가 필요할 경우 \(역슬래쉬)를 적용
-        Option2. 수량자의 기본 매칭은 Greedy Match로 동작한다.
-            - 수량자 뒤에 ?를 사용할 경우 lazy Match로 동작
-        1. . : 아무 글자나 한 글자와 매칭되는 기호
-            - t.e: t와 e 사이에 아무글자나 한글자가 포함된 경우를 검색
-            - t..: t 뒤에 아무 글자나 두 글자가 오는 패턴 검색
+            4. $ : 자바의 endWith와 비슷한 기능으로 문장의 마지막에서만 검색
+                - English$: 마지막이 English로 끝나는 것만 검색
+                - enter 되어 있는 것 주의
 
-        2. [] : []내에 작성한 글자 목록중 한 글자와 매칭되는 경우를 검색
-            - t[abc]e: t와 e 사이에 a, b, c 중 한 글자가 포함된 경우를 검색
-                - : (a-z) a부터 z까지
-                - t[a-zA-Z0-9ㄱ-ㅎ가-힣]e 가능
-                - [0-9] === [\d]
+            * ^full$: 문장 자체가 full만 있는 경우를 검색
 
-        3. ^ : 자바의 startWith와 비슷한 기능으로 문장의 시작에서만 검색
-            - ^RegExr: 첫 시작이 RegExr로 시작되는 것만 검색
-            - [^]로 사용될 경우 not으로 사용됨
-                . t[^h]e: t로 시작해서 h가 아닌 아무거나, e로 끝나는 문자 검색
+            5. ? : 바로 앞의 한 문자가 있건 없건 검색 매칭
+                - 수량자 뒤에 사용될 경우 lazy match 기능을 수행
 
-        4. $ : 자바의 endWith와 비슷한 기능으로 문장의 마지막에서만 검색
-            - English$: 마지막이 English로 끝나는 것만 검색
-            - enter 되어 있는 것 주의
+            6. + (수량자): 바로 앞 한글자가 1개 이상인 경우를 검색
 
-        * ^full$: 문장 자체가 full만 있는 경우를 검색
+            7. * (수량자): 바로 앞 한글자가 0개 이상인 경우를 검색
 
-        5. ? : 바로 앞의 한 문자가 있건 없건 검색 매칭
-            - 수량자 뒤에 사용될 경우 lazy match 기능을 수행
+            8. {} (수량자): 바로 앞 한글자의 글자 개수를 지정하여 검색
+                - Go{2}gle: 바로 앞 글자가 2번 반복되는 경우만 검색
+                - Go{2,}gle: 바로 앞 글자가 2번 이상 반복되는 경우 검색
+                - Go{2,3}gle: 바로 앞 글자가 2번~3번 반복되는 경우 검색
 
-        6. + (수량자): 바로 앞 한글자가 1개 이상인 경우를 검색
+            9. | : 정규식 안에 표현을 두가지 이상으로 나누어 검색
 
-        7. * (수량자): 바로 앞 한글자가 0개 이상인 경우를 검색
+            10. () (그룹화)
+                - 정규식이 적용될 대상을 그룹 단위로 묶어서 적용
+                - 검색하고자 하는 데이터에 그룹 번호를 부여해서 추출하는 기법  
 
-        8. {} (수량자): 바로 앞 한글자의 글자 개수를 지정하여 검색
-            - Go{2}gle: 바로 앞 글자가 2번 반복되는 경우만 검색
-            - Go{2,}gle: 바로 앞 글자가 2번 이상 반복되는 경우 검색
-            - Go{2,3}gle: 바로 앞 글자가 2번~3번 반복되는 경우 검색
+            Capture 변수
+                - 소스 문자열에 대하여 정규표현식이 검색으 수행하고, 검색 대상을 찾아내는 순간
+                  자동으로 값을 가지게 되는 변수
+                
+                검색에 성공한 값 $&
+                검색에 성공한 구릅 $1~
+            
+            flag
+                1. global: 검색에 한번 성공했을 때 멈추지 않고 전체에서 검색
+                2. case insensitive: 대소문자 가리지 않고 검색
+                3. multiline: 정규표현식에게 문장을 나누는 기준을 Enter로 기정
+                4. singleline(dotall): 특수문자가 \n등의 매칭 불가 문자까지 모조리 매칭하게 하는 설정
 
-        9. | : 정규식 안에 표현을 두가지 이상으로 나누어 검색
+    -->
 
-        10. () (그룹화)
-            - 정규식이 적용될 대상을 그룹 단위로 묶어서 적용
-            - 검색하고자 하는 데이터에 그룹 번호를 부여해서 추출하는 기법
-
-        Capture 변수
-            - 소스 문자열에 대하여 정규표현식이 검색으 수행하고, 검색 대상을 찾아내는 순간
-              자동으로 값을 가지게 되는 변수
-
-            검색에 성공한 값 $&
-            검색에 성공한 구릅 $1~
-
-        flag
-            1. global: 검색에 한번 성공했을 때 멈추지 않고 전체에서 검색
-            2. case insensitive: 대소문자 가리지 않고 검색
-            3. multiline: 정규표현식에게 문장을 나누는 기준을 Enter로 기정
-            4. singleline(dotall): 특수문자가 \n등의 매칭 불가 문자까지 모조리 매칭하게 하는 설정
-
-class="(.+?)"|
-
--->
-
-<form action="text.html" onsubmit="validation()">
-    <fieldset>
-        <legend> 서버에 데이터 전송 </legend>
-        <input type="text" name="writer" placeholder="작성자" />
-        <br />
-        <input type="text" name="msg" placeholder="메세지" />
-        <br /><br />
-        <input type="submit" value="인풋 전송">
-        <input type="button" value="인풋 버튼">
-        <button type="submit">버튼 전송</button>
-        <button type="button">버튼 버튼</button>
-    </fieldset>
-</form>
+    <form action="text.html" onsubmit="validation()">
+        <fieldset>
+            <legend> 서버에 데이터 전송 </legend>
+            <input type="text" name="writer" placeholder="작성자" /> 
+            <br />
+            <input type="text" name="msg" placeholder="메세지" />
+            <br /><br />
+            <input type="submit" value="인풋 전송">
+            <input type="button" value="인풋 버튼">
+            <button type="submit">버튼 전송</button>
+            <button type="button">버튼 버튼</button>
+        </fieldset>
+    </form>
 
 
 
-<!-- <button id="page">페이지 이동</button> -->
-<script>
-    // $('#page').on('click', () => {
-    //     location.href="https://www.naver.com";
-    // });
+    <!-- <button id="page">페이지 이동</button> -->
+    <script>
+        // $('#page').on('click', () => {
+        //     location.href="https://www.naver.com";
+        // });
+        
+        let a = / /g; //g=flag
 
-    let a = / /g; //g=flag
-
-    const validation = () => {
-        alert("??");
-        return false;
-    }
-</script>
+        const validation = () => {
+            alert("??");
+            return false;
+        }
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <style>
+        .validate-form {
+            height: 20px;
+        }
+        .color-blue {color: rgb(77, 77, 182);}
+        .color-red {color: red;}
+
+    </style>
+
+</head>
+<body>
+    <input type="text" id="phone">
+    <button id="validate">검증</button>
+    <fieldset>
+        <legend>검증결과</legend>
+        <div class="validate-form"></div>
+    </fieldset>
+
+    <script>
+        const regex = /010-?[0-9]{4}-?[0-9]{4}/;
+
+        $('#validate').on('click', () => {
+            $('.validate-form').html("");
+            let result = regex.test($('#phone').val());
+            
+            if(result){
+                let item = `<div class="color-blue">핸드폰 번호가 맞습니다.</div>`;
+                $('.validate-form').append(item);
+            } else {
+                let item = `<div class="color-red">핸드폰 번호가 틀립니다.</div>`;
+                $('.validate-form').append(item);
+            }
+            
+        });
+    </script>
+
+</body>
+</html>
