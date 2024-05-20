@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        #form {
+            border: 1px solid black;
+            width: 450px;
+            height: 130px;
+            margin: 30px auto;
+        }
+
+        #form > span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        #form > button {
+            display: flex;
+            padding: 10px;
+            margin: 5px auto;
+            border: none;
+            background-color: skyblue;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('#form');
+            let span = document.createElement("span");
+            span.innerHTML = `"${name}"님 회원가입을 환영합니다`;
+            form.prepend(span); 
+        });
+
+        // 현재 URL에서 쿼리스트링 가져오기
+        let params = new URLSearchParams(window.location.search);
+
+        // 특정 파라미터 값 가져오기
+        let name = params.get('name');
+
+    </script>
+
+</head>
+<body>
+    <div id="form">
+        <button onclick="location.href='quiz05.html'">회원가입 다시하기</button>
+    </div>
+</body>
+</html>

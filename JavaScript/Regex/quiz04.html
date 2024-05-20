@@ -12,6 +12,11 @@
         table {
             margin: 10px auto;
         }
+
+        tbody > tr > td:nth-of-type(3){
+            width: 100px;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -65,14 +70,7 @@
                         <a  href="/webtoon/list?titleId=747269&weekday=wed" title="전지적 독자 시점">
                            <img onerror="this.src='https://ssl.pstatic.net/static/comic/images/migration/common/blank.gif'" src="https://shared-comic.pstatic.net/thumb/webtoon/747269/thumbnail/thumbnail_IMAG10_55801c29-223f-46a0-a446-2e55d3024e71.jpg" width="83" height="90" title="전지적 독자 시점" alt="전지적 독자 시점">
                            <span class="mask"></span>
-                           
-                           
-                           
-                           
-                           
                               <em class="ico_updt"></em>
-                           
-                           
                         </a>
                      </div>
                      <dl>
@@ -2120,7 +2118,7 @@
         `
     
         let regex = /title="(.+?)".+?src="(.+?)".+?<strong>(.+?)</gs;
-            
+             
         let result;
         while((result = regex.exec(str)) !== null) {
 
@@ -2128,7 +2126,7 @@
                 <tr>
                     <td><img src="${ result[2] }" alt=""></td>
                     <td>${ result[1] }</td>
-                    <td>　　${ result[3] }　　</td>
+                    <td>${ result[3] }</td>
                 </tr>
             `;
 
