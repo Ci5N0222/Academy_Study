@@ -54,4 +54,25 @@
 - 개발자가 직접 콜하는 것이 아닌, 특정 트리거에 의해 자동으로 콜되는 함수
 
 ### HTML 요소 안에 HTML 요소 추가하기
+``` bash
+const list = document.querySelector('#list');
+const item = document.querySelector('div');
+item.innerHTML = 'Hello World!';
+list.append(item);
+```
+
+### 팝업창 띄우는 기능
+- window.open("https://www.naver.com", "", "width=200, height=200");
+
+### JavaScript 객체
+- 객체를 만드는 3가지 방법
+1. 객체 Literal (가장 많이 사용되는 방식)
+2. 생성자
+3. 기본 객체 Object
+
+### JSON 
+- 현 시점 기준 크로스 플랫폼/언어 간 데이터 교환 방식
+
+### 직렬화
+- 서로 다른 언어 또는 플랫폼 간 데이터를 주고받기 위해 데이터를 변형하는 기법
 
