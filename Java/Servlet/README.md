@@ -47,3 +47,45 @@
   - servletName : 서블릿
   - ?name=kim&age=20 : 인자 구분자
     - name은 kim이고 age는 20인 파라미터를 URL로 가지고 있음
+
+
+## DBCP
+- DBCP에 생성 과부하를 차단하기 위한 방법
+1. Singleton Instance
+   - 1단계
+     ``` bash
+       // Servlet
+       MessagesDAO dao = MessagesDAO.getInstance();
+       
+       // DAO
+       public static MessagesDAO instance;
+       public  static MessagesDAO getInstance() {
+            if(instance == null) instance = new MessagesDAO();
+            return instance;
+       }
+     ```
+   - 2단계
+     ```bash
+     // synchronized ( Thread safe → COST → 성능저하 )
+     // Servlet
+     MessagesDAO dao = MessagesDAO.getInstance();
+  
+     // DAO
+     public static MessagesDAO instance;
+     public synchronized static MessagesDAO getInstance() {
+         if(instance == null) instance = new MessagesDAO();
+             return instance;
+     }
+
+
+2. JNDI : 톰캣 서버에게 DBCP 인스턴스를 생성해 줄 것을 요구함
+- Tomcat의 환경파일 context.xml <Resource>에 DB에 대한 정보 입력
+- 서버가 실행되면 Tomcat에게 인스턴스 생성을 요청
+
+
+## MVC 디자인 패턴
+### MVC1
+Model에 해당하는 데이터 처리 클래스만 분리되고, Controller와 view가 함께 처리되는 디자인 패턴
+- M / C + V
+- 단점
+  - 역할 분담이 어렵다
