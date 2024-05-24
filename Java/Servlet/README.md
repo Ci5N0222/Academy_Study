@@ -63,7 +63,7 @@
             if(instance == null) instance = new MessagesDAO();
             return instance;
        }
-     ```
+
    - 2단계
      ```bash
      // synchronized ( Thread safe → COST → 성능저하 )
@@ -77,7 +77,6 @@
              return instance;
      }
 
-
 2. JNDI : 톰캣 서버에게 DBCP 인스턴스를 생성해 줄 것을 요구함
 - Tomcat의 환경파일 context.xml <Resource>에 DB에 대한 정보 입력
 - 서버가 실행되면 Tomcat에게 인스턴스 생성을 요청
@@ -88,4 +87,10 @@
 Model에 해당하는 데이터 처리 클래스만 분리되고, Controller와 view가 함께 처리되는 디자인 패턴
 - M / C + V
 - 단점
-  - 역할 분담이 어렵다
+  - 역할 분담이 어렵다 ( Servlet이 Java 코드인 Controller와 HTML 코드인 View를 함께 작성하므로 역할 분리가 안됨 )
+  - Servlet에서의 프론트 코드 작성은 너무 불편하다
+- 단점 2를 해결하기 위해 JSP가 등장하였다.
+
+### MVC2
+Model / View / Controller가 완벽하게 분리되는 구조의 디자인 패턴
+- MVC1의 단점1을 해결하기 위해 등장
