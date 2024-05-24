@@ -50,3 +50,67 @@
       - commit
       - rollback
       - savepoint
+
+## Query
+#### Select
+- where : 조건 문법
+  - like, not like
+  - is null, is not null
+  - in
+  - between A and B
+
+- order by : 정렬 문법
+  - acs ( default )
+  - desc
+
+### Select Query 동작순서
+1. From : ~로 부터 ( 어디서 )
+2. where : 그룹화 이전 데이터 전체에 대하여 적용될 조건
+3. group by : 그룹화
+4. having : group by로 이루어진 그룹들에게 적용될 조건
+5. select : 조회
+6. order by : 정렬
+
+### DML
+- group by
+  - 그룹화 데이터를 생성하여 정보를 조회할 때 사용
+    - 예 : 그룹에 속한 로우 하나의 정보를 select 할 수 없다.
+  - 그룹화 된 정보만 select 할 수 있다.
+  - 그룹안에 그룹을 만들 수 있다.
+    - 예 : 부서별 직급으로 나눈 그룹
+
+- having
+  - group by로 그룹화된 그룹들의 조건을 부여할 때 사용
+
+#### where에 그룹 함수를 사용할 수 없다.
+#### 쿼리의 실행 순서상 where을 사용할 수 없다.
+
+### Join
+한개 이상의 테이블을 병합해 유의미한 데이터셋을 만들어내는 문법
+- cross join : join의 동작 원리를 이해하기 쉬운 join 종류 ( 실전 개발에서는 쓰임이 드물다 )
+  - join은 2중 for문을 생각하면 이해하기 쉽다.
+  - Cartesian Product : 상징적일 뿐 의미 없음
+
+
+- Inner join : 여러 테이블 간에 특정 조건을 기반으로 병합하는 문법 ( NULL 미포함 )
+``` bash
+SELECT 
+     e.emp_name,
+     e.dept_code,
+     d.dept_title
+ FROM 
+      employee e INNER JOIN department d ON e.dept_code = d.dept_id;
+```
+- on dept_code = dept_id의 조건으로 2중 for문에 특정 조건(if)이 부합할 경우 찾아내는 것과 같다.
+- on에 컬럼명이 똑같을 수 있기 때문에 테이블에 별명을 붙여 어떤 테이블의 값을 모두 출력하게 처리하는 문법
+- inner는 생략할 수 있다.
+
+
+- outer join : 여러 테이블 간에 특정 조건을 기반으로 병합하는 문법 ( NULL 포함 )
+  - left outer : join에 참여하는 테이블 중에 문법 상 왼쪽에 존재하는 테이블의 값을 모두 출력하게 처리하는 문법
+  - right outer : join에 참여하는 테이블 중에 문법 상 오른쪽에 존재하는 테이블의 값을 모두 출력하게 처리하는 문법
+  - full outer : 양쪽 테이블의 모든 값을 출력하게 처리하는 문법
+  - outer는 생략 가능
+
+
+- self join : 한개의 테이블을 join하는 문법 ( 특수한 경우에 간혹 사용 됨 )
