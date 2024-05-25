@@ -20,6 +20,7 @@ Model에 해당하는 데이터 처리 클래스만 분리되고, Controller와 
   <title>Insert title here</title>
   </head>
   <body>
+  
       <%
           String title = request.getParameter("title");
           String genre = request.getParameter("genre");
@@ -41,20 +42,17 @@ Model에 해당하는 데이터 처리 클래스만 분리되고, Controller와 
       
   </body>
 
+ // <% %> : Scriptlet : JSP에서 JAVA 문법을 사용
 ```
-
 
 ### MVC2
 Model / View / Controller가 완벽하게 분리되는 구조의 디자인 패턴
 - MVC1의 단점1을 해결하기 위해 등장
+- MVC1에서 Controller와 View를 완벽하게 구분 짓기 위해 JSP는 View로만 사용하기 시작함
+- 동적인 데이터를 바인딩하기 위해 JSP로 데이터를 forword
 
-
-
-
-
-
-Servlet & JSP(Java Server Page)
-JSP의 컴파일은 2번 진행됨 ( JSP → Servlet → Binary code, Java → Binary code )
-
-
-<% %> : Scriptlet
+``` bash
+List<TestDTO> list = dao.getList();
+request.setAttribute("list", list);
+request.getRequestDispatcher("list.jsp").forward(request, response);
+```
