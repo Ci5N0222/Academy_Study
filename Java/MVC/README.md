@@ -56,3 +56,50 @@ List<TestDTO> list = dao.getList();
 request.setAttribute("list", list);
 request.getRequestDispatcher("list.jsp").forward(request, response);
 ```
+
+
+### Servlet & JSP(Java Server Page)
+Compile
+- Java Compile ( Java → Binary code )
+- JSP Compile  ( JSP → Servlet → Binary code )
+
+### EL / JSTL
+#### EL ( Expression Language )
+- JSP 내에서 JAVA 문법이 아닌 새로운 문법으로 자바의 값을 사용하는 방법
+- JAVA Servlet에서 추가한 Attribute Data를 JSP에서 사용하는 EL 문법
+  - ${ int } == <% request.getAttribute("int") %>
+
+#### JSTL
+``` bash
+// JSTL을 사용하기 위한 환경설정으로 core 기능을 prefix로 설정한 "c"로 사용!
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!-- 조건문 1 --> 
+<c:if test="${ param1 == 10 }">
+    param1 == ${ param1 }
+</c:if>
+
+
+<!-- 조건문 2 --> 
+<c:choose>
+    <c:when test="${ param2 eq 'Hello' }">
+        Param2 값은 ${ param2 }입니다.
+    </c:when>
+    <c:when test="${ param2 eq 'Hello JS' }">
+        Param2 값은 ${ param2 }입니다.
+    </c:when>
+    <c:otherwise>
+        Param2 값은 텍스트 입니다.
+    </c:otherwise>
+</c:choose>
+
+
+<!-- 반복문 1 --> 
+<c:forEach var="list" items="${ movieList }">
+  <tr>
+    <td>${list.id }</td>
+    <td>${ list.title }</td>
+    <td>${ list.genre }</td>
+  </tr>
+</c:forEach>
+```
