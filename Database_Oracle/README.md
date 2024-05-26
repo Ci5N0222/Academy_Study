@@ -93,6 +93,9 @@
 
 
 - Inner join : 여러 테이블 간에 특정 조건을 기반으로 병합하는 문법 ( NULL 미포함 )
+  - on dept_code = dept_id의 조건으로 2중 for문에 특정 조건(if)이 부합할 경우 찾아내는 것과 같다.
+  - on에 컬럼명이 똑같을 수 있기 때문에 테이블에 별명을 붙여 어떤 테이블의 값을   모두 출력하게 처리하는 문법
+  - inner는 생략할 수 있다.
 ``` bash
 SELECT 
      e.emp_name,
@@ -101,11 +104,6 @@ SELECT
  FROM 
       employee e INNER JOIN department d ON e.dept_code = d.dept_id;
 ```
-- on dept_code = dept_id의 조건으로 2중 for문에 특정 조건(if)이 부합할 경우 찾아내는 것과 같다.
-- on에 컬럼명이 똑같을 수 있기 때문에 테이블에 별명을 붙여 어떤 테이블의 값을 모두 출력하게 처리하는 문법
-- inner는 생략할 수 있다.
-
-
 - outer join : 여러 테이블 간에 특정 조건을 기반으로 병합하는 문법 ( NULL 포함 )
   - left outer : join에 참여하는 테이블 중에 문법 상 왼쪽에 존재하는 테이블의 값을 모두 출력하게 처리하는 문법
   - right outer : join에 참여하는 테이블 중에 문법 상 오른쪽에 존재하는 테이블의 값을 모두 출력하게 처리하는 문법
@@ -114,3 +112,19 @@ SELECT
 
 
 - self join : 한개의 테이블을 join하는 문법 ( 특수한 경우에 간혹 사용 됨 )
+``` bash
+SELECT 
+    e1.emp_id,
+    e1.emp_name,
+    e1.manager_id,
+    e2.emp_name
+FROM 
+    employee e1 
+    JOIN employee e2 ON e1.manager_id = e2.emp_id
+ORDER BY
+    3, 1;
+```
+
+- 다중 조인 : 3개 이상의 여러 테이블의 join
+
+### Union
