@@ -103,3 +103,10 @@ Compile
   </tr>
 </c:forEach>
 ```
+
+
+### 절대 경로 / 상대경로
+- 절대 경로 지정법
+  - action="/signup.members" → http://localhost/signup.members
+- 상대 경로 지정법
+  - action="signup.mnembers" → http://localhost/현재위치/signup.members

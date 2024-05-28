@@ -80,3 +80,5 @@
 2. JNDI : 톰캣 서버에게 DBCP 인스턴스를 생성해 줄 것을 요구함
 - Tomcat의 환경파일 context.xml <Resource>에 DB에 대한 정보 입력
 - 서버가 실행되면 Tomcat에게 인스턴스 생성을 요청
+
+
