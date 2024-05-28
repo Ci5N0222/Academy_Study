@@ -73,7 +73,6 @@
          font-weight: 700;
      }
 
-
      #warn {
          text-align: left;
          color: red;
@@ -206,7 +205,6 @@
                 return alert("유효하지 않은 ID임");
             } 
 
-            // DB 조회 로직 이후 true 반환해야됨
             window.open("/idCheck.members?id=" + $('#id').val(), "", "width=300, height=200");
             duplicateId =  $('#id').val();
         }
@@ -232,7 +230,7 @@
 
 	<h2>회원가입</h2>
     <div class="container">
-        <form class="input-form" action="join.members" method="post" id="joinForm">
+        <form class="input-form" action="/join.members" method="post" id="joinForm">
             <!-- ID -->
             <label for="id">* 아이디</label>
             <input type="text" id="id" name="id" placeholder="아이디">
