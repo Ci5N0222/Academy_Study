@@ -22,7 +22,7 @@
 
      .container {
          display: flex;
-         width: 600px;
+         width: 550px;
          margin: 20px auto;
          text-align: left;
      }
@@ -41,7 +41,7 @@
      .input-form > input {
          padding: 5px;
          margin: 15px;
-         width: 300px;
+         width: 250px;
      }
 
      button {
@@ -55,29 +55,6 @@
 
      button:hover {
          cursor: pointer;
-     }
-
-     #pwCheck {
-         margin: 0;
-         margin-bottom: 10px;
-         text-align: center;
-         color: green;
-         font-weight: 700;
-     }
-
-     #idCheck {
-         margin: 0;
-         margin-bottom: 10px;
-         text-align: center;
-         color: green;
-         font-weight: 700;
-     }
-
-     #warn {
-         text-align: left;
-         color: red;
-         border: 1px solid black;
-         padding: 0 5px;
      }
 
 	.btn-box1 {
@@ -105,7 +82,7 @@
 	input {
 		border: none;
 	}
-	
+
 
   </style>
   
@@ -126,6 +103,8 @@
   		$('#pcodeSearch').css({"display":"inline-block"});
   		
   		$('input').css({"border": "1px solid black"});
+  		
+  		$('h2').html("회원정보 수정");
   	}
   	
   	
@@ -224,6 +203,12 @@
 		            <label for="address2">상세주소</label>
 		            <input type="text" id="address2" name="address2" value="${ dto.address2 }" readonly>
 		
+		 			<!-- 가입날짜 -->
+		            <label for="address2">가입날짜</label>
+		            <span style="font-size:14px; margin-left: 20px">
+						<fmt:formatDate value="${ dto.join_date }" type="date" dateStyle="full"/>
+		            </span>
+		            
 					<div class="btn-box1">
 						<button type="button" onclick="edit()">정보 수정하기</button>
 		            	<button type="button" onclick="location.href='/'">돌아가기</button>

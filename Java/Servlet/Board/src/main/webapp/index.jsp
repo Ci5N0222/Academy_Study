@@ -14,9 +14,10 @@
 		<c:when test="${ loginID != null }">
 			<table border="1" align="center">
 				<tr>
-					<th colspan=3> ${loginID}님 환영합니다 </th>
+					<th colspan=4> ${loginID}님 환영합니다 </th>
 				</tr>
 				<tr>
+					<td align="center"><button id=toBoard>게시판</button></td>
 					<td align="center"><button id="myPage">마이페이지</button></td>
 					<td align="center"><button id="logout">로그아웃</button></td>
 					<td align="center"><button id="memberOut">회원탈퇴</button></td>
@@ -24,6 +25,10 @@
 				
 			</table>
 			<script>
+				$('#toBoard').on('click', function(){
+					location.href="/list.board";
+				});	
+				
 				$('#myPage').on('click', function(){
 					location.href="/myPage.members";
 				});	

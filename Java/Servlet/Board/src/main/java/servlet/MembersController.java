@@ -17,6 +17,10 @@ public class MembersController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 클라이언트로 부터 전송되는 문자열에 대한 인코딩을 utf8 처리
+		// 리퀘스트로 부터 값을 꺼내기 전에 처리해야 함!!
+		request.setCharacterEncoding("utf8");
+		
 		MembersDAO dao = MembersDAO.getInstance();
 		String cmd = request.getRequestURI();
 		
