@@ -1,28 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ANI-MATE</title>
+<meta charset="UTF-8">
+<title>ANI-MATE</title>
 
-    <!-- Google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet" />
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Google font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/a0900b741f.js" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="icon" href="../img/favicon.PNG">
-    <link rel="stylesheet" href="../css/style.css" />
+<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/a0900b741f.js" crossorigin="anonymous"></script>
+
+<link rel="icon" href="../img/favicon.PNG">
+<link rel="stylesheet" href="../css/style.css" />
+
 </head>
-
 <body>
     <!-- Navbar -->
     <div class="container-fluid navi">
@@ -31,7 +35,7 @@
             <div class="col-10">
                 <nav class="navbar navbar-expand-md">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="../index.html" style="color: deeppink;">ANI-MATE</a>
+                        <a class="navbar-brand" href="../index.jsp" style="color: deeppink;">ANI-MATE</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -40,17 +44,17 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="best.html">
+                                    <a class="nav-link active" aria-current="page" href="best.jsp">
                                         <p class="default-font">BEST</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="event.html">
+                                    <a class="nav-link" href="event.jsp">
                                         <p class="default-font">EVENT</p>
                                     </a>
                                 </li>
                                 <li class="nav-item d-md-none">
-                                    <a href="login.html">
+                                    <a href="login.jsp">
                                         <p class="default-font">Login</p>
                                     </a>
                                 </li>
@@ -58,7 +62,7 @@
                             <div class="nav-account d-none d-md-block">
                                 <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" style="cursor: pointer; margin-right: 15px;"></i>
-                                <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                                <a href="login.jsp"><i class="fa-solid fa-user"></i></a>
                             </div>
                         </div>
                     </div>
@@ -78,9 +82,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <a href="detail1.html" style="color:blue; margin-right: 10px;">#귀멸의칼날</a>
-                        <a href="detail2.html" style="color:blue; margin-right: 10px;">#주술회전</a>
-                        <a href="detail3.html" style="color:blue">#최애의아이</a>
+                        <a href="detail1.jsp" style="color:blue; margin-right: 10px;">#귀멸의칼날</a>
+                        <a href="detail2.jsp" style="color:blue; margin-right: 10px;">#주술회전</a>
+                        <a href="detail3.jsp" style="color:blue">#최애의아이</a>
                         <input type="text" style="width: 400px; margin-top:15px" placeholder="검색어를 입력하세요">
                     </div>
                     <div class="modal-footer">
@@ -94,9 +98,9 @@
         <!-- Login form -->
         <div class="login-container d-block d-md-flex">
             <div class="container login-form">
-                <h1><a href="../index.html" style="color: deeppink">ANI-MATE</a></h1>
+                <h1><a href="../index.jsp" style="color: deeppink">ANI-MATE</a></h1>
                 <p>동시방영 신작부터 역대 인기작까지 한 곳에서 편-안하게!</p>
-                <button class="btn btn-primary" onclick="location.href='../index.html'">
+                <button class="btn btn-primary" onclick="location.href='../index.jsp'">
                     이메일로 시작
                 </button>
                 <hr />
@@ -109,5 +113,4 @@
         </div>
     </div>
 </body>
-
 </html>

@@ -1,38 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ANI-MATE</title>
+<meta charset="UTF-8">
+<title>ANI-MATE</title>
 
-    <!-- Google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Google font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/a0900b741f.js" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="icon" href="../img/favicon.PNG">
-    <link rel="stylesheet" href="../css/style.css">
+<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/a0900b741f.js" crossorigin="anonymous"></script>
+
+<link rel="icon" href="../img/favicon.PNG">
+<link rel="stylesheet" href="../css/style.css" />
 
 </head>
-
 <body>
-    <!-- Navbar -->
+	<!-- Navbar -->
     <div class="container-fluid navi">
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
                 <nav class="navbar navbar-expand-md">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="../index.html" style="color: deeppink;">ANI-MATE</a>
+                        <a class="navbar-brand" href="../index.jsp" style="color: deeppink;">ANI-MATE</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -41,17 +44,17 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="best.html">
+                                    <a class="nav-link active" aria-current="page" href="best.jsp">
                                         <p class="default-font">BEST</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="event.html">
+                                    <a class="nav-link" href="event.jsp">
                                         <p class="default-font">EVENT</p>
                                     </a>
                                 </li>
                                 <li class="nav-item d-md-none">
-                                    <a href="login.html">
+                                    <a href="login.jsp">
                                         <p class="default-font">Login</p>
                                     </a>
                                 </li>
@@ -59,7 +62,7 @@
                             <div class="nav-account d-none d-md-block">
                                 <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" style="cursor: pointer; margin-right: 15px;"></i>
-                                <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                                <a href="login.jsp"><i class="fa-solid fa-user"></i></a>
                             </div>
                         </div>
                     </div>
@@ -80,9 +83,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <a href="detail1.html" style="color:blue; margin-right: 10px;">#귀멸의칼날</a>
-                        <a href="detail2.html" style="color:blue; margin-right: 10px;">#주술회전</a>
-                        <a href="detail3.html" style="color:blue">#최애의아이</a>
+                        <a href="detail1.jsp" style="color:blue; margin-right: 10px;">#귀멸의칼날</a>
+                        <a href="detail2.jsp" style="color:blue; margin-right: 10px;">#주술회전</a>
+                        <a href="detail3.jsp" style="color:blue">#최애의아이</a>
                         <input type="text" style="width: 400px; margin-top:15px" placeholder="검색어를 입력하세요">
                     </div>
                     <div class="modal-footer">
@@ -101,7 +104,7 @@
             <p>'이 연예계에서 거짓말은 무기다' 지방 도시에서 일하는 산부인과 의사 고로. 어느날
                 '최애' 아이돌 'B코마치'의 멤버 아이가 그의 앞에 나타난다. 그녀는 어떤 금단의 비밀을 품고 있엇는데... 그런 두 사람의
                 '최악'의 만남에서 부터 운명이 움직이기 시작한다.</p>
-            <button class="btn btn-primary" onclick="location.href='video3.html'"> PV 영상 보기</button>
+            <button class="btn btn-primary" onclick="location.href='video3.jsp'"> PV 영상 보기</button>
         </div>
 
         <div class="row content-descript d-none d-md-flex"
@@ -112,7 +115,7 @@
                     <br /><br />
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary" onclick="location.href='video3.html'"> PV 영상 보기</button>
+                    <button class="btn btn-primary" onclick="location.href='video3.jsp'"> PV 영상 보기</button>
                 </div>
                 <div class="col-12">
                     <br /><br />
@@ -198,7 +201,5 @@
             </div>
         </div>
     </div>
-
 </body>
-
 </html>
