@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.dao.BoardDAO;
 import board.dto.BoardDTO;
+import common.BoardConfig;
 
 @WebServlet("*.board")
 public class BoardController extends HttpServlet {
@@ -44,15 +45,24 @@ public class BoardController extends HttpServlet {
 		
 		/** 글 목록 **/
 		else if(cmd.equals("/list.board")) {
-			List<BoardDTO> list = new ArrayList<>();
 			
+			String pcpage = request.getParameter("cpage");
+			if(pcpage == null) pcpage = "1";
+			int cpage = Integer.parseInt(pcpage);
+			
+			List<BoardDTO> list = new ArrayList<>();
+			String pageNavi = "";
 			try {
-				list =  dao.getList();
+				pageNavi = dao.getPageNavi(cpage);
+				list =  dao.getListNtoM(
+							cpage * BoardConfig.RECODE_COUNT_PER_PAGE - (BoardConfig.RECODE_COUNT_PER_PAGE - 1),
+							cpage * BoardConfig.RECODE_COUNT_PER_PAGE);
+//				list =  dao.getList();
 				
 			} catch (Exception e) {
 
 			}
-			
+			request.setAttribute("pageNavi", pageNavi);
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("/board/list.jsp").forward(request, response);
 		}
@@ -60,10 +70,16 @@ public class BoardController extends HttpServlet {
 	
 		/** 게시글 디테일 **/
 		else if(cmd.equals("/detail.board")) {
-			String seq = request.getParameter("id");
+			int seq = Integer.parseInt(request.getParameter("id"));
+			
+			// 조회수 업데이트 메서드
+			
+			
 			BoardDTO dto = null;
 			try {
-				dto = dao.boardDetail(Integer.parseInt(seq));
+				dao.viewCountUp(seq);
+				dto = dao.boardDetail(seq);
+				 
 			} catch (Exception e) {
 
 			}

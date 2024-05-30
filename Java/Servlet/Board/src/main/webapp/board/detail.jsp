@@ -132,7 +132,6 @@
 	        <c:if test="${ dto.writer eq loginID}">
 	            <button type="button" id="edit-btn" onclick="editContents()">수정</button>
 	            <button type="button" id="del-btn" onclick="deleteContent(${ dto.seq })">삭제</button>
-	            
 	            <button type="submit" id="success-btn">확인</button>
 	            <button type="button" id="cancle-btn" onclick="location.href='/detail.board?id=${dto.seq}'">취소</button>
 	        </c:if>

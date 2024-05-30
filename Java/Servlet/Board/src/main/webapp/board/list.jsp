@@ -60,7 +60,7 @@
 	}
 	
     .content {
-        height: 100px;
+        height: 70px;
         padding: 15px;
         display: flex;
         justify-content: space-between;
@@ -176,6 +176,7 @@
         		</c:forEach>
         	</c:otherwise>
         </c:choose>
+        <span>${ pageNavi }</span>
         
     </div>
     
