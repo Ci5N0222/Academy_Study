@@ -23,54 +23,14 @@
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/a0900b741f.js" crossorigin="anonymous"></script>
 
-<link rel="icon" href="../img/favicon.PNG">
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="icon" href="/img/favicon.PNG">
+<link rel="stylesheet" href="/css/style.css" />
 
 </head>
 <body>
 	<!-- Navbar -->
-    <div class="container-fluid navi">
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <nav class="navbar navbar-expand-md">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="../index.jsp" style="color: deeppink;">ANI-MATE</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="best.jsp">
-                                        <p class="default-font">BEST</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="event.jsp">
-                                        <p class="default-font">EVENT</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item d-md-none">
-                                    <a href="login.jsp">
-                                        <p class="default-font">Login</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="nav-account d-none d-md-block">
-                                <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" style="cursor: pointer; margin-right: 15px;"></i>
-                                <a href="login.jsp"><i class="fa-solid fa-user"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-1"></div>
-        </div>
-    </div>
+    <%@ include file="/view/include/header.jsp" %>
+        
     <div style="height: 80px;"></div>
 
     <div class="container">
