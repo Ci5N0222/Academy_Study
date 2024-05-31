@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import board.dao.BoardDAO;
 import board.dto.BoardDTO;
 import common.BoardConfig;
+import reply.dao.ReplyDAO;
+import reply.dto.ReplyDTO;
 
 @WebServlet("*.board")
 public class BoardController extends HttpServlet {
@@ -21,6 +23,7 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		String cmd = request.getRequestURI();
 		BoardDAO dao = BoardDAO.getInstance();
+		ReplyDAO replyDAO = ReplyDAO.getInstance();
 		
 		/** 글 쓰기 **/
 		if(cmd.equals("/write.board")) {
@@ -71,20 +74,21 @@ public class BoardController extends HttpServlet {
 		/** 게시글 디테일 **/
 		else if(cmd.equals("/detail.board")) {
 			int seq = Integer.parseInt(request.getParameter("id"));
-			
-			// 조회수 업데이트 메서드
-			
+
 			
 			BoardDTO dto = null;
+			List<ReplyDTO> reply = new ArrayList<>(); 
 			try {
 				dao.viewCountUp(seq);
 				dto = dao.boardDetail(seq);
+				reply = replyDAO.replyList(seq);
 				 
 			} catch (Exception e) {
 
 			}
 			
 			request.setAttribute("dto", dto);
+			request.setAttribute("reply", reply);
 			request.getRequestDispatcher("/board/detail.jsp").forward(request, response);
 		}
 		
