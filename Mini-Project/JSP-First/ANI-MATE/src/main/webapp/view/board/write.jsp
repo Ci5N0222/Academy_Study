@@ -17,9 +17,37 @@
    	
    	<div style="height: 140px;"></div>
    	
+  
    	<div class="container">
-   		<div id="summernote">Hello Summernote</div>
+   	 	<h2>글쓰기</h2>
+   		<div id="summernote"></div>
    	</div>
+   	
+   	<form action="" method="post" id="boardWriteForm">
+   		<input type="hidden" name="contents" id="contents" value="">
+   		<button type="submit">글쓰기</button>
+   		<button type="button" onclick="location.href='/view/board/list.jsp'">취소</button>
+   	</form>
+   	
+   	<script>
+   	
+   	$("#boardWriteForm").on("submit", () => {
+   		$('#contents').val($("#summernote").summernote('code'));
+   		
+   		alert($("#summernote").summernote('code'));
+   		
+   		if($('#contents').val() === ""){
+   			alert("작성된 내용 없음");
+   			return false;
+   		}
+   		
+   		alert($('#contents').val());
+   		
+   		return false;
+   		
+   	});
+   	
+   	</script>
    	
 </body>
 </html>

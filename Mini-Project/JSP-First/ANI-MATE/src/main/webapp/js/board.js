@@ -6,6 +6,9 @@ $(function(){
 		focus: true,
 		lang: "ko-KR",
 		placeholder: '내용을 작성하세요',
+		onImageUpload: function(files, editor, welEditable) {
+            sendFile(files[0], editor, welEditable);
+        },
 		toolbar: [
 		    ['fontname', ['fontname']],
 		    ['fontsize', ['fontsize']],
