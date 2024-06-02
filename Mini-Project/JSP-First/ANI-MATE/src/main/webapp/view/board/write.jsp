@@ -9,7 +9,7 @@
 
 <!-- head ( import ) -->
 <%@ include file="/view/include/head.jsp" %>
-
+<script src="/js/board.js"></script>
 </head>
 <body>
 	<!-- Navbar -->
@@ -18,7 +18,7 @@
    	<div style="height: 140px;"></div>
    	
    	<div class="container">
-   		
+   		<div id="summernote">Hello Summernote</div>
    	</div>
    	
 </body>

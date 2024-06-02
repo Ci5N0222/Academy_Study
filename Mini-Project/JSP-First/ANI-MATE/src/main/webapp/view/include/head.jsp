@@ -14,5 +14,10 @@
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/a0900b741f.js" crossorigin="anonymous"></script>
 
-<link rel="icon" href="/img/favicon.PNG">
+<!-- summernote -->
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css" />
+
+<link rel="icon" href="/img/favicon.PNG" />
 <link rel="stylesheet" href="/css/style.css" />
