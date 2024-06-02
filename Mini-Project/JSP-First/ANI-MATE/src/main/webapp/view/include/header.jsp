@@ -23,6 +23,11 @@
                                     <p class="default-font">EVENT</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/view/board/list.jsp">
+                                    <p class="default-font">BOARD</p>
+                                </a>
+                            </li>
                             <li class="nav-item d-md-none">
                                 <a href="login.jsp">
                                     <p class="default-font">Login</p>
