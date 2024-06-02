@@ -34,7 +34,8 @@
    	$("#boardWriteForm").on("submit", () => {
    		$('#contents').val($("#summernote").summernote('code'));
    		
-   		alert($("#summernote").summernote('code'));
+   		// div summernote html 값 출력 함수 .summernote('code')
+   		// alert($("#summernote").summernote('code'));
    		
    		if($('#contents').val() === ""){
    			alert("작성된 내용 없음");

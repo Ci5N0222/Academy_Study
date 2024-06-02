@@ -29,7 +29,7 @@
                                 </a>
                             </li>
                             <li class="nav-item d-md-none">
-                                <a href="login.jsp">
+                                <a href="/view/members/login.jsp">
                                     <p class="default-font">Login</p>
                                 </a>
                             </li>
@@ -37,7 +37,7 @@
                         <div class="nav-account d-none d-md-block">
                             <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" style="cursor: pointer; margin-right: 15px;"></i>
-                            <a href="login.jsp"><i class="fa-solid fa-user"></i></a>
+                            <a href="/view/members/login.jsp"><i class="fa-solid fa-user"></i></a>
                         </div>
                     </div>
                 </div>

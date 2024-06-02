@@ -59,7 +59,7 @@
             <div class="container login-form">
                 <h1><a href="../index.jsp" style="color: deeppink">ANI-MATE</a></h1>
                 <p>동시방영 신작부터 역대 인기작까지 한 곳에서 편-안하게!</p>
-                <button class="btn btn-primary" onclick="location.href='../index.jsp'">
+                <button class="btn btn-primary" onclick="location.href='/index.jsp'">
                     이메일로 시작
                 </button>
                 <hr />
