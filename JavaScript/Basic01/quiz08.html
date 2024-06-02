@@ -47,35 +47,29 @@
         let password1 = "";
         let password2 = "";
 
-        pw1.addEventListener('keyup', (e) => {
-            password1 = e.target.value;
-            if(password1 === ""){
-                text.style.display = 'none';
-            } else if(password1 === password2){
-                text.innerHTML = "비밀번호 일치!"
-                text.style.color = 'green';
-                text.style.display = 'block';
-            } else {
-                text.innerHTML = "비밀번호 불일치!"
-                text.style.color = 'red';
-                text.style.display = 'block';
+        const handleKeyUp = (e) => {
+            if (e.target.id === 'password1') {
+                password1 = e.target.value;
+            } else if (e.target.id === 'password2') {
+                password2 = e.target.value;
             }
-        });
 
-        pw2.addEventListener('keyup', (e) => {
-            password2 = e.target.value;
-            if(password2 === ""){
+            if (password1 === "" || password2 === "") {
                 text.style.display = 'none';
-            } else if(password1 === password2){
-                text.innerHTML = "비밀번호 일치!"
+            } else if (password1 === password2) {
+                text.innerHTML = "비밀번호 일치!";
                 text.style.color = 'green';
                 text.style.display = 'block';
             } else {
-                text.innerHTML = "비밀번호 불일치!"
+                text.innerHTML = "비밀번호 불일치!";
                 text.style.color = 'red';
                 text.style.display = 'block';
             }
-        });
+        };
+
+        pw1.addEventListener('keyup', handleKeyUp);
+        pw2.addEventListener('keyup', handleKeyUp);
+
     </script>
 </body>
 </html>
