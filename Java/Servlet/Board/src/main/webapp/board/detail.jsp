@@ -7,7 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글</title>
+
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<!-- summernote -->
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css" />
+<script src="/js/board.js"></script>
 
 <style>
     * {
@@ -141,11 +149,24 @@
 		display: none;
 	}
 	
+	#summernote {
+		display: none;
+	}
+	
+	#files {
+		display: flex;
+        flex-direction: column;
+	}
+	
+	#files > span {
+		margin: 5px;
+	}
+	
 </style>
 
 <script>
 	$(() => {
-		
+	
 		// 게시글 수정 validation
 		$("#write_form").on("submit", function(){
 			$('#title').val($('#div_title').html());
@@ -180,10 +201,10 @@
 	
 	const editContents = () => {
 		$('h1').html("글 수정")
-		$('#div_title, #success-btn, #cancle-btn').css({"display" : "block"});
-		$('#writerInfo, #edit-btn, #del-btn, #list-btn').css({"display" : "none"});
+		$('#div_title, #success-btn, #cancle-btn, #summernote').css({"display" : "block"});
+		$('#writerInfo, #edit-btn, #del-btn, #list-btn, #div_contents').css({"display" : "none"});
 		
-		$('#div_title, #div_contents').attr("contenteditable", "true");
+		$('#div_title').attr("contenteditable", "true");
 	}
 	
 	// 게시글 삭제
@@ -211,6 +232,16 @@
 	            <div class="title" contenteditable="false" id="div_title">${ dto.title }</div>
 	            <input type="hidden" name="title" id="title"/>
 	            <hr />
+	            
+	            <c:if test="${ files.size() != 0 }">
+	            	<div id="files">
+		            	<c:forEach var="files" items="${ files }">
+		            		<span>${ files.oriname }</span>
+		            	</c:forEach>
+		            	<hr />
+		            </div>
+	            </c:if>
+	            
 	            <div class="content" contenteditable="false" id="div_contents">${ dto.contents }</div>
 	            <input type="hidden" name="contents" id="contents" />
 	            <div class="btn-box">

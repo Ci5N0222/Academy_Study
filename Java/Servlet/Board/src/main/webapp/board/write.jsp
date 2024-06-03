@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
+<!-- summernote -->
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css" />
+<script src="/js/board.js"></script>
+
 <style>
     * {
         box-sizing: border-box;
@@ -63,6 +69,28 @@
     button:hover {
         cursor:pointer;
     }
+    
+    .file-list {
+    	min-height: 10px;
+    	display:flex;
+        flex-direction: column;
+    }
+    .file-input {
+    	margin: 3px;
+    }
+    
+    #addFile {
+    	width: 100px;
+    	padding: 5px;
+    	margin-bottom: 5px;
+    	margin-left: 5px;
+    }
+    
+    .file-btn {
+        margin: 10px;
+        display: flex;
+        justify-content: end;
+    }
 
 </style>
 
@@ -72,19 +100,21 @@
 		$("#write_form").on("submit", function(){
 			
 			$('#title').val($('#div_title').html());
-			$('#contents').val($('#div_contents').html());
+			$('#contents').val($('#summernote').summernote('code'));
 			
-			if($('#title').val() == "" || $('#title').val() == "제목을 입력하세요") {
+			if($('#title').val() == "") {
 				alert("제목 입력안함");
 				return false;
 			}
 			
-			if($('#contents').val() == "" || $('#contents').val() == "내용을 입력하세요") {
+			if($('#contents').val() == "") {
 				alert("내용 입력안함");
 				return false;
 			}
 			
 		});
+		
+		
 		
 	});
 
@@ -96,13 +126,18 @@
     <div class="container">
         <h1>글 쓰 기</h1>
        
-        <form action="/write.board" method="post" id="write_form">
+        <form action="/write.board" method="post" id="write_form" enctype="multipart/form-data">
 	        <div class="content-info">
-	            <div class="title" contenteditable="true"id="div_title">제목을 입력하세요</div>
+	            <div class="title" contenteditable="true"id="div_title"></div>
 	            <input type="hidden" name="title" id="title"/>
 	            <hr />
-	            <div class="content" contenteditable="true"id="div_contents">내용을 입력하세요</div>
+	            <div id="summernote"></div>
 	            <input type="hidden" name="contents" id="contents"/>
+
+	            <div class="file-list"></div>
+	            <div class="file-btn">
+	            	<button type="button" id="addFile">파일 추가하기</button>
+	            </div>
 	        </div>
 	
 	        <div class="btn-box">
@@ -111,6 +146,20 @@
 	        </div>
         </form>
         
+        <script>
+        	let count = 1;
+        	$('#addFile').on('click', function() {
+        		if(count >= 6){
+        			alert("더 이상 추가할 수 없습니다.");
+        			return false;
+        		}
+       			let item = "<input type='file'class='file-input' id='file"+ count +"' name='file"+ count +"'>"
+           		$('.file-list').append(item);
+       			count++;
+        		
+        	});
+        
+        </script>
     </div>
 
 </body>
