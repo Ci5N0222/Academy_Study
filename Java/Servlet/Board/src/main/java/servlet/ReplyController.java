@@ -1,13 +1,18 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import reply.dao.ReplyDAO;
+import reply.dto.ReplyDTO;
 
 @WebServlet("*.reply")
 public class ReplyController extends HttpServlet {
@@ -15,9 +20,12 @@ public class ReplyController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=UTF-8");
 		String cmd = request.getRequestURI();
 		
 		ReplyDAO dao = ReplyDAO.getInstance();
+		
+		Gson g = new Gson();
 		
 		try {
 		
@@ -38,6 +46,18 @@ public class ReplyController extends HttpServlet {
 				
 			}
 			
+			/** 댓글 목록 **/
+			else if(cmd.equals("/list.reply")) {
+				String seq = request.getParameter("seq");
+				System.out.println("seq === " + seq);
+				
+				List<ReplyDTO> reply = dao.replyList(Integer.parseInt(seq));
+				
+				String result = g.toJson(reply);
+				response.getWriter().append(result);
+				
+			}
+			
 			/** 댓글 삭제 **/
 			else if(cmd.equals("/delete.reply")) {
 				String seq = request.getParameter("seq");
@@ -45,10 +65,8 @@ public class ReplyController extends HttpServlet {
 				
 				int result = dao.deleteReply(Integer.parseInt(seq));
 				
-				if(result > 0) response.sendRedirect("/detail.board?id=" + parent_seq);
-				else {
-					// 삭제 오류~
-				}
+				String res = g.toJson(result);
+				response.getWriter().append(res);
 			}
 			
 			/** 댓글 수정 **/

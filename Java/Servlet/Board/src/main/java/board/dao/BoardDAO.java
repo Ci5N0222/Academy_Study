@@ -155,38 +155,37 @@ public class BoardDAO {
 	 * @return
 	 * @throws Exception
 	 */
-//	public int write(String writer, String title, String contents) throws Exception {
+	public int write(String writer, String title, String contents) throws Exception {
+		String sql = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate, 0)";
+		try(Connection con = dbConnect();
+			PreparedStatement pstat = con.prepareStatement(sql)){
+			
+			pstat.setString(1, writer);
+			pstat.setString(2, title);
+			pstat.setString(3, contents);
+			
+			return pstat.executeUpdate();
+		}
+		
+	}
+	
+//	 public int write(String writer, String title, String contents) throws Exception {
 //		String sql = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate, 0)";
 //		try(Connection con = dbConnect();
-//			PreparedStatement pstat = con.prepareStatement(sql)){
+//			PreparedStatement pstat = con.prepareStatement(sql, new String[] {"seq"})){
 //			
 //			pstat.setString(1, writer);
 //			pstat.setString(2, title);
 //			pstat.setString(3, contents);
 //			
-//			return pstat.executeUpdate();
+//			pstat.executeUpdate();
+//			
+//			try(ResultSet rs = pstat.getGeneratedKeys();){
+//				rs.next();
+//				return rs.getInt("seq");
+//			}
 //		}
-//		
-//	}
-	
-	public int write(String writer, String title, String contents) throws Exception {
-	String sql = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate, 0)";
-	try(Connection con = dbConnect();
-		PreparedStatement pstat = con.prepareStatement(sql, new String[] {"seq"})){
-		
-		pstat.setString(1, writer);
-		pstat.setString(2, title);
-		pstat.setString(3, contents);
-		
-		pstat.executeUpdate();
-		
-		try(ResultSet rs = pstat.getGeneratedKeys();){
-			rs.next();
-			return rs.getInt("seq");
-		}
-	}
-	
-}
+//	}	
 	
 	
 	/**
