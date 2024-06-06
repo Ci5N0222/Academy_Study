@@ -192,21 +192,36 @@
         // 중복확인
         const idCheck = () => {
             if($('#id').val() === ""){
-                $('#idCheck').html(" ");
                 idChecking = false;
                 $('#id').focus();
                 return alert("ID 입력하셈");
             } 
 
             if(!regexId.test($('#id').val())){
-                $('#idCheck').html(" ");
                 idChecking = false;
                 $('#id').focus();
                 return alert("유효하지 않은 ID임");
             } 
 
-            window.open("/idCheck.members?id=" + $('#id').val(), "", "width=300, height=200");
-            duplicateId =  $('#id').val();
+ 			$.ajax({
+            	url: "/idCheck.members",
+            	data: {
+            		id : $('#id').val()
+            	},
+            	dataType: "json"
+            })
+            .done(function(res){
+            	if(res === 0){
+            		alert("사용 가능한 ID 입니다");
+            		idChecking = true;
+            		duplicateId =  $('#id').val();
+            	} else {
+            		alert("이미 사용중인 ID 입니다.");
+            		idChecking = false;
+            		$('#id').val("");
+            		$('#id').focus();
+            	}
+            })
         }
 
         // 우편번호

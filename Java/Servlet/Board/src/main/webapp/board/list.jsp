@@ -114,6 +114,18 @@
      	text-decoration: none;
      }
      
+     #navi {
+     	display: flex;
+     	justify-content: center;
+     	align-items: center;
+     }
+     
+     #navi > a {
+     	color: blue;
+     	margin: 3px;
+     	
+     }
+     
 </style>
 
 <script>
@@ -176,7 +188,65 @@
         		</c:forEach>
         	</c:otherwise>
         </c:choose>
-        <span>${ pageNavi }</span>
+        <div id="navi">
+        	
+        </div>
+        
+        <script>
+        	
+        
+        	const pagenation = () => {
+        		// 페이징 네비 
+            	let cpage = ${cpage};
+            	let recordTotalCount = ${recode_total_count};
+            	let recordCountPerPage = ${recorde_count_per_page};
+            	let naviCountPerPage = ${navi_count_per_page};
+            	
+            	// 총 페이지 수
+            	let pageTotalCount = 0;
+            	if(recordTotalCount % recordCountPerPage > 0) pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+            	else pageTotalCount = recordTotalCount / recordCountPerPage;
+            	
+            	// 네비게이터의 시작 번호
+            	let startNavi = Math.floor((cpage - 1) / naviCountPerPage) * naviCountPerPage + 1
+            	
+            	// 네비게이터의 마지막 번호
+            	let endNavi = startNavi + naviCountPerPage - 1;
+            	
+            	if(endNavi > pageTotalCount) endNavi = pageTotalCount;
+            	
+            	let needNext = true;
+            	let needPrev = true;
+            	
+            	if(startNavi == 1) needPrev = false;
+            	if(endNavi == pageTotalCount) needNext = false;
+            	
+            	if(needPrev){
+            		let prev = "<a href='/list.board?cpage=" + (startNavi - 1) + "'>" + "< </a>";
+            		$('#navi').append(prev);
+            	}
+            	
+            	for(let i = startNavi; i <= endNavi; i++){
+            		if(cpage === i){
+            			let items = "<a href='/list.board?cpage=" + i + "'>" + i + "</a> ";
+                		$('#navi').append(items);
+            		} else {
+            			let items = "<a href='/list.board?cpage=" + i + "'>" + i + "</a> ";
+                		$('#navi').append(items);	
+            		}
+            		
+            	}
+            	
+            	if(needNext) {
+            		let next = "<a href='/list.board?cpage=" + (endNavi + 1) + "'>></a>";
+            		$('#navi').append(next);
+            	}
+            	
+        	}
+        	
+        	pagenation();
+        	
+        </script>
         
     </div>
     

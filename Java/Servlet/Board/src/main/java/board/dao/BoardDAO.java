@@ -32,6 +32,11 @@ public class BoardDAO {
 	}
 	
 	
+	/**
+	 * 글의 총 개수를 반환하는 메서드
+	 * @return
+	 * @throws Exception
+	 */
 	public int getRecordCount() throws Exception {
 		String sql = "select count(*) from board";
 		
@@ -76,6 +81,13 @@ public class BoardDAO {
 	}
 	
 	
+	/**
+	 * 지정한 개수만큼의 글 목록을 반환하는 메서드
+	 * @param startR
+	 * @param endR
+	 * @return
+	 * @throws Exception
+	 */
 	public List<BoardDTO> getListNtoM(int startR, int endR) throws Exception {
 		List<BoardDTO> list = new ArrayList<>();
 		
@@ -156,6 +168,24 @@ public class BoardDAO {
 		}
 		
 	}
+	
+//	 public int write(String writer, String title, String contents) throws Exception {
+//		String sql = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate, 0)";
+//		try(Connection con = dbConnect();
+//			PreparedStatement pstat = con.prepareStatement(sql, new String[] {"seq"})){
+//			
+//			pstat.setString(1, writer);
+//			pstat.setString(2, title);
+//			pstat.setString(3, contents);
+//			
+//			pstat.executeUpdate();
+//			
+//			try(ResultSet rs = pstat.getGeneratedKeys();){
+//				rs.next();
+//				return rs.getInt("seq");
+//			}
+//		}
+//	}	
 	
 	
 	/**
@@ -251,51 +281,17 @@ public class BoardDAO {
 	}
 	
 	
-	public String getPageNavi(int currentPage) throws Exception {
+	public int seqByWirter(String writer) throws Exception {
+		String sql = "select seq from board where writer = ? order by seq desc";
+		try(Connection con = dbConnect();
+			PreparedStatement pstat = con.prepareStatement(sql)){
+			pstat.setString(1, writer);
 			
-		// 1. "전체 글"의 개수
-		int recordTotalCount = this.getRecordCount();	// 향후 데이터 베이스에서 알아와야 하는 값
-		
-		// 2. "한 페이지"에 보여질 "글"의 개수 결정
-		int recordCountPerPage = BoardConfig.RECODE_COUNT_PER_PAGE;
-		
-		// 3. 페이지에 보여질 네비게이터의 개수 결정
-		int naviCountPerPage = BoardConfig.NAVI_COUNT_PER_PAGE;
-		
-		// 4. 총 "페이지"의 개수
-		int pageTotalCount = 0; 
-		
-		// 총 페이지 수를 담아줌
-		if(recordTotalCount % recordCountPerPage > 0) pageTotalCount = recordTotalCount / recordCountPerPage + 1;
-		else pageTotalCount = recordTotalCount / recordCountPerPage;
-		
-		// 현재 위치
-//		int currentPage = 1	// 향후 클라이언트가 누르는 번호로 대체 될 예정
-		
-		// 네비게이터의 시작 번호
-		int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
-		
-		// 네비게이터의 마지막
-		int endNavi = startNavi + naviCountPerPage - 1;
-		
-		if(endNavi > pageTotalCount) endNavi = pageTotalCount;
-			
-		boolean needNext = true;
-		boolean needPrev = true;
-		
-		if(startNavi == 1) needPrev = false;
-		if(endNavi == pageTotalCount) needNext = false;
-		
-		StringBuilder sb = new StringBuilder();
-		
-		if(needPrev) sb.append("<a href='/list.board?cpage=" + (startNavi-1) + "'>" + "< </a>");
-		
-		// 네비게이터 시작~마지막 까지 번호 출력
-		for(int i = startNavi; i<=endNavi; i++) {
-			sb.append("<a href='/list.board?cpage=" + i + "'>" + i + "</a> ");
+			try(ResultSet rs = pstat.executeQuery()){
+				rs.next();
+				return rs.getInt("seq");
+			}
 		}
-		if(needNext) sb.append("<a href='/list.board?cpage=" + (endNavi+1) + "'>></a>");
-		
-		return sb.toString();
 	}
+	
 }

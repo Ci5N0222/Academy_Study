@@ -1,12 +1,16 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import common.Sha512;
 import members.dao.MembersDAO;
@@ -20,11 +24,14 @@ public class MembersController extends HttpServlet {
 		// 클라이언트로 부터 전송되는 문자열에 대한 인코딩을 utf8 처리
 		// 리퀘스트로 부터 값을 꺼내기 전에 처리해야 함!!
 		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		MembersDAO dao = MembersDAO.getInstance();
 		String cmd = request.getRequestURI();
 		
 		System.out.println("요청 받은 내용 : " + cmd);
+		
+		Gson g = new Gson();
 		
 		
 		/** ID 중복체크 **/
@@ -39,8 +46,10 @@ public class MembersController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			request.setAttribute("result", result);
-			request.getRequestDispatcher("/members/idcheck.jsp").forward(request, response);
+			String res = g.toJson(result);
+			PrintWriter pw =  response.getWriter();
+			pw.append(res);
+			
 		} 
 		
 		
