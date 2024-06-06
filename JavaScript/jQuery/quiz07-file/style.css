@@ -1,0 +1,14 @@
+.file-list {
+    display: flex;
+    flex-direction: column;
+}
+.file-list > .package {
+    margin: 3px;
+}
+.delete-btn {
+    border: none;
+    background-color: white;
+}
+.delete-btn:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,19 @@
+p {
+    margin: 1px;
+}
+
+.container {
+    border: 1px solid black;
+    width: 350px;
+    height: 400px;
+    margin: 20px auto;
+    overflow: auto;
+}
+
+.btn-form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+    margin: auto;
+}

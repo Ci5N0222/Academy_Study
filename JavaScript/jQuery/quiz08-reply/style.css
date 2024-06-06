@@ -1,0 +1,98 @@
+div {
+    border: 1px solid black;
+}
+
+body {
+    margin: 10px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.container {
+    min-width: 450px;
+    width:70%;
+    height: 100px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid ;
+}
+
+.writer {
+    flex: 1;
+    padding: 2px;
+}
+
+.content-box {
+    flex: 4;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px;
+    overflow: auto;
+}
+.content-box > div {
+    flex: 8;
+    overflow-y: auto;
+}
+.content-box > button {
+    flex: 2;
+}
+
+.container-reply {
+    min-width: 450px;
+    width:70%;
+    height: 100px;
+    max-width: 800px;
+    display: flex;
+    margin: 3px;
+}
+
+.content-reply {
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reply-area {
+    width: 99%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+
+}
+.reply-area > .writer {
+    flex:1;
+}
+.reply-area > .content {
+    flex: 4;
+    
+}
+
+.btn-list {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#reply-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.success, .cancle {
+    display: none;
+}
+
+.content {
+    overflow-y: auto;
+}
