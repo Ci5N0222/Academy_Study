@@ -1,0 +1,8 @@
+table {
+    margin: 10px auto;
+}
+
+tbody > tr > td:nth-of-type(3){
+    width: 100px;
+    text-align: center;
+}
