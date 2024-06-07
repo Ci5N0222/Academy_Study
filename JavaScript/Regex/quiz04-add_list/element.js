@@ -1,40 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    
-    <style>
-        table {
-            margin: 10px auto;
-        }
-
-        tbody > tr > td:nth-of-type(3){
-            width: 100px;
-            text-align: center;
-        }
-    </style>
-
-</head>
-<body>
-
-    <table border=1>
-        <thead>
-            <tr>
-                <th>표지</th>
-                <th>제목</th>
-                <th>평점</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    
-    <script>
-        let str = `
+$(() => {
+    let str = `
         <div class="list_area daily_img">
             <ul class="img_list">
                   <li>
@@ -2132,9 +2097,5 @@
 
             $('tbody').append(item);
         }
-        
-    </script>
-    
 
-</body>
-</html>
+});

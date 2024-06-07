@@ -1,0 +1,71 @@
+body {
+    margin: 0px auto;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    width: 600px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.input-form {
+    width: 100%;
+}
+
+.input-form > label {
+    text-align: left;
+    display: inline-block;
+    width: 120px;
+    padding: 5px;
+}
+
+.input-form > input {
+    padding: 5px;
+    margin: 15px;
+    width: 300px;
+}
+
+button {
+    border: none;
+    background-color: rgb(86, 86, 184);
+    color: white;
+    font-weight: 700;
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#pwCheck {
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    color: green;
+    font-weight: 700;
+}
+
+#idCheck {
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    color: green;
+    font-weight: 700;
+}
+
+#submitBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+#warn {
+    text-align: left;
+    color: red;
+    border: 1px solid black;
+    padding: 0 5px;
+}
