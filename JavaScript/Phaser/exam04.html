@@ -6,9 +6,7 @@
     <title>Document</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.80.1/phaser.min.js"></script>
-    <script src="Exam01.js"></script>
-    <script src="Exam02.js"></script>
-    <script src="Exam03.js"></script>
+    <script src="Exam04.js"></script>
     <script src="GameOver.js"></script>
     <style>
         body{
@@ -16,8 +14,8 @@
         }
 
         #gamebox {  
-            width: 700px;
-            height: 400px;
+            width: 500px;
+            height: 500px;
             border: 1px solid black;
             margin: 20px auto;
             
@@ -34,8 +32,8 @@
         let config = {
             type: Phaser.AUTO,
             parent: "gamebox",
-            width: 700,
-            height: 400,
+            width: 500,
+            height: 500,
             physics: {
                 default: "arcade",
                 arcade:{
@@ -43,7 +41,7 @@
                     // debug: true
                 }
             },
-            scene: [Exam03, GameOver]
+            scene: [Exam04, GameOver]
         }
 
         let game = new Phaser.Game(config);
