@@ -13,8 +13,8 @@ class Exam03 extends Phaser.Scene {
         this.load.image("player", "images/play.gif");
         this.load.image("bg", "images/am-bg.png");
         this.load.image("item", "images/item.png");
-        this.load.spritesheet("amongUsRun", "images/amongUsRun1.png", {frameWidth: 237/8, frameHeight: 29});
-        this.load.spritesheet("amongUsJump", "images/amongUsJump.png", {frameWidth: 316/10, frameHeight: 29});
+        this.load.spritesheet("amongUsRun", "images/amongRun.png", {frameWidth: 237/8, frameHeight: 29});
+        this.load.spritesheet("amongUsJump", "images/amongJump.png", {frameWidth: 316/10, frameHeight: 29});
     }
 
     create(){
