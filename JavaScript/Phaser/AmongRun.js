@@ -89,7 +89,6 @@ class AmongRun extends Phaser.Scene {
             document.querySelector("#score").innerHTML = this.score;
         });
 
-
         // keyboard event
         this.cursor = this.input.keyboard.createCursorKeys();
     }
