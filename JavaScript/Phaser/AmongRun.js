@@ -143,20 +143,8 @@ class AmongRun extends Phaser.Scene {
                 this.itemRegen -= 2;
                 this.bentRegen -= 4;
             }
-
         }
-        if(this.frame%this.bentRegen == 0){
-            // bent 
-            let bent = this.physics.add.sprite(680, this.cameras.main.height-40, "bent");
-                
-            // bent size
-            let bentScaleFactor = 1.4;
-            bent.setScale(bentScaleFactor);
-            bent.setSize(60/bentScaleFactor, 45/bentScaleFactor);
-            
-            bent.setVelocityX(-100);
-            this.bents.push(bent);
-        }
+        
         // 60 second Game over
         if(this.timer < 61){
             // item regen
@@ -172,6 +160,20 @@ class AmongRun extends Phaser.Scene {
                 item.setVelocityX(this.itemSpeed*-1);
                 this.items.push(item);
             }
+            // bent regen
+            if(this.frame%this.bentRegen == 0){
+                // bent 
+                let bent = this.physics.add.sprite(680, this.cameras.main.height-40, "bent");
+                    
+                // bent size
+                let bentScaleFactor = 1.4;
+                bent.setScale(bentScaleFactor);
+                bent.setSize(60/bentScaleFactor, 45/bentScaleFactor);
+                
+                bent.setVelocityX(-100);
+                this.bents.push(bent);
+            }
+
         } else {
             if(this.tileSpeed > 0){
                 if(this.frame%20 === 0) {
