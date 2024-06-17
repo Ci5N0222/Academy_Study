@@ -11,6 +11,7 @@ class AmongRun extends Phaser.Scene {
         this.charactorSpeed = 250;
         this.itemSpeed = 150;
         this.motionSpeed = 11;
+        this.itemRegen = 40;
     }
 
     preload(){
@@ -94,7 +95,7 @@ class AmongRun extends Phaser.Scene {
             document.querySelector("#score").innerHTML = this.score;
         });
 
-        // keyboard event
+        // Keyboard event
         this.cursor = this.input.keyboard.createCursorKeys();
     }
 
@@ -106,26 +107,43 @@ class AmongRun extends Phaser.Scene {
         if(this.frame%60 === 0) {
             this.timer++;
             document.querySelector("#timer").innerHTML = this.timer;
+
+            
+            if(this.timer%6 === 0){
+                this.charactorSpeed += 30;
+                this.itemSpeed += 30;
+                this.motionSpeed += 1;
+                this.tileSpeed += 1;
+                this.itemRegen -= 2;
+            }
         }
 
         // 60 second Game over
-        if(this.timer === 60) {
-            this.scene.start("GameOver");
-        }
-
-        // item regen
-        if(this.frame%40 == 0) {
-            // item 
-            let item = this.physics.add.sprite(720, Math.random()*(360-110+1)+110, "item");
+        if(this.timer < 61){
+            // item regen
+            if(this.frame%this.itemRegen == 0) {
+                // item 
+                let item = this.physics.add.sprite(720, Math.random()*(360-110+1)+110, "item");
+                
+                // item size
+                let itemScaleFactor = 1;
+                item.setScale(itemScaleFactor);
+                item.setSize(40/itemScaleFactor, 50/itemScaleFactor);
+                
+                item.setVelocityX(this.itemSpeed*-1);
+                this.items.push(item);
+            }
+        } else {
+            if(this.tileSpeed > 0){
+                if(this.frame%20 === 0) {
+                    this.tileSpeed -= 1;
+                    this.charactorSpeed -= 30;
+                    this.motionSpeed -= 1;
+                }
+            }
             
-            // item size
-            let itemScaleFactor = 1;
-            item.setScale(itemScaleFactor);
-            item.setSize(40/itemScaleFactor, 50/itemScaleFactor);
-            
-            item.setVelocityX(this.itemSpeed*-1);
-            this.items.push(item);
         }
+        
 
         this.background.tilePositionX += this.tileSpeed;
 
