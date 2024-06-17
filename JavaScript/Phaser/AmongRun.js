@@ -6,12 +6,14 @@ class AmongRun extends Phaser.Scene {
         this.score = 0;
         this.jumpCount = 0;
         this.items = [];
+        this.bents = [];
         
         this.tileSpeed = 2;
         this.charactorSpeed = 250;
         this.itemSpeed = 150;
         this.motionSpeed = 11;
         this.itemRegen = 40;
+        this.bentRegen = 240;
     }
 
     preload(){
@@ -25,6 +27,9 @@ class AmongRun extends Phaser.Scene {
         
         // item preload
         this.load.image("item", "images/item.png");
+
+        // bent preload
+        this.load.image("bent", "images/bent.png");
     }
 
     create(){
@@ -37,9 +42,9 @@ class AmongRun extends Phaser.Scene {
         this.player = this.physics.add.sprite(80, this.cameras.main.height-200, "amongRun");
         
         // player charactor size
-        let playerScaleFactor = 4;
+        let playerScaleFactor = 3;
         this.player.setScale(playerScaleFactor);
-        this.player.setSize(50/playerScaleFactor, 80/playerScaleFactor);
+        this.player.setSize(48/playerScaleFactor, 70/playerScaleFactor);
 
         // player charactor "run" motion
         this.anims.create({
@@ -62,6 +67,8 @@ class AmongRun extends Phaser.Scene {
         this.player.setGravity(0, 1000);            // gravity
         this.player.anims.play({key:"run"});
         this.player.setData("onFloor", true);
+        this.player.setData("bent", false);
+        this.player.setDepth(1);
 
         // floor
         let floor = this.add.rectangle(0, this.cameras.main.height-30, this.cameras.main.width, 5, 0x0000, 0);
@@ -73,8 +80,6 @@ class AmongRun extends Phaser.Scene {
         finalBoundary.setOrigin(100, 0);
         this.physics.add.existing(finalBoundary, true);
         
-        
-
         /** ============================ A and B Event ============================ **/
         
         // floor, charactor collide event
@@ -82,10 +87,15 @@ class AmongRun extends Phaser.Scene {
             player.setData("onFloor", true);
         });
 
-        // final boundary, item collide event
+        // final boundary, items collide event
         this.physics.add.collider(finalBoundary, this.items, (final, item) => {
             // item instance delete
             item.destroy();
+        });
+         // final boundary, bents collide event
+         this.physics.add.collider(finalBoundary, this.bents, (final, bent) => {
+            // item instance delete
+            bent.destroy();
         });
 
         // player, item overlap event
@@ -95,6 +105,22 @@ class AmongRun extends Phaser.Scene {
             document.querySelector("#score").innerHTML = this.score;
         });
 
+        // player, bent overlap event
+        this.physics.add.overlap(this.player, this.bents, (player, bent) => {
+            this.charactorSpeed = 0;
+            this.itemSpeed = 0;
+            this.motionSpeed = 0;
+            this.tileSpeed = 0;
+            this.itemRegen = 99999;
+            this.bentRegen = 99999;
+
+            floor.destroy();
+            this.player.setCollideWorldBounds(false);
+
+            // 1초 뒤 게임오버 화면으로 이동
+
+        });
+
         // Keyboard event
         this.cursor = this.input.keyboard.createCursorKeys();
     }
@@ -102,22 +128,35 @@ class AmongRun extends Phaser.Scene {
     update(){
 
         this.frame++;
+        this.background.tilePositionX += this.tileSpeed;
 
         // 1 second
         if(this.frame%60 === 0) {
             this.timer++;
             document.querySelector("#timer").innerHTML = this.timer;
 
-            
             if(this.timer%6 === 0){
                 this.charactorSpeed += 30;
                 this.itemSpeed += 30;
                 this.motionSpeed += 1;
                 this.tileSpeed += 1;
                 this.itemRegen -= 2;
+                this.bentRegen -= 4;
             }
-        }
 
+        }
+        if(this.frame%this.bentRegen == 0){
+            // bent 
+            let bent = this.physics.add.sprite(680, this.cameras.main.height-40, "bent");
+                
+            // bent size
+            let bentScaleFactor = 1.4;
+            bent.setScale(bentScaleFactor);
+            bent.setSize(60/bentScaleFactor, 45/bentScaleFactor);
+            
+            bent.setVelocityX(-100);
+            this.bents.push(bent);
+        }
         // 60 second Game over
         if(this.timer < 61){
             // item regen
@@ -140,12 +179,10 @@ class AmongRun extends Phaser.Scene {
                     this.charactorSpeed -= 30;
                     this.motionSpeed -= 1;
                 }
+            } else {
+                // 게임 오버 화면으로 이동
             }
-            
         }
-        
-
-        this.background.tilePositionX += this.tileSpeed;
 
         // Player Charactor Speed
         if(this.cursor.left.isDown) {
@@ -171,6 +208,5 @@ class AmongRun extends Phaser.Scene {
             this.player.play("run");
             this.jumpCount = 0;
         }
-
     }
 }
