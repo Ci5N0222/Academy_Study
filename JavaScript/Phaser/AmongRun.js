@@ -16,6 +16,23 @@ class AmongRun extends Phaser.Scene {
         this.bentRegen = 240;
     }
 
+    init(data) {
+        // 초기화 시 필요한 데이터 처리
+        this.frame = 0;
+        this.timer = 0;
+        this.score = 0;
+        this.jumpCount = 0;
+        this.items = [];
+        this.bents = [];
+        
+        this.tileSpeed = 2;
+        this.charactorSpeed = 250;
+        this.itemSpeed = 150;
+        this.motionSpeed = 11;
+        this.itemRegen = 40;
+        this.bentRegen = 240;
+    }
+
     preload(){
         
         // Background preload
@@ -79,6 +96,32 @@ class AmongRun extends Phaser.Scene {
         let finalBoundary = this.add.rectangle(this.cameras.main.height-20, 0, 5, this.cameras.main.height, 0x0000);
         finalBoundary.setOrigin(100, 0);
         this.physics.add.existing(finalBoundary, true);
+
+        // score
+        let scoreText = this.add.text(this.cameras.main.width/2 - 250, this.cameras.main.height/2 -150, "Score:", {
+            fontSize: "30px",
+            fontStyle: "bold",
+            fill: "#FFFF00"
+        }).setOrigin(0.5).setInteractive();
+        let score = this.add.text(this.cameras.main.width/2 - 150, this.cameras.main.height/2 -150, "", {
+            fontSize: "30px",
+            fontStyle: "bold",
+            fill: "#FFFF00"
+        }).setOrigin(0.5).setInteractive();
+        score.setDepth(1);
+
+        // time
+        let timeText = this.add.text(this.cameras.main.width/2 + 230, this.cameras.main.height/2 -150, "Time:", {
+            fontSize: "30px",
+            fontStyle: "bold",
+            fill: "#FFFFFF"
+        }).setOrigin(0.5).setInteractive();
+        this.time = this.add.text(this.cameras.main.width/2 + 300, this.cameras.main.height/2 -150, "", {
+            fontSize: "30px",
+            fontStyle: "bold",
+            fill: "#FFFFFF"
+        }).setOrigin(0.5).setInteractive();
+        score.setDepth(1);
         
         /** ============================ A and B Event ============================ **/
         
@@ -102,6 +145,7 @@ class AmongRun extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.items, (player, item) => {
             item.destroy();
             this.score += 100;
+            score.text = this.score;
             document.querySelector("#score").innerHTML = this.score;
         });
 
@@ -136,6 +180,7 @@ class AmongRun extends Phaser.Scene {
         if(this.frame%60 === 0) {
             this.timer++;
             document.querySelector("#timer").innerHTML = this.timer;
+            this.time.setText(this.timer);
 
             if(this.timer%6 === 0){
                 this.charactorSpeed += 30;
@@ -145,6 +190,7 @@ class AmongRun extends Phaser.Scene {
                 this.itemRegen -= 2;
                 this.bentRegen -= 4;
             }
+
         }
         
         // 60 second Game over

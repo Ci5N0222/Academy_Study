@@ -6,6 +6,11 @@ class BentOver extends Phaser.Scene {
         this.timer = 0;
     }
 
+    init(data) {
+        this.frame = 0;
+        this.timer = 0;
+    }
+
     preload(){
         this.load.image("bent-end", "images/bent-end.jpg");
         this.load.spritesheet("bent-among", "images/amongJump.png", {frameWidth: 316/10, frameHeight: 29});
