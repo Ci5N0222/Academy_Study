@@ -7,8 +7,10 @@
     <!-- phaser3 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.80.1/phaser.min.js"></script>
     
+    <script src="GameStart.js"></script>
     <script src="AmongRun.js"></script>
     <script src="GameOver.js"></script>
+    <script src="BentOver.js"></script>
 
     <style>
         body{
@@ -40,10 +42,10 @@
                 default: "arcade",
                 arcade:{
                     // gravity: {y:1000}
-                    debug: true
+                    // debug: true
                 }
             },
-            scene: [AmongRun, GameOver]
+            scene: [GameStart, AmongRun, GameOver, BentOver]
         }
 
         let game = new Phaser.Game(config);

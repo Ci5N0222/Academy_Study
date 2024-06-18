@@ -113,11 +113,13 @@ class AmongRun extends Phaser.Scene {
             this.tileSpeed = 0;
             this.itemRegen = 99999;
             this.bentRegen = 99999;
-
+            this.jumpCount = 3;
             floor.destroy();
             this.player.setCollideWorldBounds(false);
 
-            // 1초 뒤 게임오버 화면으로 이동
+            setTimeout(()=>{
+                this.scene.start("BentOver");
+            }, 1000);
 
         });
 
@@ -168,7 +170,7 @@ class AmongRun extends Phaser.Scene {
                 // bent size
                 let bentScaleFactor = 1.4;
                 bent.setScale(bentScaleFactor);
-                bent.setSize(60/bentScaleFactor, 45/bentScaleFactor);
+                bent.setSize(45/bentScaleFactor, 30/bentScaleFactor);
                 
                 bent.setVelocityX(-100);
                 this.bents.push(bent);
