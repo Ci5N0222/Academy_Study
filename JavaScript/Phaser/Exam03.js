@@ -34,7 +34,7 @@ class Exam03 extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers("amongUsJump", {start:0, end:9}),
             frameRate: 12,
             repeat: 1
-        })
+        });
 
         // 플레이어 케릭터
         this.player = this.physics.add.sprite(80, this.cameras.main.height-200, "amongUsRun");
