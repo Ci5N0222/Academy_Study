@@ -1,0 +1,6 @@
+* React
+
+* SPA ( Single Page Application )
+- 페이지 전환 없기 떄문에 동작이 부드럽다.
+- 한개의 HTML에서 다른 페이지를 보여주고 싶을 때 HTML의 내용을 바꾼다.
+
