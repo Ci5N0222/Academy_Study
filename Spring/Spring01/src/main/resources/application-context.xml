@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 
+	
+	SumsungTV tv = new SamsungTV(); 와 같은 효과 
+	
+	// Single ton patten 적용 X ( default : single ton patten )
+	<bean class="com.kedu.beans.SamsungTV" scope="prototype"></bean>
+	
+	// getBean()을 하는 순간 인스턴스 생성 ( default : lazy-init = false )
+	<bean class="com.kedu.beans.SamsungTV" lazy-init="true"></bean> 
+	
+	id="" 아이디를 통한 식별이 가능하지만 되도록 안쓰도록 설계를 추천
+	
+	<bean class="com.kedu.beans.SamsungTV">
+		Constructor 사용하여 값을 세팅하는 방법
+		<constructor-arg value="10" />
+		<constructor-arg value="5" />
+	</bean>
+	
+	-->
+	
+	<bean class="com.kedu.beans.SamsungTV">
+		<!-- Setter를 사용하여 값을 셋팅하는 방법 -->
+		<property name="channel" value="5" />
+		<property name="volume" value="10" />
+	</bean>
+	
+
+	
+</beans>
