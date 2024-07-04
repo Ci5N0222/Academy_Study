@@ -1,7 +1,11 @@
 package com.kedu.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kedu.dao.MessagesDAO;
@@ -15,30 +19,47 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home() {
-		System.out.println("Home 요청 확인");
 		return "home";
-		// ViewResolver를 통해 경로가 완성됨 /WEB-INF/views/home.jsp
-		// return은 기본적으로 forward
-		// return "redirect:home";
-		// redirect 일 경우 Dispatcher에서 ViewResolver에게 보내지 않고 바로 클라이언트에게 응답함
 	}
 	
 	@RequestMapping("/input")
 	public String input() {
-		System.out.println("Input 진입");
 		return "input";
 	}
 	
 	@RequestMapping("/inputProc")
-	public String inputProc(MessagesDTO messagesDTO) {
+	public String inputProc(MessagesDTO messagesDTO)throws Exception {
+		messagesDAO.insert(messagesDTO);
 		
-		try {
-			messagesDAO.insert(messagesDTO);
-			return "home";
-		} catch (Exception e) {
-			e.printStackTrace();	
-		}
-		return "error";
+		return "redirect:/";
 	}
 	
+	@RequestMapping("/output")
+	public String output(Model model) throws Exception {
+		List<MessagesDTO> list = messagesDAO.selectAll();
+		model.addAttribute("list", list);
+		
+		return "output";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(int seq) throws Exception {
+		messagesDAO.delete(seq);
+		
+		return "redirect:/output";
+	}
+	
+	@RequestMapping("/update")
+	public String update(MessagesDTO dto) throws Exception {
+		messagesDAO.update(dto);
+		
+		return "redirect:/output";
+	}
+	
+	
+	@ExceptionHandler(Exception.class)
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
 }
