@@ -11,9 +11,6 @@
 	<title>Home</title>
 </head>
 <body>
-
-	<img src="/images/bg-01.jpg" width=200px>
-
 	<c:choose>
 		<c:when test="${loginID != null }">
 			<table border="1" align="center">

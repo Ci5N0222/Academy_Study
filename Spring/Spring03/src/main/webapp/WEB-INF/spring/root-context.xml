@@ -8,7 +8,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	<!-- DBCP -->
-	<bean class="org.apache.commons.dbcp2.BasicDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="username" value="dev" />
 		<property name="password" value="dev" />
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -16,6 +16,18 @@
 		<property name="initialSize" value="20" />
 	</bean>
 	
+	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
 	<context:component-scan base-package="com.kedu.dao" />
+	
+	<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+	    <!-- Gson Bean 정의 -->
+	    <bean id="gson" class="com.google.gson.Gson"/>
+	</beans>
 	
 </beans>

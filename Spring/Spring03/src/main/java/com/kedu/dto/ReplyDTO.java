@@ -1,15 +1,16 @@
 package com.kedu.dto;
 
 import java.sql.Timestamp;
+
 import org.springframework.stereotype.Component;
 
 @Component
-public class BoardDTO {
+public class ReplyDTO {
 	
 	private int seq;
 	private String writer;
-	private String title;
 	private String content;
+	private int board_seq;
 	private Timestamp write_date;
 	
 	public int getSeq() {
@@ -24,17 +25,17 @@ public class BoardDTO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public int getBoard_seq() {
+		return board_seq;
+	}
+	public void setBoard_seq(int board_seq) {
+		this.board_seq = board_seq;
 	}
 	public Timestamp getWrite_date() {
 		return write_date;
@@ -43,16 +44,14 @@ public class BoardDTO {
 		this.write_date = write_date;
 	}
 	
-	public BoardDTO(int seq, String writer, String title, String content, Timestamp write_date) {
+	public ReplyDTO(int seq, String writer, String content, int board_seq, Timestamp write_date) {
 		this.seq = seq;
 		this.writer = writer;
-		this.title = title;
 		this.content = content;
+		this.board_seq = board_seq;
 		this.write_date = write_date;
 	}
 	
-	public BoardDTO() {}
-	
-	
+	public ReplyDTO() {}
 	
 }

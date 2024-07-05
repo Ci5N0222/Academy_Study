@@ -1,14 +1,11 @@
 package com.kedu.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.dto.BoardDTO;
@@ -17,43 +14,42 @@ import com.kedu.dto.BoardDTO;
 public class BoardDAO {
 
 	@Autowired
-	private BasicDataSource bds;
+	private JdbcTemplate jdbc;
 	
-	public List<BoardDTO> getList() throws Exception {
-		String sql = "select * from board";
-		
-		try(Connection con = bds.getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql);
-			ResultSet rs = pstat.executeQuery()){
-			
-			List<BoardDTO> list = new ArrayList<>();
-			
-			while(rs.next()) {
-				int seq = rs.getInt("seq");
-				String writer = rs.getString("writer");
-				String title = rs.getString("title");
-				String content = rs.getString("content");
-				Timestamp write_date = rs.getTimestamp("write_date");
-				
-				list.add(new BoardDTO(seq, writer, title, content, write_date));
-			}
-			
-			return list;
-		}
+	/** 게시글 작성 **/
+	public int boardInsert(BoardDTO dto) throws Exception {
+		String sql = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate)";
+		return jdbc.update(sql, dto.getWriter(), dto.getTitle(), dto.getContent());
 	}
 	
-	public int insert(String writer, String title, String content) throws Exception {
-		String sql = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate)";
-		
-		try(Connection con = bds.getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql)){
-			pstat.setString(1, writer);
-			pstat.setString(2, title);
-			pstat.setString(3, content);
-			
-			return pstat.executeUpdate();
-		}
-		
+	/** 게시글 목록의 수 **/
+	public int boardCount() throws Exception {
+		String sql = "select count(*) from board";
+		return jdbc.queryForObject(sql, Integer.class);
+	}
+	
+	/** 게시글 목록 **/
+	public List<BoardDTO> boardList(int start, int end) throws Exception {
+		String sql = "select * from (select board.*, row_number() over(order by seq desc) rown from board) where rown between ? and ?";
+		return jdbc.query(sql, new BeanPropertyRowMapper<>(BoardDTO.class), start, end);
+	}
+	
+	/** 게시글 디테일 **/
+	public BoardDTO baordDetail(int seq) throws Exception {
+		String sql = "select * from board where seq = ?";
+		return jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(BoardDTO.class), seq);
+	}
+	
+	/** 게시글 수정 **/
+	public int boardUpdate(BoardDTO dto) throws Exception {
+		String sql = "update board set title = ?, content = ? where seq = ?";
+		return jdbc.update(sql, dto.getTitle(), dto.getContent(), dto.getSeq());
+	}
+	
+	/** 게시글 삭제 **/
+	public int boardDelete(int seq) throws Exception {
+		String sql = "delete from board where seq = ?";
+		return jdbc.update(sql, seq);
 	}
 	
 }
