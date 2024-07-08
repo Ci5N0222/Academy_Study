@@ -36,9 +36,7 @@
 					<div id="summernote"></div>
 	            	<input type="hidden" name="content" id="contents">
 					<div class="board-contents-under-box">
-						<div class="board-contents-files">
-							file-example01.exe
-						</div>
+						<div class="board-contents-files"></div>
 						<div class="board-contents-board-btn">
 						<c:if test="${ dto.writer eq loginID}">
 				            <button type="button" id="edit-btn" onclick="editContents()">수정</button>
@@ -49,7 +47,6 @@
 			            <button type="button" id="list-btn" onclick="location.href='/board/list'">목록</button>
 						</div>
 					</div>
-					
 				</div>
 			</form>
 		</main>

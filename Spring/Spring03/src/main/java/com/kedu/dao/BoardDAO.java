@@ -1,11 +1,17 @@
 package com.kedu.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.dto.BoardDTO;
@@ -19,7 +25,22 @@ public class BoardDAO {
 	/** 게시글 작성 **/
 	public int boardInsert(BoardDTO dto) throws Exception {
 		String sql = "insert into board values(board_seq.nextval, ?, ?, ?, sysdate)";
-		return jdbc.update(sql, dto.getWriter(), dto.getTitle(), dto.getContent());
+		
+		KeyHolder key = new GeneratedKeyHolder();
+		
+		jdbc.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement ps = con.prepareStatement(sql, new String[]{"seq"});
+				ps.setString(1, dto.getWriter());
+				ps.setString(2, dto.getTitle());
+				ps.setString(3, dto.getContent());
+				return ps;
+				
+			}
+		}, key);
+		
+		return key.getKey().intValue();
 	}
 	
 	/** 게시글 목록의 수 **/

@@ -29,65 +29,57 @@ public class ReplyController {
 	@ResponseBody	
 	@RequestMapping("/insert")
 	public String replyInsert(int seq, String content) {
-		String returnData = "{\"result\": \"fail\"}";
-		
+		String str = "{\"result\": \"fail\"}";
+		String id = (String)session.getAttribute("loginID");
 		try {
-			String id = (String)session.getAttribute("loginID");
 			int result = replyDAO.replyInsert(seq, id, content);
-			if(result > 0) returnData = "{\"result\": \"ok\"}";
+			if(result > 0) str = "{\"result\": \"ok\"}";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return returnData;
+		return str;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/list")
 	public String replyList(int boardSeq) {
-		String returnData = "{\"result\": \"fail\"}";
-
+		String str = "{\"result\": \"fail\"}";
+		String id = (String)session.getAttribute("loginID");
 		try {
-			String id = (String)session.getAttribute("loginID");
 			List<ReplyDTO> result = replyDAO.replyList(boardSeq);
-			returnData = "{\"result\": \"ok\", \"data\": "+ gson.toJson(result) +", \"user\" : "+ gson.toJson(id) +"}";
+			str = "{\"result\": \"ok\", \"data\": "+ gson.toJson(result) +", \"user\" : "+ gson.toJson(id) +"}";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return returnData;
+		return str;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/delete")
 	public String replyDelete(int seq) {
-		String returnData = "{\"result\": \"fail\"}";
-
+		String str = "{\"result\": \"fail\"}";
 		try {
 			int result = replyDAO.replyDelete(seq);
-			if(result > 0) returnData = "{\"result\": \"ok\"}";
+			if(result > 0) str = "{\"result\": \"ok\"}";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return returnData;
+		return str;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/update")
 	public String replyUpdate(int seq, String content) {
-		String returnData = "{\"result\": \"fail\"}";
-
+		String str = "{\"result\": \"fail\"}";
 		try {
 			int result = replyDAO.replyUpdate(seq, content);
-			if(result > 0) returnData = "{\"result\": \"ok\"}";
+			if(result > 0) str = "{\"result\": \"ok\"}";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return returnData;
+		return str;
 	}
 
 }

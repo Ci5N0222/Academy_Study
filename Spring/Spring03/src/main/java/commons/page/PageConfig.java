@@ -6,12 +6,7 @@ public class PageConfig {
 	public static int BOARD_RECORD_PAGE = 5;
 	public static int BOARD_NAVI_PAGE = 10;
 	
-	public static int REPLY_RECORD_PAGE = 10;
-	public static int REPLY_NAVI_PAGE = 10;
-
 	// 페이징 처리 시 사용할 URL
 	public static String BOARD_PAGE = "/board/list";
-
-	public static String REPLY_PAGE = "/board/detail";
-
+	
 }

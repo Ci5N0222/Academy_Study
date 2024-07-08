@@ -38,7 +38,14 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
+		</dependency>
+		
+		<!-- Apache Commons FileUpload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.5</version>
+		</dependency>
 		
 		<!-- GSON -->
 		<dependency>

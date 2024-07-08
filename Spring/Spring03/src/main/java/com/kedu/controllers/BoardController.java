@@ -2,7 +2,6 @@ package com.kedu.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kedu.dao.BoardDAO;
+import com.kedu.dao.FilesDAO;
 import com.kedu.dto.BoardDTO;
+import com.kedu.dto.FilesDTO;
+import com.kedu.services.FilesService;
 
 import commons.page.PageConfig;
 
@@ -25,6 +28,12 @@ public class BoardController {
 	
 	@Autowired
 	private BoardDAO boardDAO;
+	
+	@Autowired
+	private FilesDAO filesDAO;
+	
+	@Autowired
+	private FilesService filesService;
 	
 	@RequestMapping("/list")
 	public String boardList(Model model, Integer cpage) throws Exception {
@@ -43,10 +52,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/insertProc")
-	public String insertProc(BoardDTO dto) throws Exception {
+	public String insertProc(BoardDTO dto, MultipartFile[] files) throws Exception {
+		
 		dto.setWriter((String)session.getAttribute("loginID"));
-		boardDAO.boardInsert(dto);
-		return "redirect:/board/list";
+		int seq = boardDAO.boardInsert(dto);
+		
+		String realPath = session.getServletContext().getRealPath("upload");
+		int result = filesService.filesUpload(realPath, files, seq);
+		System.out.println(result + "개의 파일이 업로드 됨");
+		
+		return "redirect:/board/detail?seq=" + seq;
 	}
 	
 	@RequestMapping("/detail")
