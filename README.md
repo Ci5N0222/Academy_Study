@@ -19,7 +19,7 @@
 - 웹 자동화 학습 및 티켓 예매 실습 
 - 사용 라이브러리 : Selenium
 ## Back-End
-### servlet
+### Servlet
 ### JSP
 ### MVC2
 
