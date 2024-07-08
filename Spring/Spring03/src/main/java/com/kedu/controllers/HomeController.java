@@ -30,7 +30,7 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value="/pagenavi", produces="text/html;charset=utf8")
 	public String pagenavi(String target, int cpage){
-		String str = "{\"result\": \"fail\"}";
+		String returnData = "{\"result\": \"fail\"}";
 		
 		try {
 			int count = 0;
@@ -45,13 +45,13 @@ public class HomeController {
 			}
 			
 			PageDTO result = new PageDTO(cpage, count, recordPage, naviPage, url);
-			str = "{\"result\": \"ok\", \"data\": "+ gson.toJson(result) +"}";
+			returnData = "{\"result\": \"ok\", \"data\": "+ gson.toJson(result) +"}";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return str;
+		return returnData;
 	}
 
 	

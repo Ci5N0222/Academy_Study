@@ -62,14 +62,14 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/delete")
 	public String delete(String id) throws Exception {
-		String resultStr = "fail";
+		String returnData = "fail";
 		int result = memberDAO.memberDelete(id);
 		if(result > 0) {
 			session.invalidate();
-			resultStr = "ok";
+			returnData = "ok";
 		}
 		
-		return resultStr;
+		return returnData;
 	}
 	
 	@RequestMapping("/mypage")
