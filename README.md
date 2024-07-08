@@ -1,39 +1,35 @@
-## Academy-Study
-
-### 1weeks (JAVA)
-
-- 객체지향
-  - 클래스
-  - 인스턴스
+# K-Degital Academy Curriculum
+#### 과정 : 자바 스프링 리액트로 완성하는 클라우드 활용 풀스택 개발
+#### 기간 : 3월 25 ~ 10월 1일
 
 
-- 디자인패턴
-  - MVC (Model View Control)
-    - View: 시각적으로 보여지는 코드의 집합
-    - Model: 데이터 관리만을 위해 존재하는 클래스- 
+## Java Programing
 
+## DBMS (Oracle)
 
-  - 객체 지향 문법을 사용함으로 써 얻을 수 있는 이점
-    - 라이브러리로 사용하기 쉽다.
-    - 데이터를 다루기 편해졌다.
-    - 인스턴스, 배열
+## Front-End
+### HTML / CSS / JavaScript
+- Front-end 기초 학습
+### bootstrap
+- 반응형 학습 및 실습
+### jQuery
+- jQuery 라이브러리 학습
 
+## Web-Automation
+- 웹 자동화 학습 및 티켓 예매 실습 
+- 사용 라이브러리 : Selenium
+## Back-End
+### servlet
+### JSP
+### MVC2
 
-### 2weeks (JAVA)
-- 객체지향
-  - 상속
-    - 상위 요소의 내용을 하위 요소가 물려받아 변경/확장 하는 것이 가능하도록 만드는 기술
-  - 추상화
-    - 하위 요소의 공통점들을 상위 요소로 추려내는 과정
-  - 다형성
-    - 상속과 재정의를 전제조건으로 하여 상위 요소가 다양한 하위 요소를 통합하여 사용하는 기술
-  - 캡슐화
+## Git-Hub
 
+## First-Project
+#### 자바스크립트 게임 및 커뮤니티 플랫폼 개발
+#### 기간 : 6월 13일 ~ 7월 1일
+#### 내용 : https://github.com/Ci5N0222/Wolf-Project
+#### 담당 : 관리자 페이지, 고객센터 담당 개발 및 형상관리
 
-- DTO ( Data Transfer Object )
-  - 목적: 계층별 데이터 전송에 사용되는 객체
-- DAO ( Data Access Object )
-  - 목적: CRUD를 위한 접근 ( Access )
-
-### 3weeks (JAVA, DBMS)
--
+## Spring legacy
+## Spring Boot
