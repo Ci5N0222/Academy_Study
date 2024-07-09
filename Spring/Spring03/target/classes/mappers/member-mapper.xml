@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Member">
+
+	<select id="idExitst" resultType="boolean">
+		SELECT 
+			COUNT(*)
+	    FROM 
+	    	member
+	    WHERE 
+	    	id = #{id}
+	</select>
+	
+	<select id="isMember" resultType="boolean">
+		SELECT 
+			count(*) 
+		FROM 
+			member 
+		WHERE 
+			id = #{id} 
+		AND 
+			pw = ${pw}
+	</select>
+	
+	<select id="searchById" resultType="com.kedu.dto.MemberDTO">
+		SELECT 
+			*
+		FROM 
+			member 
+		WHERE 
+			id = #{search}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO 
+			member 
+		VALUES(
+			#{id}, 
+			#{pw}, 
+			#{name}
+		)
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM 
+			member 
+		WHERE 
+			id = #{id}
+	</delete>
+	
+	<update id="update">
+		UPDATE 
+			member 
+		SET 
+			name = #{name} 
+		WHERE 
+			id = #{id}
+	</update>
+	
+</mapper>

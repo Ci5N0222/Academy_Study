@@ -28,31 +28,27 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/inputProc")
-	public String inputProc(MessagesDTO messagesDTO)throws Exception {
+	public String inputProc(MessagesDTO messagesDTO) throws Exception {
 		messagesDAO.insert(messagesDTO);
-		
 		return "redirect:/";
 	}
 	
 	@RequestMapping("/output")
 	public String output(Model model) throws Exception {
-		List<MessagesDTO> list = messagesDAO.selectAll();
+		List<MessagesDTO> list = messagesDAO.list();
 		model.addAttribute("list", list);
-		
 		return "output";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(int seq) throws Exception {
 		messagesDAO.delete(seq);
-		
 		return "redirect:/output";
 	}
 	
 	@RequestMapping("/update")
 	public String update(MessagesDTO dto) throws Exception {
 		messagesDAO.update(dto);
-		
 		return "redirect:/output";
 	}
 	

@@ -63,7 +63,7 @@
 					<div class="board-reply-writer">${loginID}</div>
 				</div>
 				<div class="board-reply-contents">
-					<div class="board-reply-contents-board" contenteditable="true">내용</div>
+					<div class="board-reply-contents-board placeholder-container" contenteditable="true" data-placeholder="내용을 입력하세요"></div>
 					<div class="board-reply-contents-btn">
 						<button onclick="replyInsert()">작성하기</button>
 					</div>

@@ -8,6 +8,16 @@ button {
 	cursor: pointer;
 }
 
+/** Div placeholder **/
+.placeholder-container {
+    font-size: 16px;
+}
+/** Div placeholder **/
+.placeholder-container:empty:before {
+    content: attr(data-placeholder);
+    color: #999;
+}
+
 .board-container {
 	width: 80%;
 	height: 100%;

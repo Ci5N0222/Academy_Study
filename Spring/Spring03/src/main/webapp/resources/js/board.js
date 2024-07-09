@@ -36,10 +36,35 @@ $(() => {
 			const board_seq = urlParams.get('seq');
 			filesList(board_seq);
 			replyList(board_seq);
+			divPlaceHolder();
 			break;
 	}
 	
+	
 });
+
+// Div placeholder
+const divPlaceHolder = () => {
+	var placeholderContainers = document.querySelectorAll('.placeholder-container');
+
+    placeholderContainers.forEach(function(container) {
+        container.addEventListener('focus', function() {
+            if (container.textContent.trim() === '') {
+                container.classList.remove('placeholder-active');
+            }
+        });
+
+        container.addEventListener('blur', function() {
+            if (container.textContent.trim() === '') {
+                container.classList.add('placeholder-active');
+            }
+        });
+
+        if (container.textContent.trim() === '') {
+            container.classList.add('placeholder-active');
+        }
+    });
+}
 
 // 게시글 수정 폼 변경
 const editContents = () => {
@@ -79,6 +104,7 @@ const replyInsert = () => {
 
 // 파일 목록
 const filesList = (parentSeq) => {
+
 	$.ajax({
 		url:"/files/list",
 		data: { parentSeq },
@@ -129,6 +155,7 @@ const replyListBinding = (list, user) => {
         `;
     }
 
+
 	const item = `
 		<section class="board-reply-list">
 			<div class="board-reply-info">
@@ -151,7 +178,7 @@ const replyListBinding = (list, user) => {
                 <input class="board-reply-update-input" type="hidden">
 			</div>
 		</section>`;
-
+		
 	$("#reply-list-binding").append(item);
 	
 	// 댓글 수정 폼으로 변경
