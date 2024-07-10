@@ -15,11 +15,7 @@ public class BoardDAO {
 	@Autowired
 	private SqlSession mybatis;
 	
-	/** 게시글 작성 **/
-	public int boardInsert(BoardDTO dto) throws Exception {
-		mybatis.insert("Board.boardInsert", dto);
-		return dto.getSeq();
-	}
+
 	
 	/** 게시글 목록의 수 **/
 	public int boardCount() throws Exception {
@@ -27,13 +23,29 @@ public class BoardDAO {
 	}
 	
 	/** 게시글 목록 **/
-	public List<BoardDTO> boardList(Map map) throws Exception {
+	public List<BoardDTO> boardList(Map<String, Integer> map) throws Exception {
 		return mybatis.selectList("Board.boardList", map);
+	}
+	
+	/** 검색된 게시글 목록의 수 **/
+	public int boardSearchCount(Map<String, Object> map) throws Exception {
+		return mybatis.selectOne("Board.boardSearchCount", map);
+	}
+	
+	/** 검색된 게시글 목록 **/
+	public List<BoardDTO> boardSearchList(Map<String, Object> map) throws Exception {
+		return mybatis.selectList("Board.boardSearchList", map);
 	}
 	
 	/** 게시글 디테일 **/
 	public BoardDTO boardDetail(int seq) throws Exception {
 		return mybatis.selectOne("Board.boardDetail", seq);
+	}
+	
+	/** 게시글 작성 **/
+	public int boardInsert(BoardDTO dto) throws Exception {
+		mybatis.insert("Board.boardInsert", dto);
+		return dto.getSeq();
 	}
 	
 	/** 게시글 수정 **/

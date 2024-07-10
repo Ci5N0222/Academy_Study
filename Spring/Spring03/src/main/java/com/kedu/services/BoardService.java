@@ -27,6 +27,26 @@ public class BoardService {
 	@Autowired
 	private FilesDAO filesDAO;
 	
+	/** 게시글 목록 **/
+	public List<BoardDTO> boardList(Integer cpage) throws Exception {
+		if(cpage == null) cpage = 1;
+		Map<String, Integer> map = new HashMap<>();
+		map.put("start", cpage * PageConfig.BOARD_RECORD_PAGE - (PageConfig.BOARD_RECORD_PAGE - 1));
+		map.put("end", cpage * PageConfig.BOARD_RECORD_PAGE);
+		return boardDAO.boardList(map);
+	}
+	
+	/** 검색된 게시글 목록 **/
+	public List<BoardDTO> boardSearchList(String select, String search, Integer cpage) throws Exception {
+		if(cpage == null) cpage = 1;
+		Map<String, Object> map = new HashMap<>();
+		map.put("start", cpage * PageConfig.BOARD_RECORD_PAGE - (PageConfig.BOARD_RECORD_PAGE - 1));
+		map.put("end", cpage * PageConfig.BOARD_RECORD_PAGE);
+		map.put("select", select);
+		map.put("search", search);
+		return boardDAO.boardSearchList(map);
+	}
+	
 	/** 게시글 작성 및 파일 업로드 **/
 	@Transactional
 	public int boardAndFilesInsert(BoardDTO dto, MultipartFile[] files, String realPath) throws Exception {
@@ -53,15 +73,6 @@ public class BoardService {
 		System.out.println(count + "개의 파일이 업로드 됨");
 		
 		return seq;
-	}
-	
-	/** 게시글 목록 **/
-	public List<BoardDTO> boardList(Integer cpage) throws Exception {
-		if(cpage == null) cpage = 1;
-		Map<String, Integer> map = new HashMap<>();
-		map.put("start", cpage * PageConfig.BOARD_RECORD_PAGE - (PageConfig.BOARD_RECORD_PAGE - 1));
-		map.put("end", cpage * PageConfig.BOARD_RECORD_PAGE);
-		return boardDAO.boardList(map);
 	}
 	
 	/** 게시글 디테일 **/

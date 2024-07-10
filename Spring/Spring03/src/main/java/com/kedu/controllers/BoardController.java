@@ -37,6 +37,13 @@ public class BoardController {
 		return "board/list";
 	}
 	
+	@RequestMapping("/searchList")
+	public String boardSearchList(Model model, String select, String search, Integer cpage) throws Exception {
+		List<BoardDTO> list = boardService.boardSearchList(select, search, cpage);
+		model.addAttribute("list", list);
+		return "board/list";
+	}
+	
 	@RequestMapping("/insert")
 	public String insert() throws Exception {
 		return "board/insert";

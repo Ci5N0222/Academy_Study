@@ -4,6 +4,50 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Board">
+	
+	<select id="boardCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			board
+	</select>
+	
+	<select id="boardList" resultType="com.kedu.dto.BoardDTO">
+		SELECT 
+			* 
+		FROM
+			(SELECT board.*, row_number() over(order by seq DESC) rown FROM board) 
+		WHERE 
+			rown BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="boardSearchCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			board
+		WHERE 
+			${select} like '%'||#{search}||'%'
+	</select>
+	
+	<select id="boardSearchList" resultType="com.kedu.dto.BoardDTO">
+		SELECT 
+			* 
+		FROM
+			(SELECT board.*, row_number() over(order by seq DESC) rown FROM board WHERE ${select} like '%'||#{search}||'%') 
+		WHERE 
+			rown BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="boardDetail" resultType="com.kedu.dto.BoardDTO">
+		SELECT 
+			*
+		FROM
+			board
+		WHERE
+			seq = #{seq}
+	</select>
+	
 	<insert id="boardInsert">
 		INSERT INTO
 			board
@@ -22,31 +66,6 @@
 				dual
 		</selectKey>
 	</insert>
-	
-	<select id="boardCount" resultType="int">
-		SELECT
-			count(*)
-		FROM
-			board
-	</select>
-	
-	<select id="boardList" resultType="com.kedu.dto.BoardDTO">
-		SELECT 
-			* 
-		FROM
-			(select board.*, row_number() over(order by seq desc) rown from board) 
-		WHERE 
-			rown BETWEENN #{start} AND #{end}
-	</select>
-	
-	<select id="boardDetail" resultType="com.kedu.dto.BoardDTO">
-		SELECT 
-			*
-		FROM
-			board
-		WHERE
-			seq = #{seq}
-	</select>
 	
 	<update id="boardUpdate">
 		UPDATE

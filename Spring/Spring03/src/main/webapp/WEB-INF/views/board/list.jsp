@@ -139,6 +139,15 @@ a {
 				<button onclick="location.href='/board/insert'">글쓰기</button>
 				<button onclick="location.href='/'">홈으로</button>
 			</div>
+			<form class="serach" action="/board/searchList">
+				<select name="select">
+					<option value="writer">작성자</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="search" placeholder="검색어 입력">
+				<button>검색</button>
+			</form>
 		</div>
 
 		<c:choose>

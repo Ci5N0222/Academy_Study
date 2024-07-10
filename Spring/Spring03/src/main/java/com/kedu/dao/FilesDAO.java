@@ -21,6 +21,6 @@ public class FilesDAO {
 	
 	/** 파일 목록 **/
 	public List<FilesDTO> filesList(int parentSeq) throws Exception {
-		return mybatis.selectList("Files.list");
+		return mybatis.selectList("Files.list", parentSeq);
 	}
 }

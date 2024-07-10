@@ -40,6 +40,13 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 		
+		<!-- WebSocket -->
+		<dependency>
+		    <groupId>javax.websocket</groupId>
+		    <artifactId>javax.websocket-api</artifactId>
+		    <version>1.1</version>
+		</dependency>
+		
 		<!-- Apache Commons FileUpload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>

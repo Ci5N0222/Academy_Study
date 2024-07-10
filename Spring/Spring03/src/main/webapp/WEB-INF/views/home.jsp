@@ -15,13 +15,14 @@
 		<c:when test="${loginID != null }">
 			<table border="1" align="center">
 				<tr>
-					<th colspan="4"> ${loginID}님 환영합니다 </th>
+					<th colspan="5"> ${loginID}님 환영합니다 </th>
 				</tr>
 				<tr>
 					<td><button type="button" id="board" >게시판</button></td>
 					<td><button type="button" id="mypage" >마이페이지</button></td>
 					<td><button type="button" id="logout" >로그아웃</button></td>
 					<td><button type="button" id="memberDelete" >회원탈퇴</button></td>
+					<td><button type="button" id="chat" >채팅</button></td>
 				</tr>
 			</table>
 			
@@ -58,6 +59,11 @@
 						if(res === "ok") location.href = "/";
 						else alert("회원탈퇴 실패");
 					});
+				});
+				
+				/** 채팅 **/
+				chat.addEventListener("click", () => {
+					location.href="/chat/form";
 				});
 				
 			</script>

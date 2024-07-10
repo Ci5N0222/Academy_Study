@@ -44,7 +44,9 @@ public class MemberController {
    @RequestMapping("/login")
    public String login(MemberDTO dto) throws Exception{
       boolean result = memberService.login(dto);
-      if(result)session.setAttribute("loginID", dto.getId());
+      if(result) {
+    	  session.setAttribute("loginID", dto.getId());
+      }
       return "redirect:/";
    }
    

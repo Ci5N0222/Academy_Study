@@ -1,5 +1,7 @@
 package com.kedu.services;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,9 @@ import com.kedu.dto.MemberDTO;
 @Service
 public class MemberService {
 
+	@Autowired
+	private HttpSession session;
+	
 	@Autowired
 	private MemberDAO memberDAO;
 	
@@ -41,5 +46,4 @@ public class MemberService {
 	public MemberDTO mypage(String id) throws Exception {
 		return memberDAO.searchById(id);
 	}
-
 }

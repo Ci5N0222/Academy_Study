@@ -1,6 +1,5 @@
 package com.kedu.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,25 +16,32 @@ public class MessagesDAO {
 	@Autowired
 	private SqlSession mybatis;
 	
+	public List<Map<String, Object>> list() {
+		return mybatis.selectList("Messgaes.selectAll");
+	}
+	
+	public List<MessagesDTO> search(Map<String, String> map) {
+		return mybatis.selectList("Messgaes.selectSearch", map);
+	}
+	
+	public List<MessagesDTO> searchMulti(Map<String, String> map) {
+		return mybatis.selectList("Messgaes.selectSearchMulti", map);
+	}
+	
 	public int insert(MessagesDTO dto) {
 		mybatis.insert("Messgaes.insert", dto);
 		return dto.getSeq();
-		
-	}
-	
-	public int delete(int seq) {
-		return mybatis.delete("Messgaes.delete", seq);
-	}
-	
-	public List<MessagesDTO> list() {
-		return mybatis.selectList("Messgaes.selectAll");
 	}
 	
 	public int update(MessagesDTO dto) {
 		return mybatis.update("Messgaes.update", dto);
 	}
 	
+	public int delete(int seq) {
+		return mybatis.delete("Messgaes.delete", seq);
+	}
 	
+
 //	@Autowired
 //	private JdbcTemplate jdbc;
 //	

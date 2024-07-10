@@ -23,14 +23,23 @@ $(() => {
 	});
 	
 	// Page Load Script
+	let cpage = 1;
+	let data = {}
 	switch(pathname){
 		case "/board/insert" :
 			useSummernote();
 			break;
 		case "/board/list" :
-			let cpage = 1;
 			if(urlParams.get('cpage') !== null) cpage = urlParams.get('cpage');
-			pageNavi("board", cpage);
+			data = { cpage }
+			pageNavi("board", data);
+			break;
+		case "/board/searchList" :
+			if(urlParams.get('cpage') !== null) cpage = urlParams.get('cpage');
+			const select = urlParams.get('select');
+			const search = urlParams.get('search');
+			data = { cpage, select, search }
+			pageNavi("searchBoard", data);
 			break;
 		case "/board/detail" :
 			const board_seq = urlParams.get('seq');
@@ -39,6 +48,8 @@ $(() => {
 			divPlaceHolder();
 			break;
 	}
+	cpage = 0;
+	data = {};
 	
 	
 });
@@ -298,9 +309,9 @@ const useSummernote = (content) => {
 const pageNavi = (target, cpage) => {
 	$.ajax({
 		url: "/pagenavi",
+		method: "post",
 		data: {
 			target,
-			cpage
 		},
 		dataType: "json"
 	}).done(res => {
