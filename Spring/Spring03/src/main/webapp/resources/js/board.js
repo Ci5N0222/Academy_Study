@@ -47,6 +47,9 @@ $(() => {
 			replyList(board_seq);
 			divPlaceHolder();
 			break;
+		case "/chat/form" :
+			chatList();
+			break;
 	}
 	cpage = 0;
 	data = {};
@@ -250,6 +253,75 @@ const replyDelete = (seq) => {
 			location.reload();
 		}
 	});
+}
+
+// 채팅 목록
+const chatList = () => {
+	$.ajax({
+		url: "/chat/list",
+		dataType: "json"
+	}).done(res => {
+		console.log(res.result);
+		if(res.result === "ok"){
+			res.data.forEach(item => {
+				chatListBinding(item, res.user);
+			});
+		}
+	});
+}
+
+// 채팅 바인딩
+const chatListBinding = (data, user) => {
+	const date = new Date(data.write_date);
+    const ap = date.getHours() > 11 ? "오후" : "오전";
+    const minutes = date.getMinutes() < 10 ? "0"+date.getMinutes() : date.getMinutes()
+    const today = ap +" "+ date.getHours() +" : "+ minutes;
+	
+	let item = "";
+	if(data.sender === user){
+		item = `
+			<div class="chat-form">
+				<div class="writer"></div>
+				<div class="content">
+                    <span class="date">`+today+`</span>
+                    <div>
+                    	<img src"/images/profile.png"">
+                        `+data.message+`
+                    </div>
+                </div>
+            </div>`
+	} else {
+		item = `
+            <div class="chat-form">
+				<div class="unother">
+                	<div id="image"></div>
+                    <p>`+data.sender+`</p>
+                </div>
+                <div class="unother-content">
+                    <div class="unother-content-info">
+                        <img src"/images/profile.png"">
+                        `+data.message+`
+                    </div>
+                    <span class="date">`+today+`</span>
+                </div>
+            </div>`
+	}
+	
+    $('.output-form').append(item);
+    $('.output-form').scrollTop($('.output-form')[0].scrollHeight);
+}
+
+// 채팅 이모티콘
+const emoticon = (emoticon) => {
+    if(emoticon === "x") {
+        $('.emoticon-info').html("이모티콘 목록 없음");
+    } else {
+        $('.emoticon-info').html("");
+        emoArray.forEach((item, i) => {
+            let image = `<div class="emo-btn"><img src="images/${item}.png" id="${item}" alt="단무지 이모티콘_${i}" width="80" height="50"></div>`;
+            $('.emoticon-info').append(image);
+        });
+    }
 }
 
 // 섬머노트

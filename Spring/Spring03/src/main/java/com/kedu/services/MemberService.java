@@ -12,9 +12,6 @@ import com.kedu.dto.MemberDTO;
 public class MemberService {
 
 	@Autowired
-	private HttpSession session;
-	
-	@Autowired
 	private MemberDAO memberDAO;
 	
 	/** ID Check **/
@@ -28,7 +25,7 @@ public class MemberService {
 	}
 	
 	/** Sign-In **/
-	public boolean login(MemberDTO dto) throws Exception {
+	public MemberDTO login(MemberDTO dto) throws Exception {
 		return memberDAO.isMember(dto);
 	}
 	

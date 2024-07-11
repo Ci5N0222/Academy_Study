@@ -1,7 +1,5 @@
 package com.kedu.dao;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +18,7 @@ public class MemberDAO {
 	}
 	
 	// Login
-	public boolean isMember(MemberDTO dto) throws Exception {
+	public MemberDTO isMember(MemberDTO dto) throws Exception {
 		return mybatis.selectOne("Member.isMember", dto);
 	}
 

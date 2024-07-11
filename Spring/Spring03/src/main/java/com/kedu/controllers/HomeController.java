@@ -17,7 +17,7 @@ public class HomeController {
 	@Autowired
 	private HomeService homeService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping("/")
 	public String home() {
 		return "home";
 	}

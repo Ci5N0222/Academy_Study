@@ -43,22 +43,24 @@ public class MemberController {
    
    @RequestMapping("/login")
    public String login(MemberDTO dto) throws Exception{
-      boolean result = memberService.login(dto);
-      if(result) {
-    	  session.setAttribute("loginID", dto.getId());
+	   MemberDTO result = memberService.login(dto);
+      if(result != null) {
+    	  session.setAttribute("loginID", result.getId());
+    	  session.setAttribute("loginName", result.getName());
       }
       return "redirect:/";
    }
    
    @RequestMapping("/logout")
    public String logout() throws Exception{
+	  System.out.println("로그아웃 됨");
       session.invalidate();
       return "redirect:/";
    }
    
    @RequestMapping("/delete")
    public String delete() throws Exception{
-      String id=(String)session.getAttribute("loginID");
+      String id = (String)session.getAttribute("loginID");
       memberService.memberDelete(id);
       session.invalidate();
       return "redirect:/";
