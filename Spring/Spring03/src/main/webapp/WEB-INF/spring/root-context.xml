@@ -7,27 +7,28 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-	<!-- DBCP -->
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<!-- HikariCP -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
 		<property name="username" value="dev" />
 		<property name="password" value="dev" />
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="initialSize" value="20" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
 	</bean>
 	
-	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+	<!-- Mybatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations" value="classpath:/mappers/*-mapper.xml"/>
 	</bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- Gson -->
+    <bean id="gson" class="com.google.gson.Gson"/>
 	
 	<context:component-scan base-package="com.kedu.dao" />
-	
-	<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans.xsd">
-	    <!-- Gson Bean 정의 -->
-	    <bean id="gson" class="com.google.gson.Gson"/>
-	</beans>
+	<context:component-scan base-package="com.kedu.services" />
+	<context:component-scan base-package="com.kedu.configurators" />
 	
 </beans>

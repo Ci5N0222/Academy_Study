@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Reply">
+	<insert id="replyInsert">
+		INSERT INTO 
+			reply
+		VALUES(
+			reply_seq.nextval,
+			#{writer},
+			#{content},
+			#{board_seq},
+			sysdate
+		)
+	</insert>
+	
+	<select id="replyCount" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			reply
+		WHERE 
+			board_seq = #{board_Seq}
+	</select>
+	
+	<select id="replyList" resultType="com.kedu.dto.ReplyDTO">
+		SELECT
+			* 
+		FROM 
+			(select reply.*, row_number() over(order by seq desc) rown from reply where board_seq = #{board_seq})
+	</select>
+	
+	<update id="replyUpdate">
+		UPDATE
+			reply
+		SET
+			content = #{content}
+		WHERE
+			seq = #{seq}
+	</update>
+	
+	<delete id="replyDelete">
+		DELETE FROM
+			reply
+		WHERE
+			seq = #{seq}
+	</delete>
+	
+</mapper>

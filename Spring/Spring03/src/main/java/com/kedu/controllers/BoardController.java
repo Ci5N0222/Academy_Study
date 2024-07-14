@@ -2,7 +2,6 @@ package com.kedu.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kedu.dao.BoardDAO;
+import com.kedu.dao.FilesDAO;
 import com.kedu.dto.BoardDTO;
+import com.kedu.services.BoardService;
+import com.kedu.services.FilesService;
 
 import commons.page.PageConfig;
 
@@ -24,15 +27,19 @@ public class BoardController {
 	private HttpSession session;
 	
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardService boardService;
+	
 	
 	@RequestMapping("/list")
 	public String boardList(Model model, Integer cpage) throws Exception {
-		if(cpage == null) cpage = 1;
-		int start = cpage * PageConfig.BOARD_RECORD_PAGE - (PageConfig.BOARD_RECORD_PAGE - 1);
-		int end = cpage * PageConfig.BOARD_RECORD_PAGE;
-		
-		List<BoardDTO> list = boardDAO.boardList(start, end);
+		List<BoardDTO> list = boardService.boardList(cpage);
+		model.addAttribute("list", list);
+		return "board/list";
+	}
+	
+	@RequestMapping("/searchList")
+	public String boardSearchList(Model model, String select, String search, Integer cpage) throws Exception {
+		List<BoardDTO> list = boardService.boardSearchList(select, search, cpage);
 		model.addAttribute("list", list);
 		return "board/list";
 	}
@@ -43,15 +50,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/insertProc")
-	public String insertProc(BoardDTO dto) throws Exception {
+	public String insertProc(BoardDTO dto, MultipartFile[] files) throws Exception {
 		dto.setWriter((String)session.getAttribute("loginID"));
-		boardDAO.boardInsert(dto);
-		return "redirect:/board/list";
+		String realPath = session.getServletContext().getRealPath("upload");
+		int seq = boardService.boardAndFilesInsert(dto, files, realPath);
+		
+		return "redirect:/board/detail?seq=" + seq;
 	}
 	
 	@RequestMapping("/detail")
 	public String detail(Model model, int seq) throws Exception {
-		BoardDTO dto = boardDAO.baordDetail(seq);
+		BoardDTO dto = boardService.boardDetail(seq);
 		model.addAttribute("dto", dto);
 		return "board/detail";
 	}
@@ -59,13 +68,13 @@ public class BoardController {
 	@RequestMapping("/update")
 	public String update(BoardDTO dto) throws Exception{
 		dto.setWriter((String) session.getAttribute("loginID"));
-		boardDAO.boardUpdate(dto);
+		boardService.boardUpdate(dto);
 		return "redirect:/board/detail?seq=" + dto.getSeq();
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(int seq) throws Exception {
-		boardDAO.boardDelete(seq);
+		boardService.boardDelete(seq);
 		return "redirect:/board/list";
 	}
 	

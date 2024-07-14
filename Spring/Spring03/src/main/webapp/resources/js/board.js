@@ -23,22 +23,62 @@ $(() => {
 	});
 	
 	// Page Load Script
+	let cpage = 1;
+	let data = {}
 	switch(pathname){
 		case "/board/insert" :
 			useSummernote();
 			break;
 		case "/board/list" :
-			let cpage = 1;
 			if(urlParams.get('cpage') !== null) cpage = urlParams.get('cpage');
-			pageNavi("board", cpage);
+			data = { cpage }
+			pageNavi("board", data);
+			break;
+		case "/board/searchList" :
+			if(urlParams.get('cpage') !== null) cpage = urlParams.get('cpage');
+			const select = urlParams.get('select');
+			const search = urlParams.get('search');
+			data = { cpage, select, search }
+			pageNavi("searchBoard", data);
 			break;
 		case "/board/detail" :
 			const board_seq = urlParams.get('seq');
+			filesList(board_seq);
 			replyList(board_seq);
+			divPlaceHolder();
+			break;
+		case "/chat/form" :
+			chatList();
 			break;
 	}
+	cpage = 0;
+	data = {};
+	
 	
 });
+
+// Div placeholder
+const divPlaceHolder = () => {
+	var placeholderContainers = document.querySelectorAll('.placeholder-container');
+
+    placeholderContainers.forEach(function(container) {
+        container.addEventListener('focus', function() {
+            if (container.textContent.trim() === '') {
+                container.classList.remove('placeholder-active');
+            }
+        });
+
+        container.addEventListener('blur', function() {
+            if (container.textContent.trim() === '') {
+                container.classList.add('placeholder-active');
+            }
+        });
+
+        if (container.textContent.trim() === '') {
+            container.classList.add('placeholder-active');
+        }
+    });
+}
 
 // 게시글 수정 폼 변경
 const editContents = () => {
@@ -76,6 +116,28 @@ const replyInsert = () => {
 	});
 }
 
+// 파일 목록
+const filesList = (parentSeq) => {
+
+	$.ajax({
+		url:"/files/list",
+		data: { parentSeq },
+		dataType: "json"
+	}).done(res => {
+		res.forEach(item => {
+			// 다운로드 링크 셋팅
+			let anker = $("<a>");
+			anker.attr("href", `/files/download?sysName=${item.sysname}&oriName=${item.oriname}`);
+			$(".board-contents-files").append(anker);
+			
+			// 다운로드 할 파일 이름 셋팅
+			let oriname = item.oriname; 
+		    if (oriname.length > 17) oriname = oriname.slice(0, 6) + "..." + oriname.slice(-6);
+		    anker.html(oriname);
+		});
+	});
+}
+
 // 댓글 목록
 const replyList = (boardSeq) => {
 	$.ajax({
@@ -107,6 +169,7 @@ const replyListBinding = (list, user) => {
         `;
     }
 
+
 	const item = `
 		<section class="board-reply-list">
 			<div class="board-reply-info">
@@ -128,42 +191,36 @@ const replyListBinding = (list, user) => {
                 <input class="board-reply-update-seq" type="hidden" value="${list.seq}">
                 <input class="board-reply-update-input" type="hidden">
 			</div>
-		</section>
-	`
-
-    	// 댓글 수정 폼으로 변경
-        $(".edit-form").on("click", function() {
-	
-			// content div contentable true로 변경
-            const content = $(this).closest(".board-reply-list").find(".board-reply-list-contents");
-            content.attr("contenteditable", "true");
-            
-            // display hide()
-            const btn1 = $(this).siblings(".edit-btn");
-            $(this).hide();
-            btn1.hide();
-            
-            // display show()
-            const btn2 = $(this).siblings(".update-btn");
-            btn2.show();
-        });
-        
-        // 댓글 수정 후 확인 버튼 클릭
-        $(".reply-update").on("click", function() {
-        	let content = $(this).closest(".board-reply-list").find(".board-reply-list-contents");
-        	let input = $(this).closest(".board-reply-list").find(".board-reply-update-input");
-        	input.val(content.html().trim());
-        	let seq = $(this).closest(".board-reply-list").find(".board-reply-update-seq");
-        	
-        	replyUpdate(seq.val(), input.val());
-        });
-	
+		</section>`;
+		
 	$("#reply-list-binding").append(item);
-}
-
-// 댓글 수정 폼으로 변경
-const replyEdit = () => {
 	
+	// 댓글 수정 폼으로 변경
+    $(".edit-form").on("click", function() {
+
+		// content div contentable true로 변경
+        const content = $(this).closest(".board-reply-list").find(".board-reply-list-contents");
+        content.attr("contenteditable", "true");
+        
+        // display hide()
+        const btn1 = $(this).siblings(".edit-btn");
+        $(this).hide();
+        btn1.hide();
+        
+        // display show()
+        const btn2 = $(this).siblings(".update-btn");
+        btn2.show();
+    });
+    
+    // 댓글 수정 후 확인 버튼 클릭
+    $(".reply-update").on("click", function() {
+    	let content = $(this).closest(".board-reply-list").find(".board-reply-list-contents");
+    	let input = $(this).closest(".board-reply-list").find(".board-reply-update-input");
+    	input.val(content.html().trim());
+    	let seq = $(this).closest(".board-reply-list").find(".board-reply-update-seq");
+    	
+    	replyUpdate(seq.val(), input.val());
+    });
 }
 
 // 댓글 수정
@@ -196,6 +253,75 @@ const replyDelete = (seq) => {
 			location.reload();
 		}
 	});
+}
+
+// 채팅 목록
+const chatList = () => {
+	$.ajax({
+		url: "/chat/list",
+		dataType: "json"
+	}).done(res => {
+		console.log(res.result);
+		if(res.result === "ok"){
+			res.data.forEach(item => {
+				chatListBinding(item, res.user);
+			});
+		}
+	});
+}
+
+// 채팅 바인딩
+const chatListBinding = (data, user) => {
+	const date = new Date(data.write_date);
+    const ap = date.getHours() > 11 ? "오후" : "오전";
+    const minutes = date.getMinutes() < 10 ? "0"+date.getMinutes() : date.getMinutes()
+    const today = ap +" "+ date.getHours() +" : "+ minutes;
+	
+	let item = "";
+	if(data.sender === user){
+		item = `
+			<div class="chat-form">
+				<div class="writer"></div>
+				<div class="content">
+                    <span class="date">`+today+`</span>
+                    <div>
+                    	<img src"/images/profile.png"">
+                        `+data.message+`
+                    </div>
+                </div>
+            </div>`
+	} else {
+		item = `
+            <div class="chat-form">
+				<div class="unother">
+                	<div id="image"></div>
+                    <p>`+data.sender+`</p>
+                </div>
+                <div class="unother-content">
+                    <div class="unother-content-info">
+                        <img src"/images/profile.png"">
+                        `+data.message+`
+                    </div>
+                    <span class="date">`+today+`</span>
+                </div>
+            </div>`
+	}
+	
+    $('.output-form').append(item);
+    $('.output-form').scrollTop($('.output-form')[0].scrollHeight);
+}
+
+// 채팅 이모티콘
+const emoticon = (emoticon) => {
+    if(emoticon === "x") {
+        $('.emoticon-info').html("이모티콘 목록 없음");
+    } else {
+        $('.emoticon-info').html("");
+        emoArray.forEach((item, i) => {
+            let image = `<div class="emo-btn"><img src="images/${item}.png" id="${item}" alt="단무지 이모티콘_${i}" width="80" height="50"></div>`;
+            $('.emoticon-info').append(image);
+        });
+    }
 }
 
 // 섬머노트
@@ -255,9 +381,9 @@ const useSummernote = (content) => {
 const pageNavi = (target, cpage) => {
 	$.ajax({
 		url: "/pagenavi",
+		method: "post",
 		data: {
 			target,
-			cpage
 		},
 		dataType: "json"
 	}).done(res => {

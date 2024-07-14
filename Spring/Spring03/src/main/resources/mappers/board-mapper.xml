@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Board">
+	
+	<select id="boardCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			board
+	</select>
+	
+	<select id="boardList" resultType="com.kedu.dto.BoardDTO">
+		SELECT 
+			* 
+		FROM
+			(SELECT board.*, row_number() over(order by seq DESC) rown FROM board) 
+		WHERE 
+			rown BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="boardSearchCount" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			board
+		WHERE 
+			${select} like '%'||#{search}||'%'
+	</select>
+	
+	<select id="boardSearchList" resultType="com.kedu.dto.BoardDTO">
+		SELECT 
+			* 
+		FROM
+			(SELECT board.*, row_number() over(order by seq DESC) rown FROM board WHERE ${select} like '%'||#{search}||'%') 
+		WHERE 
+			rown BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="boardDetail" resultType="com.kedu.dto.BoardDTO">
+		SELECT 
+			*
+		FROM
+			board
+		WHERE
+			seq = #{seq}
+	</select>
+	
+	<insert id="boardInsert">
+		INSERT INTO
+			board
+		VALUES(
+			board_seq.nextval,
+			#{writer},
+			#{title},
+			#{content},
+			sysdate
+		)
+		
+		<selectKey resultType="int" order="AFTER" keyProperty="seq">
+			SELECT
+				board_seq.currval
+			FROM
+				dual
+		</selectKey>
+	</insert>
+	
+	<update id="boardUpdate">
+		UPDATE
+			board
+		SET
+			title = #{title},
+			content = #{content}
+		WHERE
+			seq = #{seq}
+	</update>
+	
+	<delete id="boardDelete">
+		DELETE FROM
+			board
+		WHERE
+			seq = #{seq}
+	</delete>
+	
+</mapper>

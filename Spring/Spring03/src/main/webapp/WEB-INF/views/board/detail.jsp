@@ -36,9 +36,7 @@
 					<div id="summernote"></div>
 	            	<input type="hidden" name="content" id="contents">
 					<div class="board-contents-under-box">
-						<div class="board-contents-files">
-							file-example01.exe
-						</div>
+						<div class="board-contents-files"></div>
 						<div class="board-contents-board-btn">
 						<c:if test="${ dto.writer eq loginID}">
 				            <button type="button" id="edit-btn" onclick="editContents()">수정</button>
@@ -49,7 +47,6 @@
 			            <button type="button" id="list-btn" onclick="location.href='/board/list'">목록</button>
 						</div>
 					</div>
-					
 				</div>
 			</form>
 		</main>
@@ -66,7 +63,7 @@
 					<div class="board-reply-writer">${loginID}</div>
 				</div>
 				<div class="board-reply-contents">
-					<div class="board-reply-contents-board" contenteditable="true">내용</div>
+					<div class="board-reply-contents-board placeholder-container" contenteditable="true" data-placeholder="내용을 입력하세요"></div>
 					<div class="board-reply-contents-btn">
 						<button onclick="replyInsert()">작성하기</button>
 					</div>
