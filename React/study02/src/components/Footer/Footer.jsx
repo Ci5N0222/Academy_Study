@@ -1,7 +1,8 @@
-export const Footer = () => {
-  return (
-    <div className='footer'>
+import styles from './Header.module.css';
 
-    </div>
-  );
+export const Header = () => {
+	return (
+		<div className = { styles.header }>
+		</div>
+	);
 }
