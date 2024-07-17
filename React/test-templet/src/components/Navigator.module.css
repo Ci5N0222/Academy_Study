@@ -1,0 +1,29 @@
+.navgation {
+    width: 220px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: steelblue;
+    color : floralwhite;
+}
+
+.navgation > img {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    padding: 4px;
+}
+
+.navgation > button {
+    width: 90%;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid darkgray;
+    background-color: transparent;
+    color: floralwhite;
+    margin: 4px;
+    padding: 4px;
+    cursor: pointer;
+}

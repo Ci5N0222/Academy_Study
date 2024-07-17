@@ -1,0 +1,75 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin_box {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid darkgray;
+    border-radius: 10px;
+}
+
+.signin_box > img {
+    width: 40%;
+    height: 40%;
+    margin: 8px;
+    padding: 4px;
+}
+
+.signin_box > input {
+    width: 350px;
+    height: 40px;
+    padding: 4px;
+    margin: 4px 8px;
+    border: 1px solid burlywood;
+    border-radius: 5px;
+}
+
+.signin_box > input:focus {
+    background-color: floralwhite;
+}
+
+.signin_box > button {
+    width: 250px;
+    height: 40px;
+    padding: 4px;
+    margin: 4px;
+    border: none;
+    background-color: antiquewhite;
+    color: darkolivegreen;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.signin_box > button:hover {
+    border: 2px solid burlywood;
+    font-size: 17px;
+}
+
+.check_box {
+    margin: 4px;
+    padding: 4px;
+}
+
+.check_box > label {
+    font-size: 14px;
+}
+
+.sign_href {
+    margin: 4px 0;
+}
+
+.sign_href > a {
+    margin: 2px 8px;
+    padding: 2px;
+}
