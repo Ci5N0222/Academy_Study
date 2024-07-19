@@ -1,0 +1,22 @@
+.sidemenu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid darkgray;
+}
+
+.menu {
+    flex: 1;
+    max-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    border-bottom: 1px solid darkgray;
+}
+
+.menu:hover {
+    cursor: pointer;
+    background-color: darkgray;
+    color: wheat;
+}
