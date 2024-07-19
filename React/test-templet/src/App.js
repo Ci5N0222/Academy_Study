@@ -1,10 +1,11 @@
 import './App.css';
-import { Login } from './pages/Login';
+import { JoinMember } from './pages/JoinMember/JoinMember';
+import { Login } from './pages/Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <JoinMember />
     </div>
   );
 }
