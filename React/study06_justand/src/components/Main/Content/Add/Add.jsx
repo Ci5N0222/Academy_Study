@@ -1,19 +1,30 @@
 import styles from './Add.module.css'
 import {useNavigate} from "react-router-dom";
+import {useMember} from "../../../../store/store";
 import {useState} from "react";
 
 export const Add = ({type}) => {
-
+  const { member, addMember, memberKeys } = useMember();
   const navi = useNavigate();
 
-  const [ save, setSave ] = useState(data);
+  let result = {};
+
+  switch (type) {
+    case "member" :
+      result = { data: member, add: addMember, keys: memberKeys };
+      break;
+  }
+
+  const [ save, setSave ] = useState(result.data);
 
   const handleData = (e) => {
     let { name, value } = e.target;
+    setSave( prev => ({ ...prev, [name]: value }));
   }
 
   const handleAdd = () => {
-    addData()
+    result.add(save);
+    setSave(result.data);
   }
 
   return (
@@ -21,9 +32,11 @@ export const Add = ({type}) => {
         <div className={styles.form}>
           <div>{type} 추가</div>
           {
-            keys.map( item => {
+            result.keys.map( item => {
               return (
-                <input type="text" name={item} onChange={handleData} value={data[item] || ''} placeholder={item}/>
+                <div>
+                  <input type="text" name={item} onChange={handleData} value={result.data[item] || ''} placeholder={item + " 입력"}/>
+                </div>
               );
             })
           }
