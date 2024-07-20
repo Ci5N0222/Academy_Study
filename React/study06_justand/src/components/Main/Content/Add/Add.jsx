@@ -1,10 +1,12 @@
 import styles from './Add.module.css'
 import {useNavigate} from "react-router-dom";
-import {useMember} from "../../../../store/store";
+import {useBoardStore, useCafeStore, useMemberStore} from "../../../../store/store";
 import {useState} from "react";
 
 export const Add = ({type}) => {
-  const { member, addMember, memberKeys } = useMember();
+  const { member, addMember, memberKeys } = useMemberStore();
+  const { menu, addMenu, menuKeys } = useCafeStore();
+  const { board, addBoard, boardKeys } = useBoardStore();
   const navi = useNavigate();
 
   let result = {};
@@ -12,6 +14,12 @@ export const Add = ({type}) => {
   switch (type) {
     case "member" :
       result = { data: member, add: addMember, keys: memberKeys };
+      break;
+    case "cafe" :
+      result = { data: menu, add: addMenu, keys: menuKeys };
+      break;
+    case "board" :
+      result = { data: board, add: addBoard, keys: boardKeys };
       break;
   }
 
@@ -25,6 +33,7 @@ export const Add = ({type}) => {
   const handleAdd = () => {
     result.add(save);
     setSave(result.data);
+    navi(`/${type}/list`);
   }
 
   return (
@@ -35,7 +44,7 @@ export const Add = ({type}) => {
             result.keys.map( item => {
               return (
                 <div>
-                  <input type="text" name={item} onChange={handleData} value={result.data[item] || ''} placeholder={item + " 입력"}/>
+                  <input type="text" name={item} onChange={handleData} placeholder={item + " 입력"}/>
                 </div>
               );
             })

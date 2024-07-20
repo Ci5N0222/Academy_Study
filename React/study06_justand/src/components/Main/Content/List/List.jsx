@@ -1,11 +1,11 @@
 import styles from './List.module.css'
-import {useBoard, useCafe, useMember} from "../../../../store/store";
+import {useBoardStore, useCafeStore, useMemberStore} from "../../../../store/store";
 
 export const List = ({ type }) => {
 
-  const { members, memberKeys } = useMember();
-  const { menus, menuKeys} = useCafe();
-  const { board, boardKeys } = useBoard();
+  const { members, memberKeys } = useMemberStore();
+  const { menus, menuKeys} = useCafeStore();
+  const { boards, boardKeys } = useBoardStore();
 
   let result = {}
 
@@ -17,7 +17,7 @@ export const List = ({ type }) => {
       result = { datas: menus, keys: menuKeys };
       break;
     case "board" :
-      result = { datas: board, keys: boardKeys };
+      result = { datas: boards, keys: boardKeys };
       break;
   }
 

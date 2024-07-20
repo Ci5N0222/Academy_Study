@@ -7,9 +7,10 @@ export const SideMenu = () => {
 
    return (
      <div className={styles.sidemenu}>
-       <div className={styles.menu} onClick={ () => navi("member") } >회원 관리</div>
-       <div className={styles.menu} onClick={ () => navi("cafe") } >카페메뉴 관리</div>
-       <div className={styles.menu} onClick={ () => navi("board") } >게시글</div>
+       <div className={styles.menu} onClick={() => navi("/")}>Home</div>
+       <div className={styles.menu} onClick={() => navi("member")}>회원 관리</div>
+       <div className={styles.menu} onClick={() => navi("cafe")}>카페메뉴 관리</div>
+       <div className={styles.menu} onClick={() => navi("board")}>게시글</div>
      </div>
    );
 }
