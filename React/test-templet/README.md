@@ -8,6 +8,9 @@ $ npm i react-router-dom
 /* Zustand */
 $ npm i zustand
 
+/* Axios */
+$ npm i axios
+
 /* Full Calendar */
 $ npm install --save \
   @fullcalendar/core \
