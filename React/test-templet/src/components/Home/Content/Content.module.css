@@ -8,10 +8,10 @@
 }
 
 .form {
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: 95%;
     border-radius: 15px;
-    background-color: lightskyblue;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
