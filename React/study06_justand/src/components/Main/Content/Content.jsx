@@ -1,5 +1,5 @@
 import styles from './Content.module.css'
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {Add} from './Add/Add';
 import {List} from "./List/List";
 import {Delete} from "./Delete/Delete";
@@ -19,6 +19,7 @@ export const Content = ({ type }) => {
       </div>
       <div className={styles.content}>
         <Routes>
+          <Route path="" element={<Navigate to="list" />}/>
           <Route path="list" element={<List type={type} />}/>
           <Route path="add" element={<Add type={type} />}/>
           <Route path="modify" element={<Modify type={type} />}/>

@@ -7,7 +7,7 @@ export const List = ({ type }) => {
   const { menus, menuKeys} = useCafeStore();
   const { boards, boardKeys } = useBoardStore();
 
-  let result = {}
+  let result = {};
 
   switch (type) {
     case "member" :
@@ -26,9 +26,9 @@ export const List = ({ type }) => {
         <table>
             <tr>
               {
-                result.keys.map( item => {
+                result.keys.map( (item, i) => {
                   return (
-                    <th>{ item }</th>
+                    <th key={i}>{ item }</th>
                   );
                 })
               }

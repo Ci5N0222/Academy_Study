@@ -1,0 +1,13 @@
+.container {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EEF2E6;
+}
+
+.form {
+    width: 90%;
+    height: 70px;
+    border-bottom: 1px solid darkgray;
+}
