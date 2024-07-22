@@ -3,14 +3,14 @@
 ### Library
 ```bash
 /* React icons */
-$ npm i react-icons --save
+$ npm i react-icons
 
 /* React Router Dom */
 $ npm i react-router-dom
 
 /* Zustand */
 $ npm i zustand
-
+W
 /* Axios */
 $ npm i axios
 

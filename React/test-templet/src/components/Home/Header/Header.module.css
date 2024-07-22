@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #EEF2E6;
+    background-color: var(--bg-color);
 }
 
 .form {
@@ -28,7 +28,7 @@
 .userAvatar {
     width: 40px;
     height: 40px;
-    background-color: lightskyblue;
+    background-color: orange;
     border-radius: 50%;
     margin: 0 8px;
     display: flex;

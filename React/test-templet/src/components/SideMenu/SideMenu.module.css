@@ -5,15 +5,15 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background-color: #EEF2E6;
+    background-color: var(--bg-color);
     border-right: 1px solid darkgray;
     color : floralwhite;
 }
 
 .navgation > img {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
+    width: 150px;
+    height: 150px;
+    margin: 20px;
     padding: 4px;
 }
 
@@ -27,8 +27,15 @@
     margin: 4px;
     padding: 4px;
     cursor: pointer;
+    text-align: left;
+    font-size: 16px;
 }
 
-.navgation > button:hover {
-    font-weight: 900;
+.navgation > button > span {
+    margin-left: 10px;
+}
+
+.navgation > button > span:hover {
+    color: orange;
+    font-weight: 800;
 }

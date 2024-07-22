@@ -14,11 +14,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid orange;
+}
+
+.myInfo {
+    width: 90%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 10px;
 }
 
 .attendance {
     width: 90%;
-    height: 40%;
+    height: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,11 +41,21 @@
 
 .todo {
     width: 90%;
-    height: 40%;
+    height: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
     border-radius: 15px;
     margin: 10px;
+}
+
+.review {
+    width: 95%;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
 }
