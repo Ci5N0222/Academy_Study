@@ -5,14 +5,14 @@ export const Modal = ({ isOpen, onClose, children, data }) => {
 
     return (
         <div className={ styles.overlay } onClick={onClose}>
-        <div className={ styles.content } onClick={(e) => e.stopPropagation()}>
-            <button className={ styles.close } onClick={onClose}>×</button>
+            <div className={ styles.content } onClick={(e) => e.stopPropagation()}>
+                <button className={ styles.close } onClick={onClose}>X</button>
 
-            Title: { data.title } <br />
-            Singer: { data.singer } <br />
+                Title: { data.title } <br />
+                Singer: { data.singer } <br />
 
-            {children}
-        </div>
+                {children}
+            </div>
         </div>
     );
 }

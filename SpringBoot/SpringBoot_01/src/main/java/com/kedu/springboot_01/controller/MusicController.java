@@ -46,7 +46,7 @@ public class MusicController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Void> delete(@RequestBody MusicDTO dto) {
+    public ResponseEntity<Void> update(@RequestBody MusicDTO dto) {
         musicService.update(dto);
         return ResponseEntity.ok().build();
     }
@@ -55,7 +55,6 @@ public class MusicController {
     // @ResponseBody : 서버가 클라이언트에게 전송하는 Data를 자동 직력화 하는 어노테이션
 
     // CORS : Cross Origin Resource Sharing ( 보안 관련 이슈 )
-
 
     // Server Response Code number
     // 100~ :
