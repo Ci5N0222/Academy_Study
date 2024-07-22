@@ -2,6 +2,9 @@
 
 ### Library
 ```bash
+/* React icons */
+$ npm i react-icons --save
+
 /* React Router Dom */
 $ npm i react-router-dom
 

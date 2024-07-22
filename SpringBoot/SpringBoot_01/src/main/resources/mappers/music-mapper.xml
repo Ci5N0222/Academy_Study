@@ -4,6 +4,36 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Music">
     <insert id="insert" >
-        INSERT INTO music VALUES(music_seq.nextval, #{title}, #{singer})
+        INSERT INTO
+            music
+        VALUES
+            (
+                music_seq.nextval,
+                #{title},
+                #{singer}
+            )
     </insert>
+    <select id="list" resultType="com.kedu.springboot_01.dto.MusicDTO">
+        SELECT
+            *
+        FROM
+            music
+        ORDER BY
+            id DESC
+    </select>
+    <delete id="delete">
+        DELETE FROM
+            music
+        WHERE
+            id = #{id}
+    </delete>
+    <update id="update">
+        UPDATE
+            music
+        SET
+            title = #{title},
+            singer = #{singer}
+        WHERE
+            id = #{id}
+    </update>
 </mapper>

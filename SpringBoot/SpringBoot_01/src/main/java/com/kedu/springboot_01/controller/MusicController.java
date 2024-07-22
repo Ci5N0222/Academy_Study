@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 // http:localhost/post?id=abc&title=abc...
 // http:localhost/post
@@ -13,20 +15,34 @@ import org.springframework.web.bind.annotation.*;
 // {id: "", ... } <-- ResponseBody
 
 @RestController
+@RequestMapping("/music")
 public class MusicController {
 
     @Autowired
     private MusicService musicService;
 
-    @PostMapping("/music")
+    @PostMapping
     public ResponseEntity<Void> post(@RequestBody MusicDTO dto) {
         musicService.post(dto);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/info")
-    public String info() {
-        return "info";
+    @GetMapping("/list")
+    public ResponseEntity<List<MusicDTO>> list() {
+        List<MusicDTO> list = musicService.getAllData();
+        return ResponseEntity.ok(list);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> delete(@RequestParam int id) {
+        musicService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Void> delete(@RequestBody MusicDTO dto) {
+        musicService.update(dto);
+        return ResponseEntity.ok().build();
     }
 
     // @RequestBody : 클라이언트가 서버에게 전송하려는 직렬화 된 데이터를 자동 역직렬화 하는 어노테이션
