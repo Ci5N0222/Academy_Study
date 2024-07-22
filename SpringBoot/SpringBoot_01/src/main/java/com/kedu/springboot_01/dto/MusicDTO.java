@@ -1,4 +1,4 @@
-package com.kedu.dto;
+package com.kedu.springboot_01.dto;
 
 import org.springframework.stereotype.Component;
 

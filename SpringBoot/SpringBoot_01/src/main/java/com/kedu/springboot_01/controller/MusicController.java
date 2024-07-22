@@ -1,7 +1,7 @@
-package com.kedu.controller;
+package com.kedu.springboot_01.controller;
 
-import com.kedu.dto.MusicDTO;
-import com.kedu.service.MusicService;
+import com.kedu.springboot_01.dto.MusicDTO;
+import com.kedu.springboot_01.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +20,7 @@ public class MusicController {
 
     @PostMapping("/music")
     public ResponseEntity<Void> post(@RequestBody MusicDTO dto) {
-        System.out.println(dto.getId());
-        System.out.println(dto.getTitle());
-        System.out.println(dto.getSinger());
-
         musicService.post(dto);
-
         return ResponseEntity.ok().build();
     }
 

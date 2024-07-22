@@ -1,7 +1,7 @@
-package com.kedu.service;
+package com.kedu.springboot_01.service;
 
-import com.kedu.dao.MusicDAO;
-import com.kedu.dto.MusicDTO;
+import com.kedu.springboot_01.dao.MusicDAO;
+import com.kedu.springboot_01.dto.MusicDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
