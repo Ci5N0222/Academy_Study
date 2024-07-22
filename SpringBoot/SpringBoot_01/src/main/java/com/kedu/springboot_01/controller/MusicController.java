@@ -33,6 +33,12 @@ public class MusicController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/detail")
+    public ResponseEntity<MusicDTO> detail(@RequestParam int id) {
+        MusicDTO detail = musicService.getOneData(id);
+        return ResponseEntity.ok(detail);
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<Void> delete(@RequestParam int id) {
         musicService.delete(id);

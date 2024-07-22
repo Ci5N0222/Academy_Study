@@ -2,6 +2,7 @@
 import './App.css';
 import { useEffect, useState } from'react';
 import axios from 'axios';
+import { Modal } from './components/Modal/Modal';
 
 
 // 서버와 클라이언트는 데이터만 주고 받는다.
@@ -15,9 +16,11 @@ import axios from 'axios';
 
 function App() {
   const resetObj = {id:0, title:'', singer:''};
+
   const [music, setMusic] = useState(resetObj);
-  const [ modData, setModData ] = useState(resetObj);
   const [ musics, setMusics ] = useState([]);
+  const [ modData, setModData ] = useState(resetObj);
+  const [ detailData, setDetailData ] = useState(resetObj);
 
   const handleAddChange = (e) => {
     const {name, value} = e.target;
@@ -40,6 +43,12 @@ function App() {
     setMusics(res.data);
   }
 
+  const handleDetail = async(id) => {
+    const res = await axios.get(`http://192.168.1.7/music/detail?id=${id}`);
+    setDetailData(res.data);
+    openModal();
+  }
+
   const handleDelete = async (id) => {
     await axios.delete(`http://192.168.1.7/music/delete?id=${id}`);
     await handleGetList();
@@ -53,6 +62,10 @@ function App() {
   useEffect(() => {
     handleGetList();
   }, []);
+
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className="container">
@@ -73,7 +86,9 @@ function App() {
       </div>
         
         <hr /><hr />
-
+        <Modal isOpen={ isModalOpen } onClose={ closeModal } data={ detailData }>
+          <button onClick={ closeModal }>Close</button>
+        </Modal>
         <div className="list">
           [ Music 목록 ] <br /><br />
           <table style={{ border: "1px solid black" }}>
@@ -91,7 +106,7 @@ function App() {
                   return (
                     <tr key={ i }>
                         <td>{ item.id }</td>
-                        <td>{ item.title }</td>
+                        <td><button onClick={()=>{ handleDetail(item.id) }}>{ item.title }</button></td>
                         <td>{ item.singer }</td>
                         <td><button onClick={ () => { handleDelete(item.id) } }>X</button></td>
                     </tr>

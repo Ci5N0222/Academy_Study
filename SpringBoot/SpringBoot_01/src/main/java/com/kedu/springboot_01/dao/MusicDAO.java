@@ -21,6 +21,10 @@ public class MusicDAO {
         return mybatis.selectList("Music.list");
     }
 
+    public MusicDTO getOneData(int id){
+        return mybatis.selectOne("Music.detail", id);
+    }
+
     public void delete(int id){
         mybatis.delete("Music.delete", id);
     }

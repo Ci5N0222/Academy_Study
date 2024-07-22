@@ -13,6 +13,7 @@
                 #{singer}
             )
     </insert>
+
     <select id="list" resultType="com.kedu.springboot_01.dto.MusicDTO">
         SELECT
             *
@@ -21,12 +22,23 @@
         ORDER BY
             id DESC
     </select>
+
+    <select id="detail" resultType="com.kedu.springboot_01.dto.MusicDTO">
+        SELECT
+            *
+        FROM
+            music
+        WHERE
+            id = #{id}
+    </select>
+
     <delete id="delete">
         DELETE FROM
             music
         WHERE
             id = #{id}
     </delete>
+
     <update id="update">
         UPDATE
             music

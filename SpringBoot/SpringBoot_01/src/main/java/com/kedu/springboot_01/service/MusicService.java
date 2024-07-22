@@ -21,6 +21,10 @@ public class MusicService {
         return musicDAO.getAllData();
     }
 
+    public MusicDTO getOneData(int id) {
+        return musicDAO.getOneData(id);
+    }
+
     public void delete(int id) {
         musicDAO.delete(id);
     }
