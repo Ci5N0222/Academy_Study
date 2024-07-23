@@ -23,6 +23,17 @@
             id DESC
     </select>
 
+    <select id="search" resultType="com.kedu.springboot_01.dto.MusicDTO">
+        SELECT
+            *
+        FROM
+            music
+        WHERE
+            title like '%'||#{title}||'%'
+        ORDER BY
+            id DESC
+    </select>
+
     <select id="detail" resultType="com.kedu.springboot_01.dto.MusicDTO">
         SELECT
             *

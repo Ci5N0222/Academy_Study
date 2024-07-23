@@ -21,6 +21,10 @@ public class MusicDAO {
         return mybatis.selectList("Music.list");
     }
 
+    public List<MusicDTO> getSearchData(String title){
+        return mybatis.selectList("Music.search", title);
+    }
+
     public MusicDTO getOneData(int id){
         return mybatis.selectOne("Music.detail", id);
     }

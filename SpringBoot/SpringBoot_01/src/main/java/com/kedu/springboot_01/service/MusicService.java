@@ -21,6 +21,10 @@ public class MusicService {
         return musicDAO.getAllData();
     }
 
+    public List<MusicDTO> getSearchData(String title) {
+        return musicDAO.getSearchData(title);
+    }
+
     public MusicDTO getOneData(int id) {
         return musicDAO.getOneData(id);
     }

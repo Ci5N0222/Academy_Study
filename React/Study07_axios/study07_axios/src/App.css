@@ -12,6 +12,22 @@
   margin: 10px;
 }
 
+.col {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.col > div {
+  margin: 6px 0;
+  padding: 4px;
+}
+
+.col > div > input {
+  margin: 4px;
+  padding: 4px
+}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -36,4 +52,13 @@ button {
 
 button:hover {
   color: orange;
+}
+
+.search {
+  text-align: center;
+}
+
+.search > input {
+  width: 250px;
+  height: 25px;
 }
