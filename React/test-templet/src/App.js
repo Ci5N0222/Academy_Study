@@ -3,16 +3,24 @@ import { Login } from './components/Login/Login';
 import {SideMenu} from "./components/SideMenu/SideMenu";
 import {Home} from "./components/Home/Home";
 import {BrowserRouter as Router} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useMemberStore} from "./store/store";
 
 function App() {
-  const [ user, setUser ] = useState(false);
+  const userId = sessionStorage.getItem("sessionId");
+  const userName = sessionStorage.getItem("sessionName");
+  const {sign, setSign, setUser} = useMemberStore();
+  useEffect(() => {
+    setUser({id: userId, name: userName});
+    if(userId !== "") setSign(true);
+  }, []);
+
   return (
     <div className="container">
       <Router>
-        { user === false && <Login login={ setUser }/> }
-        { user === true && <SideMenu />  }
-        { user === true && <Home /> }
+        { !sign && <Login /> }
+        { sign && <SideMenu />  }
+        { sign && <Home /> }
       </Router>
     </div>
   );

@@ -4,6 +4,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 
 export const Calendar = () => {
+
   return (
     <div className={styles.container}>
       <div className={styles.calendar}>
