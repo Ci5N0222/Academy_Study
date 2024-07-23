@@ -1,6 +1,5 @@
 import styles from './SideMenu.module.css';
-import logo from '../../logo.svg';
-import test from '../../test_logo.png';
+import logo from '../../test_logo.png';
 import {useNavigate} from "react-router-dom";
 import { FaAddressBook } from 'react-icons/fa';
 import { IoHome } from "react-icons/io5";
@@ -15,7 +14,7 @@ export const SideMenu = () => {
 
   return (
     <div className={ styles.navgation }>
-      <img src={test} alt="logo" />
+      <img src={logo} alt="logo" />
       <button onClick={()=>{navi("/")}}>
         <IoHome />
         <span>Home</span>

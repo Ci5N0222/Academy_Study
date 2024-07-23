@@ -86,9 +86,6 @@ function App() {
       </div>
         
         <hr /><hr />
-        <Modal isOpen={ isModalOpen } onClose={ closeModal } data={ detailData }>
-          <button onClick={ closeModal }>Close</button>
-        </Modal>
         <div className="list">
           [ Music 목록 ] <br /><br />
           <table style={{ border: "1px solid black" }}>
@@ -116,6 +113,14 @@ function App() {
             </tbody>
           </table>
         </div>
+
+        <Modal isOpen={ isModalOpen } onClose={ closeModal }>
+          <div className=''>
+              {/* 내용 작성 */}
+          <button onClick={ closeModal }>Close</button>
+          </div>
+        </Modal>
+        
     </div>
   );
 }
