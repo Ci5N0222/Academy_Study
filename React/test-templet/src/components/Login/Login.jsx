@@ -3,7 +3,7 @@ import logo from '../../test_logo.png';
 import {Modal} from "../Modal/Modal";
 import { useState } from "react";
 import {useMemberStore} from "../../store/store";
-import { signInAPI, signOutAPI } from '../../api/api';
+import { signInAPI } from '../../api/api';
 
 export const Login = ({ login }) => {
 
