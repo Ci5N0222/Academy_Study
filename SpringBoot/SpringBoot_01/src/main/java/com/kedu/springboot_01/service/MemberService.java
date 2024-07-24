@@ -23,4 +23,8 @@ public class MemberService {
         return memberDAO.auth(dto);
     }
 
+    public MemberDTO mypage(String id) {return memberDAO.mypage(id);}
+
+    public void delete(String id){ memberDAO.delete(id); }
+
 }

@@ -10,8 +10,9 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // allowedOrigins("*") <-- 호스팅 된 URL 써야댐
         registry.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOrigins("http://192.168.1.7:3000")
                 .allowedMethods("*")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

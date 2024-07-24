@@ -23,4 +23,11 @@ public class MemberDAO {
         return mybatis.selectOne("Member.info", dto);
     }
 
+    public MemberDTO mypage(String id) {
+        return mybatis.selectOne("Member.mypage", id);
+    }
+    public void delete(String id) {
+        mybatis.delete("Member.delete", id);
+    }
+
 }
