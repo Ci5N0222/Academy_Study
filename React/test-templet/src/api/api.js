@@ -7,5 +7,5 @@ export const signInAPI = async () => {
 }
 
 export default {
-  signInAPI,
+  signInAPI
 }
