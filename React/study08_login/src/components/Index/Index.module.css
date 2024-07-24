@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container  th, td {
+    border: 1px solid darkgray;
+    display: flex;
+    justify-content: center;
+}
+
+td > input {
+    text-align: center;
+}
+
+td > button {
+    margin: 4px 10px;
+}
