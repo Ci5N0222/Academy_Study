@@ -19,7 +19,7 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public ResponseEntity<MemberDTO> mypage() {
-        String id = (String)session.getAttribute("sessionId");
+        String id = (String) session.getAttribute("loginID");
         MemberDTO info = memberService.mypage(id);
         return ResponseEntity.ok(info);
     }
@@ -32,7 +32,7 @@ public class MemberController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> memberDelete (@PathVariable(required = false) String id) {
-        String sessionId = (String)session.getAttribute("sessionId");
+        String sessionId = (String)session.getAttribute("loginID");
         if(id.equals(sessionId)){
             memberService.delete(id);
             session.invalidate();

@@ -15,7 +15,7 @@ public class SocketContoller {
     @PostMapping
     public ResponseEntity<String> testLogin() {
         session.setAttribute("loginID", "QWER");
-        System.out.println(session.getAttribute("loginID"));
+        System.out.println("session get id from controller " +  session.getAttribute("loginID"));
         return ResponseEntity.ok("로그인 성공");
 
     }

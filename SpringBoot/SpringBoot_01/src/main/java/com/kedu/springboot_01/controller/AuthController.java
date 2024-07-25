@@ -24,7 +24,8 @@ public class AuthController {
         if(info == null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Faild");
         }
-        session.setAttribute("sessionId", dto.getId());
+        session.setAttribute("loginID", dto.getId());
+        System.out.println("loginID === " + session.getAttribute("loginID"));
         return ResponseEntity.ok(info.getId());
     }
 

@@ -13,19 +13,22 @@ public class HttpSessionInterceptor implements HandshakeInterceptor {
 
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
-                                   Map<String, Object> attributes) throws Exception {
+            Map<String, Object> attributes) throws Exception {
         // endpoint로 보내는 map. userproperties가 매개변수로 나와있다.
-
-        ServletServerHttpRequest sReq = (ServletServerHttpRequest) request;
-        sReq.getServletRequest().getSession();
+        ServletServerHttpRequest sReq = (ServletServerHttpRequest)request;
         HttpSession session = sReq.getServletRequest().getSession();
+        System.out.println("HttpSessionInterceptor === " + (String) session.getAttribute("loginID"));
         attributes.put("hSession", session);
 
         return true;
     }
 
+    // 추상메소드라 오버라이딩 해놨지만 굳이 건들 필요 없긴 함
     @Override
-    public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception exception) {
+    public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
+            Exception exception) {
+        // TODO Auto-generated method stub
 
     }
+
 }

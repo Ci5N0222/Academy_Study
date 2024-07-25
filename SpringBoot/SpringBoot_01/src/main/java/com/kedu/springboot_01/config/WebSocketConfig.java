@@ -12,13 +12,16 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
+    //   @Autowired
+    //   ChatHandler
     // component 스캔 돌려서 autowired 해서 넣어도 되긴 하지만 다른 방법 써보겠다.
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.
                 addHandler(getChatHandler(), "/chat").
-                setAllowedOrigins("*");
+                setAllowedOrigins("*")
+                .addInterceptors(new HttpSessionInterceptor());
 
     }
 
