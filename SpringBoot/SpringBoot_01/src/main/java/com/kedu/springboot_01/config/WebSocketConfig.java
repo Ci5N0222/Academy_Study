@@ -1,6 +1,6 @@
-package com.kedu.config;
+package com.kedu.springboot_01.config;
 
-import com.kedu.handlers.ChatHandler;
+import com.kedu.springboot_01.handlers.ChatHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.WebSocketHandler;

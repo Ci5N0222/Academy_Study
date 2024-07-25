@@ -1,4 +1,4 @@
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import styles from "./Index.module.css";
 import React, { useState } from "react";
 import axios from "axios";
@@ -6,7 +6,13 @@ import { useAuthStore } from "../../store/store";
 
 export const Index = () => {
 
+  // Navigation을 통해 값을 전달하는 방법
+  // navi("/mypage" {stata: data})
+  // const loc = useLocation();
+  // const myInfo = loc.state;
+  
   const navi = useNavigate();
+
   const { loginID, setLoginID } = useAuthStore();
 
   const defaultData = { id: "", pw: "" };
@@ -93,6 +99,7 @@ export const Index = () => {
             <thead>
               <tr>
                 <td colSpan={4}><h2> {loginID}님 환영합니다</h2></td>
+                <img src="http://192.168.1.7/images/play.gif" width={200}/>
               </tr>
             </thead>
             <tbody>

@@ -1,4 +1,4 @@
-package com.kedu.springboot_01.config;
+package com.kedu.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
