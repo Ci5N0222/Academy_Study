@@ -22,6 +22,28 @@ function App() {
   const [ modData, setModData ] = useState(resetObj);
   const [ detailData, setDetailData ] = useState(resetObj);
 
+  const [text, setText] = useState();
+  const [files, setFiles] = useState([]);
+
+  const handleTextChang = (e) => {
+    setText(e.target.value);
+  }
+
+  const handleFileChang = (e) => {
+    setFiles([ ...e.target.files ]);
+  }
+
+  const [ publish, setPublish ] = useState({ publish: "" });
+
+  const handleDate = (e) => {
+    setPublish({publish : e.target.value});
+  }
+
+  const handleDateSubmit = () => {
+    axios.post("http://192.168.1.7/files", publish);
+  }
+
+
   const handleAddChange = (e) => {
     const {name, value} = e.target;
     setMusic(prev => ({ ...prev, [name]:value }));
@@ -31,6 +53,16 @@ function App() {
       const { name, value } = e.target;
       setModData(prev => ({ ...prev, [name]: value }));
   }
+
+  const handleSubmit = () => {
+    const formData = new FormData();  // query parameter 형식으로 전송 됨
+    formData.append("text", text);
+    files.forEach(item => {
+      formData.append("files", item);
+    });
+    
+    axios.post("http://192.168.1.7/files", formData);  // Multipart/form-data
+  } 
   
   /* Insert */
   const handleAdd = async() => {
@@ -153,6 +185,21 @@ function App() {
           <input type="text" placeholder='Title' name="title" onChange={ handleSearch } />
         </div>
         
+        <hr /><hr />
+
+        <div className='file-form'>
+          <input type="text" onChange={handleTextChang} placeholder='Input Text'/>
+          <input type="file" onChange={handleFileChang} multiple/>
+          <button onClick={handleSubmit}>전송</button>
+        </div>
+
+        <hr /><hr />
+
+        <div>
+          <input type='date' onChange={handleDate} />
+          <button onClick={ handleDateSubmit } >전송</button>
+        </div>
+
         {
           modal === "detail" &&
           <Modal isOpen={ isModalOpen } onClose={ closeModal }>

@@ -1,6 +1,6 @@
 .container {
   width: 800px;
-  height: 500px;
+  height: 600px;
   border: 1px solid black;
   margin: auto;
 }
@@ -61,4 +61,13 @@ button:hover {
 .search > input {
   width: 250px;
   height: 25px;
+}
+
+.file-form {
+  display: flex;
+  justify-content: center;
+}
+
+.file-form > * {
+  margin: 10px;
 }
