@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { MdOutlineDashboard } from "react-icons/md";
 import {RiSettings4Line} from "react-icons/ri";
@@ -12,6 +12,12 @@ function App() {
 
 
   const [open, setOpen] = useState(true);
+
+    useEffect(() => {
+        /* Side-Bar toggle */
+        if(localStorage.getItem("sidebar") === "true") setOpen(true);
+        else setOpen(!open);
+    }, []);
 
   return (
     <div className="container">

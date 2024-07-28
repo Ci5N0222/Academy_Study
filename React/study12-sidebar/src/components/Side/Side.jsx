@@ -20,11 +20,21 @@ export const Side = ({open, setOpen}) => {
         {name: "Setting", link: "/", icon: RiSettings4Line},
     ]
 
+    const handleSideTogle = () => {
+        setOpen( prev => {
+            const sideState = !prev
+            if(sideState) localStorage.setItem("sidebar", "true");
+            else localStorage.setItem("sidebar", "false");
+            return sideState
+        })
+
+    }
+
     return (
         <div className={styles.container}>
             <div className={open ? styles.sideFull : styles.sideShort}>
                 <div className={styles.toggle}>
-                    <HiMenuAlt3 size={30} className="icons" onClick={() => setOpen(!open)}/>
+                    <HiMenuAlt3 size={30} className="icons" onClick={handleSideTogle}/>
                 </div>
                 <div className={styles.menus}>
                     {
