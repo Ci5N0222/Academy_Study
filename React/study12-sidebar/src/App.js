@@ -18,6 +18,7 @@ function App() {
       <Side open={open} setOpen={setOpen} />
       <div className="header">
         React Side Bar practice
+        반응형 실습
       </div>
     </div>
   );
