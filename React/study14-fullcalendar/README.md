@@ -7,5 +7,5 @@ $ npm install --save
   @fullcalendar/react 
   @fullcalendar/daygrid
   @fullcalendar/interaction
-  @fullcalendar/timegrid
+  @fullcalendar/timegrid 
 ```
