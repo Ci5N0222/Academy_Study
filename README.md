@@ -13,7 +13,7 @@
 ### bootstrap
 - 반응형 학습 및 실습
 ### jQuery
-- jQuery 라이브러리 학습
+- jQuery 라이브러리 학습 
 
 ## Web-Automation
 - 웹 자동화 학습 및 티켓 예매 실습 
