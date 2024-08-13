@@ -4,5 +4,5 @@
 start
 ``` bash
 /* Install */
-$ npm install zustand
+$ npm install zustand 
 ```

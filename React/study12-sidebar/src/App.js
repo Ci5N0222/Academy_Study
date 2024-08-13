@@ -1,11 +1,5 @@
 import './App.css';
 import React, {useEffect, useState} from "react"
-import { HiMenuAlt3 } from 'react-icons/hi';
-import { MdOutlineDashboard } from "react-icons/md";
-import {RiSettings4Line} from "react-icons/ri";
-import {AiOutlineHeart, AiOutlineUser} from "react-icons/ai";
-import {FiFolder, FiMessageSquare, FiShoppingCart} from "react-icons/fi";
-import {TbReportAnalytics} from "react-icons/tb";
 import {Side} from "./components/Side/Side";
 
 function App() {
@@ -23,7 +17,8 @@ function App() {
     <div className="container">
       <Side open={open} setOpen={setOpen} />
       <div className="header">
-        React Side Bar
+        React Side Bar practice
+        반응형 실습
       </div>
     </div>
   );

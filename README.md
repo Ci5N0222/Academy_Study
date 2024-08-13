@@ -1,7 +1,6 @@
 # K-Degital Academy Curriculum
-#### 과정 : 자바 스프링 리액트로 완성하는 클라우드 활용 풀스택 개발
+#### 과정 : 자바 스프링 리액트로 완성하는 클라우드 활용 풀스택개발
 #### 기간 : 3월 25 ~ 10월 1일
-
 
 ## Java Programing 
 
@@ -13,7 +12,7 @@
 ### bootstrap
 - 반응형 학습 및 실습
 ### jQuery
-- jQuery 라이브러리 학습
+- jQuery 라이브러리 학습 
 
 ## Web-Automation
 - 웹 자동화 학습 및 티켓 예매 실습 

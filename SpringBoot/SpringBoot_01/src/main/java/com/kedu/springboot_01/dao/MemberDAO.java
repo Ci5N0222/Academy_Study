@@ -13,7 +13,7 @@ public class MemberDAO {
 
     public void insert(MemberDTO dto) {
         mybatis.insert("Member.insert", dto);
-    }
+    } 
 
     public Boolean signIn(MemberDTO dto) {
         return mybatis.selectOne("Member.signin", dto);
