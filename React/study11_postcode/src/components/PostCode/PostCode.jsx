@@ -10,7 +10,7 @@ export const Postcode = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const completeHandler = (data) => {
-    setZipCode(data.zonecode);
+    setZipCode(data.zonecode); 
     setRoadAddress(data.roadAddress);
     setIsOpen(false);
   }
