@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/music")
 public class MusicController {
 
-    @Autowired
+    @Autowired 
     private MusicService musicService;
 
     @PostMapping
