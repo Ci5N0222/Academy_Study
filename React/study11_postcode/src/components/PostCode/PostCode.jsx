@@ -19,7 +19,7 @@ export const Postcode = () => {
     overlay: { 
       backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
-    content: {
+    content: { 
       left: "0",
       margin: "auto",
       width: "500px",
