@@ -18,7 +18,7 @@ export const Postcode = () => {
   const customStyles = {
     overlay: { 
       backgroundColor: "rgba(0, 0, 0, 0.5)",
-    },
+    }, 
     content: { 
       left: "0",
       margin: "auto",
