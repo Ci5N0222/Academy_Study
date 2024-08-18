@@ -10,7 +10,7 @@ function App() {
     useEffect(() => {
         /* Side-Bar toggle */
         if(localStorage.getItem("sidebar") === "true") setOpen(true);
-        else setOpen(!open);
+        else setOpen(!open); 
     }, []);
 
   return (
