@@ -28,5 +28,11 @@
 #### 내용 : https://github.com/Ci5N0222/Wolf-Project
 #### 담당 : 관리자 페이지, 고객센터 담당 개발 및 형상관리
 
+## Second-Project
+#### 기업관리 전산 프로그램 ( Group Ware ) 개발
+#### 기간 : 7월 26일 ~ 8월 23일
+#### 내용 : https://github.com/GroupwareTeamClover
+#### 담당 : 멤버 관련, 캘린더 담당 개발 및 일정관리 (팀장)
+
 ## Spring legacy
 ## Spring Boot
