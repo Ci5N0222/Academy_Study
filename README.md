@@ -1,11 +1,9 @@
 # K-Degital Academy Curriculum
-#### 과정 : 자바 스프링 리액트로 완성하는 클라우드 활용 풀스택개발
+#### 과정 : 자바 스프링 리액트로 완성하는 클라우드 활용 풀스택개발 
 #### 기간 : 3월 25 ~ 10월 1일
 
 ## Java Programing 
-
 ## DBMS (Oracle)
-
 ## Front-End
 ### HTML / CSS / JavaScript
 - Front-end 기초 학습
@@ -30,6 +28,11 @@
 #### 내용 : https://github.com/Ci5N0222/Wolf-Project
 #### 담당 : 관리자 페이지, 고객센터 담당 개발 및 형상관리
 
+## Second-Project
+#### 기업관리 전산 프로그램 ( Group Ware ) 개발
+#### 기간 : 7월 26일 ~ 8월 23일
+#### 내용 : https://github.com/GroupwareTeamClover/GroupwareClover
+#### 담당 : 멤버 관련, 캘린더 담당 개발 및 일정관리 (팀장) 
 
 ## Spring legacy
 ## Spring Boot
