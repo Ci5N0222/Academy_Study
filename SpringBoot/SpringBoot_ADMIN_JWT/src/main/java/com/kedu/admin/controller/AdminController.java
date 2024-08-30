@@ -14,6 +14,8 @@ public class AdminController {
 
     @GetMapping
     public ResponseEntity<List<EmployeeDTO>> selectAll() {
+        // 멤버 조회
+
         return null;
 //        return ResponseEntity.ok("꺼내온 데이터 리스트");
     }
