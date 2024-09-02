@@ -4,7 +4,6 @@ import com.kedu.dto.MembersDTO;
 import com.kedu.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,9 +12,6 @@ public class AuthController {
 
     @Autowired
     private JWTUtil jwt;
-
-    @Autowired
-    private PasswordEncoder pwEnc;
 
     @PostMapping
     public ResponseEntity<String> login(@RequestBody MembersDTO dto) {

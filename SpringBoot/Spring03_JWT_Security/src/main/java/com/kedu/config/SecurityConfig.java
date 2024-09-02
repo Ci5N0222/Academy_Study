@@ -1,5 +1,7 @@
 package com.kedu.config;
 
+import com.kedu.config.filters.JWTAuthenticationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,10 +19,12 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private JWTAuthenticationFilter jwtFilter;
+
     /** 보완 관련 코드 작성 **/
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
 
         http
             /** Cors **/
@@ -45,11 +49,13 @@ public class SecurityConfig {
             .httpBasic(basic -> basic.disable())
 
             /** authentic **/
+            // 페이지의 인증과 인과를 관리
             .authorizeHttpRequests(req ->
                 req
                 .requestMatchers(HttpMethod.POST, "/auth").permitAll()   // excludePatternPath
-                .anyRequest().authenticated());    // 모든 리퀘스트는 인증되어 있어야만 하며, 제일 뒤에 붙어야 한다.
-//                .addFilterBefore(null, UsernamePasswordAuthenticationFilter.class);
+                .requestMatchers("/admin/**").hasRole("ADMIN")       // excludePatternPath
+                .anyRequest().authenticated())    // 모든 리퀘스트는 인증되어 있어야만 하며, 제일 뒤에 붙어야 한다.
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         /**
          * Spring Security의 인증

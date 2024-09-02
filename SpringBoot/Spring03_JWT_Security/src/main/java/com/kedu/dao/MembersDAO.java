@@ -14,4 +14,10 @@ public class MembersDAO {
     public MembersDTO login(MembersDTO dto) {
         return mybatis.selectOne("Members.login", dto);
     }
+
+    public MembersDTO getMembers(String id) {
+        System.out.println("dao id ===== "+ id);
+        return mybatis.selectOne("Members.getMembers", id);
+    }
+
 }

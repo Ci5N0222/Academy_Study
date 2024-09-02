@@ -1,7 +1,7 @@
-package com.kedu.services;
+package com.kedu.members.service;
 
-import com.kedu.dao.MembersDAO;
-import com.kedu.dto.MembersDTO;
+import com.kedu.members.dao.MembersDAO;
+import com.kedu.members.dto.MembersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -16,17 +16,14 @@ public class MembersService implements UserDetailsService {
     @Autowired
     private MembersDAO membersDAO;
 
-    /** Login **/
-    public boolean login(MembersDTO dto) {
-        MembersDTO member = membersDAO.login(dto);
-        if(member.getName() != null) return true;
-        else return false;
+    public boolean isMembers(MembersDTO dto) {
+        return membersDAO.isMembers(dto);
     }
 
-    /** Spring Security에서 권장하는 방법 **/
+    /** Spring Security에서 권장하는 토큰 유효성 검증 **/
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MembersDTO dto = membersDAO.getMembers(username);
+        MembersDTO dto = membersDAO.getMember(username);
         return new User(dto.getId(), dto.getPw(), AuthorityUtils.createAuthorityList(dto.getRole()));
     }
 }
