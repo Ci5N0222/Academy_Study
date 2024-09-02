@@ -28,15 +28,16 @@ public class MessagesController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updateMessages(@RequestBody MessagesDTO messagesDTO) {
-        System.out.println("UpdateMessages seq ==== " + messagesDTO.getSeq());
+    @PutMapping("/{seq}")
+    public ResponseEntity<Void> updateMessages(@PathVariable Long seq, @RequestBody MessagesDTO messagesDTO) {
+        System.out.println("UpdateMessages seq ==== " + seq);
+        messagesDTO.setSeq(seq);
         messagesService.updateMessages(messagesDTO);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{seq}")
-    public ResponseEntity<Void> deleteMessages(@PathVariable int seq) {
+    public ResponseEntity<Void> deleteMessages(@PathVariable Long seq) {
         System.out.println("deleteMessages seq ==== " + seq);
         messagesService.deleteMessages(seq);
         return ResponseEntity.ok().build();

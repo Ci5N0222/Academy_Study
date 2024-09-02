@@ -4,10 +4,11 @@ import com.kedu.messages.domain.entity.Messages;
 import com.kedu.messages.domain.mappers.MessagesMapper;
 import com.kedu.messages.domain.repository.MessagesRepository;
 import com.kedu.messages.dto.MessagesDTO;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -57,12 +58,17 @@ public class MessagesService {
 
     /** Message 수정 **/
     public void updateMessages(MessagesDTO messagesDTO){
+        Messages message = messagesRepository.findById(messagesDTO.getSeq()).orElseThrow(() -> new EntityNotFoundException("Message Not Found"));
+        message.setWriter(messagesDTO.getWriter());
+        message.setMessage(messagesDTO.getMessage());
+        message.setWriteDate(new Timestamp(System.currentTimeMillis()));
 
+        messagesRepository.save(message);
     }
     
     /** Message 삭제 **/
-    public void deleteMessages(int seq){
-
+    public void deleteMessages(Long seq){
+        messagesRepository.deleteById(seq);
     }
 
 }
