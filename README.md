@@ -2,8 +2,8 @@
 #### 과정 : 자바 스프링 리액트로 완성하는 클라우드 활용 풀스택개발 
 #### 기간 : 3월 25 ~ 10월 1일
 
-## Java Programing 
-## DBMS (Oracle)
+## Java Programing
+## DBMS (Oracle) 
 ## Front-End
 ### HTML / CSS / JavaScript
 - Front-end 기초 학습
