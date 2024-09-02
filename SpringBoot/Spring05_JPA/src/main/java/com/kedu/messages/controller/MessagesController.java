@@ -24,8 +24,21 @@ public class MessagesController {
 
     @PostMapping
     public ResponseEntity<Void> saveMessages(@RequestBody MessagesDTO messagesDTO) {
-        System.out.println(messagesDTO.getMessage());
         messagesService.saveMessages(messagesDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> updateMessages(@RequestBody MessagesDTO messagesDTO) {
+        System.out.println("UpdateMessages seq ==== " + messagesDTO.getSeq());
+        messagesService.updateMessages(messagesDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{seq}")
+    public ResponseEntity<Void> deleteMessages(@PathVariable int seq) {
+        System.out.println("deleteMessages seq ==== " + seq);
+        messagesService.deleteMessages(seq);
         return ResponseEntity.ok().build();
     }
 

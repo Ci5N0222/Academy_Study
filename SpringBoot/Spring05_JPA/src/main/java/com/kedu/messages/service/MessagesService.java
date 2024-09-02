@@ -19,9 +19,10 @@ public class MessagesService {
     @Autowired
     private MessagesMapper messagesMapper;
 
+    /** Message list 조회 **/
     public List<MessagesDTO> getAllMessages() {
         List<Messages> list = messagesRepository.findAll();
-        
+
         // Entity List를 DTO List로 전환하는 작업
         // 1. Client에게 전달될 필요 없는 컬럼 제거
         // 2. 적절한 데이터 가공 작업
@@ -41,6 +42,7 @@ public class MessagesService {
         return messagesMapper.toDTOList(list);
     }
 
+    /** 신규 message 저장 **/
     public void saveMessages(MessagesDTO messagesDTO) {
 //        Messages entity = new Messages();
 //        entity.setSeq(messagesDTO.getSeq());
@@ -51,6 +53,16 @@ public class MessagesService {
 
         // Map Struct library를 이용한 자동 변환 ( DTO --> Entity )
         messagesRepository.save(messagesMapper.toEntity(messagesDTO));
+    }
+
+    /** Message 수정 **/
+    public void updateMessages(MessagesDTO messagesDTO){
+
+    }
+    
+    /** Message 삭제 **/
+    public void deleteMessages(int seq){
+
     }
 
 }
