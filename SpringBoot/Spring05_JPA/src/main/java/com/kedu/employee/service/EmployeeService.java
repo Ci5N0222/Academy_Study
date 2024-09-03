@@ -25,7 +25,7 @@ public class EmployeeService {
         return employeeMapper.toEmployeeDTOList(list);
     }
 
-    /** 직원 검색 (이름, 전화번호) **/
+    /** 직원 검색 (이름, 전화번호, 급여) **/
     public List<EmployeeDTO> searchList(String type, String data) {
         if(type.equals("phone")){
             List<Employee> list = employeeRepository.findByPhoneContaining(data);

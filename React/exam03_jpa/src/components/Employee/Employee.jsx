@@ -4,7 +4,7 @@ import {empDelete, empList, empSearch, empUpdate} from "../../api/employee";
 export const Employee = () => {
 
   const [employees, setEmployees] = useState([]);
-  const [searchEmp, setSearchEmp] = useState([]);
+  const [search, setSearch] = useState([]);
   const [modifyData, setModifyData] = useState({empId: "", empName: "", phone: "", salary: 0})
   const [delId, setDelId] = useState("");
   const [searchData, setSearchData] = useState({phone:"", empName:""});
@@ -31,21 +31,20 @@ export const Employee = () => {
   const handleGetList = () => {
     empList().then(res =>{
       setEmployees(res.data);
-      setSearchEmp(res.data);
+      setSearch(res.data);
     });
   }
 
   /** 목록 지우기 **/
   const handleListReset = () => {
     setEmployees([]);
-    setSearchEmp([]);
+    setSearch([]);
   }
 
   /** 직원 정보 수정 **/
   const handleUpdate = () => {
     empUpdate(modifyData).then(res => {
       handleGetList();
-      console.log(res.data);
     });
   }
 
@@ -60,11 +59,9 @@ export const Employee = () => {
   const handleSearch = (type) => {
     if(searchData.phone === "" && searchData.empName === "") return false;
     empSearch(type, searchData).then(res => {
-      setSearchEmp(res.data);
+      setSearch(res.data);
     });
   }
-
-
 
   return (
     <div>
@@ -112,7 +109,7 @@ export const Employee = () => {
       <fieldset>
         <legend>Employee List</legend>
         {
-          searchEmp.map(item => {
+          search.map(item => {
             return (
               <div key={item.empId} style={{border: "1px solid black"}}>
                 <p>ID : {item.empId}</p>
