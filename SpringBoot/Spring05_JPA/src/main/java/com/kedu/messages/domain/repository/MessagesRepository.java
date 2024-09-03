@@ -1,6 +1,5 @@
 package com.kedu.messages.domain.repository;
 
-
 import com.kedu.messages.domain.entity.Messages;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

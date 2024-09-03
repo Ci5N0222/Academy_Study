@@ -2,6 +2,7 @@ package com.kedu.config;
 
 import com.kedu.config.filters.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -22,6 +23,9 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationFilter jwtFilter;
 
+    @Value("${host.url}")
+    private String baseUrl;
+
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -29,7 +33,7 @@ public class SecurityConfig {
                 // Cors
                 .cors(cors -> cors.configurationSource(req -> {
                     CorsConfiguration corsConfig = new CorsConfiguration();
-                    corsConfig.setAllowedOrigins(Arrays.asList("http://192.168.1.7:3000"));
+                    corsConfig.setAllowedOrigins(Arrays.asList(baseUrl));
                     corsConfig.setAllowedHeaders(Arrays.asList("*"));
                     corsConfig.setAllowedMethods(Arrays.asList("*"));
 
