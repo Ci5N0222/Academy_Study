@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	${ test }
+	<a href="/board">게시판</a>
 </body>
 </html>
