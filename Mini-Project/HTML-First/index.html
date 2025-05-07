@@ -18,165 +18,50 @@
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/a0900b741f.js" crossorigin="anonymous"></script>
-    
+
     <link rel="icon" href="img/favicon.PNG">
     <link rel="stylesheet" href="css/style.css">
-
+    <script src="js/main.js"></script>
 </head>
 
 <body>
-    
-    <!-- Navbar -->
-    <div class="container-fluid navi">
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <nav class="navbar navbar-expand-md">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="index.html" style="color: deeppink;">ANI-MATE</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="view/best.html"><p class="default-font">BEST</p></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="view/event.html"><p class="default-font">EVENT</p></a>
-                                </li>
-                                <li class="nav-item d-md-none">
-                                    <a href="view/login.html">
-                                        <p class="default-font">Login</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="nav-account d-none d-md-block">
-                                <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" style="cursor: pointer; margin-right: 15px;"></i>
-                                <a href="view/login.html"><i class="fa-solid fa-user"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-1"></div>
-        </div>
-    </div>
 
-    <div class="container">
+    <!-- Navbar -->
+    <header></header>
+
+    <!-- Main -->
+    <div class="container-fluid">
 
         <!-- Search Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Search</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <a href="view/detail1.html" style="color:blue; margin-right: 10px;">#귀멸의칼날</a>
-                        <a href="view/detail2.html" style="color:blue; margin-right: 10px;">#주술회전</a>
-                        <a href="view/detail3.html" style="color:blue">#최애의아이</a>
-                        <input type="text" style="width: 400px; margin-top:15px" placeholder="검색어를 입력하세요">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">검색</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="modal"></div>
 
         <!-- contents -->
         <!-- slide banner -->
-        <div class="row">
-            <div id="carouselExampleCaptions" class="carousel slide col-12 g-0">
-                <div class="carousel-inner mt-5">
-                    <div class="carousel-item active">
-                        <img src="img/banner_1.jpg" class="d-block w-100" alt="퀴멸의칼날 배너" />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/banner_2.jpg" class="d-block w-100" alt="주술회전 배너" />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/banner_3.jpg" class="d-block w-100" alt="최애의아이 배너" />
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+        <div class="banner"></div>
 
-            <!-- contents 1 -->
-            <div class="row" style="margin-top: 70px; margin-left: auto; margin-right: auto;">
+        <div class="container">
+
+            <!-- contents 1 ( BEST ) -->
+            <div class="row best-ani">
                 <h3><span style="color: deeppink;">ANI-MATE</span> 인기작품</h3>
                 <hr>
-                <div class="col-12 col-md-4" style="margin-top: 15px;">
-                    <div class="card" style="width: 100%;">
-                        <a href="view/detail1.html">
-                            <img src="img/image1.jpg" class="card-img-top" id="content-image1" alt="귀멸의칼날">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text" style="font-size: 24px;">귀멸의 칼날
-                                <span class="card-text" style="font-size: 16px; color: grey;"><a
-                                        href="detail1.html">자세히보기</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4" style="margin-top: 15px;">
-                    <div class="card" style="width: 100%;">
-                        <a href="view/detail2.html">
-                            <img src="img/image2.png" class="card-img-top" alt="주술회전">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text" style="font-size: 24px;">주술회전
-                                <span class="card-text" style="font-size: 16px; color: grey;"><a
-                                        href="detail2.html">자세히보기</a></span>
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4" style="margin-top: 15px;">
-                    <div class="card" style="width: 100%;">
-                        <a href="view/detail3.html">
-                            <img src="img/image3.png" class="card-img-top" alt="최애의 아이">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text" style="font-size: 24px;">최애의 아이
-                                <span class="card-text" style="font-size: 16px; color: grey;"><a
-                                        href="detail3.html">자세히보기</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- contents 1 -->
-            <div class="row" style="margin-top: 70px; margin-left: auto; margin-right: auto;">
+            <div class="row popular-ani">
                 <h3><span style="color: deeppink;">역대</span> 인기작품</h3>
                 <hr>
 
-                <div class="col-6 col-md-4 col-lg-3" style="margin-top: 15px;">
-                    <div class="card" style="width: 100%;">
+                <div class="col-6 col-md-4 col-lg-3 mt-3">
+                    <div class="card">
                         <a href="#">
                             <img src="img/popular_1.jpg" class="card-img-top" id="content-image1" alt="스파이 패밀리">
                         </a>
                         <div class="card-body">
-                            <p class="card-text" style="font-size: 22px;">스파이 패밀리
-                                <span class="card-text" style="font-size: 14px; color: grey;"><a
-                                        href="#">자세히보기</a></span>
+                            <p class="card-text fs-5">스파이 패밀리
+                                <span class="card-text fs-6">
+                                    <a href="#">자세히보기</a>
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -273,27 +158,10 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row footer" style="margin-top: 70px; margin-left: auto; margin-right: auto;">
-                <br />
-                <hr />
-                <div class="col-12 col-md-4">
-                    <span style="color: deeppink; font-size: 30px;">ANI-MATE</span>
-                    <p>
-                        (주)ANI-MATE 사업자 정보
-                    </p>
-                </div>
-                <div class="col-12 col-md-8" style="text-align: center;">
-                    <p>Create by Sion-Noh</p>
-                    <p>Contract Kakao: test123 　| 　E-mail: test@gamil.com</p>
-                </div>
-            </div>
         </div>
+        <div class="footer"></div>
+    </div>
 
-        <script>
-            const nextBtn = document.querySelector(".carousel-control-next");
-            setInterval(() => nextBtn.click(), 3000);
-        </script>
 </body>
 
 </html>
